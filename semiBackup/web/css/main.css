@@ -1,0 +1,1162 @@
+@charset "UTF-8";
+
+
+
+header#mainHeader {
+	min-height: 300px;
+}
+
+div#profile1 {
+	position: absolute;
+	width: 450px;
+	height: 100px;
+	left: 50px;
+	top: 90px;
+	float: right;
+	border: 0.5px solid #a79c8e;
+	background-color: white;
+}
+
+button#logout, button#mypage {
+	width: 120px;
+	height: 35px;
+	background-color: #eb9f9f;
+	color: black;
+	margin: 5px;
+	margin-left: 60px;
+	margin-right: 15px;
+	padding: 5px;
+	text-align: center;
+	display: inline-block;
+	border-radius: 5px;
+	cursor: pointer;
+	border: none;
+}
+
+div#myPro {
+	height: 50px;
+}
+
+div#myPro2 {
+	height: 20px;
+	text-align: center;
+	margin-top: 5px;
+}
+
+div#mypromenu {
+	height: 50px;
+}
+
+div.images {
+	width: 1024px;
+	height: 500px;
+	box-sizing: border-box;
+	border: 1px solid rgb(148, 123, 92);
+}
+
+input#login {
+	width: 430px;
+	height: 30px;
+	margin: 10px;
+	background-color: #eb9f9f;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+}
+
+div#loginmenu {
+	position: absolute;
+	width: 450px;
+	left: 65px;
+	top: 70px;
+	float: right;
+
+}
+
+div#loginmenu2 {
+	position: absolute;
+	width: 500px;
+	left: 73px;
+	top: 190px;
+}
+
+input#id, input#pwd {
+	width: 200px;
+	height: 30px;
+	margin: 5px;
+	margin-left: 10px;
+}
+
+span#join, span#findId, span#findPw {
+	width: 120px;
+	height: 23px;
+	background-color: #eb9f9f;
+	color: black;
+	margin: 5px;
+	padding: 5px;
+	text-align: center;
+	display: inline-block;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#Main {
+	float: left;
+	position: absolute;
+	right: 200px;
+	top: 15px;
+}
+
+#menu {
+	position: relative;
+	width: 1024px;
+	
+}
+
+section {
+	z-index: -1;
+}
+
+header {
+	z-index: 1;
+}
+
+#most1_1 {
+	background-color: #a79c8e;
+	text-align: center;
+	height: 40px;
+	font-size: 20px;
+	color: white;
+	font-display: inline;
+	width: 339.3px;
+	font-weight: bolder;
+	border: 1px solid gray;
+}
+
+.img1 {
+	width: 339.3px;
+	height: 300px;
+	z-index: 100px;
+}
+
+#choo1 {
+	width: 1525px;
+	height: 1000px;
+	background-color: #f8ecc9;
+}
+
+.banner {
+	position: relative;
+	width: 1022px;
+	height: 498px;
+	margin: 0 auto;
+	padding: 0;
+	overflow: hidden;
+}
+
+.banner ul {
+	position: absolute;
+	margin: 0px;
+	padding: 0;
+	list-style: none;
+}
+
+.banner ul li {
+	float: left;
+	width: 1022px;
+	height: 500px;
+	margin: 0;
+	padding: 0;
+}
+
+footmenu{
+    height: 40px;
+    background-color: #f24365;
+    width: 1100px;
+}
+
+footer{
+    clear: both;
+
+}
+
+.footmenu ul li{
+    float:left;
+    list-style: none;
+    position: relative;
+    line-height: 40px;
+    text-decoration: none;
+}
+.footmenu ul li a{
+    z-index: auto;
+    text-decoration: none;
+    font-family: '나눔스퀘어';
+    font-weight:500;
+    font-size:18px;
+    padding:5px 25px;
+    color: #f24365;
+    text-decoration: none;
+
+}
+
+footer p{
+    font-size: 11px;
+    color:gray;
+    margin-left: -100px;
+    text-align: center;
+}
+
+nav, .footmenu {
+	margin-top: 20px;
+	list-style-type: none;
+	height: 50px;
+	width: 100%;
+	background-color: rgba(255, 212, 219, 0.87);
+}
+
+.center1{
+    width:fit-content;
+    left:0;
+    right:0;
+    margin: 0 auto;
+}
+
+/* 헤더용 센터 */
+#head {
+	position: absolute;
+	width: fit-content;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+.con1 {
+	width: 341.3px;
+	height: 500px;
+	box-sizing: border-box;
+	border: 1px solid gray;
+	z-index: -1px;
+}
+
+#con1_1 {
+	height: 300px;
+}
+
+img#classImg1, img#classImg2, img#classImg3 {
+	width: 338.3px;
+	height: 338.3px;
+}
+
+.classtable {
+	table-layout: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	display: block;
+	float: left;
+	cursor: pointer;
+	position: relative;
+
+	height: 560px;
+	border: solid #a79c8e 0.3px;
+	border-collapse: collapse;
+}
+
+.className {
+	padding: 0%;
+	font-weight: 900;
+	color: #f24365;
+	font-size: 15px;
+	width: 230px;
+	height: 80px;
+}
+
+.classinfo {
+	width: 311.3px;
+	text-align: center;
+	font-size: 14px;
+	background-color: #f6f6f6;
+	vertical-align: middle;
+	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.classScore {
+	text-align: left;
+	font-size: 12px;
+	vertical-align: 100%;
+	background-color: #f6f6f6;
+	padding: 0px;
+	padding-left: 30px;
+	padding-bottom: 10px;
+	width: 50%;
+}
+
+.classmoneytime {
+	text-align: right;
+	font-size: 12px;
+	vertical-align: 100%;
+	background-color: #f6f6f6;
+	padding-right: 40px;
+	padding-bottom: 10px;
+}
+
+.classmoneytime {
+	text-align: right;
+	font-size: 12px;
+	vertical-align: 100%;
+}
+
+.classplace {
+	font-size: 15px;
+	height: 80px;
+}
+
+input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+
+
+nav ul {
+
+    z-index: 1;
+    padding: 0 0px;
+    list-style: none;
+    position: absolute;
+    width: 100%;
+    font-family: 'helvetica', arial;
+    
+    
+   }
+    
+   nav ul:after{
+    
+    content: "";
+    clear: both;
+    display: block;
+    
+   }
+    
+   nav ul li {
+    
+    float: left;
+    width: 150px;
+	font-family: '나눔스퀘어';
+   }
+    
+   nav ul li:hover {
+    
+    background-color: pink;
+    width:150px;
+    
+    
+   }
+    
+   nav ul li a {
+    
+    display: block;
+    padding: 15px 50px;
+    text-decoration: none;
+    color: #f24365;
+    text-align: center;
+
+    
+   }
+    
+   nav ul li a:hover{
+    
+    color: #fff;
+
+    
+   }
+    
+   nav ul ul {
+    
+    display: none;
+    background: lightpink;
+    position: absolute;   
+    max-width: 300px; 
+    width: 150px;
+
+   }
+    
+   nav ul ul li {
+    
+    float: none;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    position: relative;
+    
+   }
+    
+   nav ul li:hover > ul {
+    
+    display: block;
+    
+   }
+    
+   nav ul ul li a {
+    
+    padding: 10px 40px;
+    color: #fff;
+    
+   }
+    
+   nav ul ul li a:hover {
+    
+    background:palevioletred;
+    
+   }
+    
+   nav ul ul ul {
+    
+    position: absolute;
+    left: 100%;
+    top:0;
+    width: 200px;
+    
+   }
+.bar h1 {
+	font-family: "Black+Han+Sans";
+	font-size: 50px;
+}
+   
+ /* msg */
+ #all{
+    padding-left:150px;
+    padding-right:160px;
+    border-radius: 40px;
+    background-color:white;
+}
+
+#all{
+    background-color:white;
+    border-radius: 40px;
+}
+
+#box1{
+    margin-top: 40px;
+}
+#box2{
+    margin-top: 40px;
+    
+    border:1px solid lightgray;
+}
+#box1>h6, #box1>h3{
+    display: inline;
+}
+#box1>h3{
+    margin-left: 40px;
+}
+#box1>h6{
+    margin-left: 680px;
+}
+h3{
+    text-align: center;
+}
+#success{
+    color:steelblue;
+    text-align: center;
+}
+hr{
+    /* margin-left: 180px;
+    margin-right: 180px; */
+}
+#button{
+    background-color:steelblue;
+    color:white;
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    align-content: center;
+    margin-top:40px;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    right: 790px;
+}
+
+#ex{
+    width: 1024px;
+}
+#background{
+    background-color:rgb(255, 249, 249);
+    text-align: center;
+    margin-top:300px;
+    margin-bottom:140px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+.table1{
+    text-align: center;
+}
+#td1, #td2{
+    background-color:rgb(255, 249, 249);
+    color:steelblue;
+    padding:5px;
+    padding-left: 20px;
+    padding-right: 20px;  
+}
+#td3, #td4{
+    padding-left:120px;
+    padding-right:120px;
+}
+#rabbit{
+    position: absolute;
+    top:580px;
+    right:620px;
+    width:400px;
+    height:200px;
+}
+.table1 tr td{
+    border: 1px solid lightgray;
+}
+.table1{
+    position: absolute;
+    right:650px;
+    top:900px;
+    border-spacing: 0px;
+}
+   
+/* register 회원가입 */
+
+.bar{
+    text-align:center;
+    line-height: middle;
+}
+
+.bar h1{
+    font-family:"Black+Han+Sans";
+    font-size:50px;
+}
+
+/* register1 */
+.selectregister{
+	width: 680px;
+	
+}
+.selectregister div{
+    margin:10px;
+    left: 300px;
+    width:200px;
+    height:200px;
+    background-color: rgba(255, 212, 219, 0.87);
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    color:rgb(99, 96, 96);
+    font-weight: 900;
+    text-decoration: none;
+    border-radius: 50px;
+}
+
+.selectregister div button{
+    color:rgb(99, 96, 96);
+    text-decoration: none;
+    background-color:rgba(255, 212, 219, 0.87);
+    border-radius: 50px;
+    width:200px;
+    height:200px;
+    
+}
+#rgEmail p, #rgKakao p, #rgFacebook p{
+    font-size: 1.3em;
+    
+
+}
+
+.rgEmail:hover, .rgkakao:hover, .rgFacebook:hover{
+    background-color: rgb(246, 110, 110);
+
+}
+
+.btnregister{
+    margin-top: 20px;
+    width:100px;
+    height:40px;
+}
+
+/* .select{
+    margin-top:30px;
+    min-height:300px;
+} */
+
+.bottom{
+    margin-top:500px;
+}
+
+.bottom1{
+    margin-top:150px;
+}
+
+
+/* register2 */
+.tbl-register2 {
+	width: 700px;
+}
+
+.tbl-register2 th{
+	width:50px;
+	height: 200px;
+}
+
+.tbl-register2 td p {
+	width: 700px;
+	height: 200px;
+    font-size:11px;
+    border:1px solid gray;
+    margin-top:30px;
+    overflow: scroll;
+}
+
+.tbl-register2 td{
+	text-align: center;
+}
+
+
+/* register3 */
+.tblreg{
+    margin-top:20px;
+    width:700px;
+}
+.tblreg tr{
+    height:50px;
+}
+.tblreg .register-submit{
+	text-align:center;	
+}
+.phone{
+    width:80px;
+    height: 20px;
+
+}
+.emailfield
+.inputbtn, .btnregister{
+    width:130px;
+    height: 30px;
+    margin-bottom:10px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-align: center; 
+    line-height: 2em; 
+    border-radius: 4px; 
+    background-color: #eb9f9f;
+}
+.tblreg td:first-child{
+	width: 130px;
+}
+
+.tblreg td:nth-child(2) {
+	width: 305px;
+	height: 20px;
+}
+
+.tblreg td .textfield {
+	width: 305px;
+	height: 20px;
+}
+
+/* .tblreg td .textfield{
+    width:300px;
+    height: 20px;
+} */
+
+.tblreg td .rdGender{
+	text-align:none;
+}
+
+.tblreg td .rg-checkMsg {
+	width: 210px;
+	height: 20px;
+}
+
+/*-----------------------------------------*/
+
+/* mypage list */
+table.MYLIST {
+	width: 600px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+button#listBtn {
+	width: 150px;
+	height: 30px;
+	font-size: 15pt;
+	background-color: white;
+	border: 1px black solid;
+	cursor: pointer;
+}
+
+/* list data */
+.wrap {
+	min-height: 300px;
+}
+
+table#list {
+	border-collapse: collapse;
+	border: #a79c8e;
+}
+
+.list {
+	height: 50px;
+	text-align: center;
+}
+
+.listName {
+	background-color: #f24365;
+	color: #fff;
+	height: 50px;
+	text-align: center;
+}
+
+.listNumber {
+	width: 60px;
+}
+
+.listContent {
+	width: 600px;
+}
+
+.listCheck {
+	width: 60px;
+}
+
+table#applyBtn {
+	border-collapse: collapse;
+	height: 30px;
+	width: 730px;
+	align-items: center
+}
+
+input#apply {
+	width: 100px;
+	height: 30px;
+	background-color: #eb9f9f;
+	border: none;
+}
+
+
+/*--멘토등록------------------------------------*/
+
+.camera {
+	cursor: pointer;
+}
+
+.file_input{
+    padding-left:150px;
+    padding-right:420px;
+  	background-color:rgb(248, 231, 234);
+    border-radius: 40px;
+    z-index: -1;
+}
+
+#nick{
+    margin-left:100px;
+}
+#phone{
+    margin-left:47px;
+}
+#school1{
+    margin-left: 25px;
+}
+#school3, #school5{
+    margin-left: 137px;
+}
+#profile{
+    font-size:5px;
+    display:inline;
+    position: absolute;
+    width:fit-content;
+    right:20;margin-left: auto;margin-right: auto;
+}
+#school7{
+    margin-left:36px;
+}
+#camera{
+    margin-left:20px;
+    vertical-align: middle;
+}
+#photo{
+    margin-left:138px;
+}
+
+#insert{
+    position: absolute;
+    bottom:20px;
+    right:470px;
+}
+
+/*--수업 상세-------*/
+.wrap{
+    width:1024px;
+}
+
+.detailwrap{
+    width:500px;
+    background-color:rgba(211, 211, 211, 0.486);
+    position: relative;
+    float: left;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    margin-left: 400px;
+    margin-top: 50px;
+}
+
+.detailimg{
+    width:500px;
+    height:300px;
+}
+
+.pricewrap{
+    float:right;
+}
+
+.detailbar{
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: black;
+    width:500px;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    vertical-align: middle;
+    color:#f24365;
+    font-family: "나눔스퀘어";
+    cursor: pointer;
+}
+
+.detailbar2{
+    position: fixed;
+    /* border: 1px solid rgba(0, 0, 0, 0.125); */
+    background-color: black;
+    width:500px;
+    height: 50px;
+    top:0px;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    vertical-align: middle;
+    color:#f24365;
+    font-family: "나눔스퀘어";
+    cursor: pointer;  
+}
+
+.detailbar tr td a{
+    color:#f24365;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+.detailbar2 tr td a{
+    color:#f24365;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+.payment{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    right: 50px;
+    top: 10px;
+    background-color: tomato;
+    color: #fff;
+
+}
+
+/* #floatMenu {
+	position: fixed;
+	width: 250px;
+	height: 300px;
+	right: 100px;
+    top: 46%;
+    margin-top:50px;
+	background-color: #606060;
+	color: #fff;
+} */
+
+.fix{
+    position:fixed;
+    width:200px;
+    height:740px;
+    top:10px;
+    margin-left:100px;
+    margin-top:0px;
+    background-color: #f24365;
+}
+
+.floatMenu {
+	position: absolute;
+	width: 200px;
+    height: 740px;
+    /* top:52%; */
+    margin-top: 50px;
+    margin-left:100px;
+	background-color: #f24365;
+    color: #fff;
+    border-radius: 30px;
+}
+
+.floatTitle{
+    text-align: center;
+    margin : 20px 10px 10px 10px;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: "나눔스퀘어";
+}
+
+.classSubmit{
+    width: 100px;
+    height: 30px;
+    margin-left: 50px;
+    background-color: black;
+    color: white;
+    font-weight: 900;
+    border: 0px;
+    border-radius: 20px;
+}
+
+.floatTitle hr{
+    display: block;
+    border: white 0 none;
+    border-top:5px solid white;
+    height: 10px;
+    border-radius: 5    px;
+    
+}
+
+.floatsubtitle{
+    margin-left: 20px;
+    font-family: "나눔스퀘어";
+    font-weight: 600;
+    font-size: 20px;
+}
+
+div#select_box {
+    position: relative;
+    width: 160px;
+    height: 32px;
+    margin: 10px 20px 30px 20px;
+    background-color: black;
+    color:white;
+    font-weight: 600;
+  }
+  
+  div#select_box label {
+    position: absolute;
+    font-size: 14px;
+    color: #fff;
+    top: 7px;
+    left: 12px;
+    letter-spacing: 1px;
+  }
+  
+  div#select_box select#color {
+    width: 100%;
+    height: 32px;
+    min-height: 32px;
+    line-height: 32px;
+    padding: 0 10px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    /* IE 8 */
+  }
+
+.classSubmit:hover{
+    text-shadow: 0px 0px 5px white;
+    box-shadow: 0px 0px 5px black;
+}
+
+.right2{
+    right:100px;
+}
+
+.title{
+    color:#f24365;
+    font-weight: 900;
+    font-size: 60px;
+    font-family: '나눔스퀘어';
+    text-align: center;
+    margin: 30px 10px 30px 10px;
+}
+
+.content{
+    margin: 0px 10px 10px 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.card-text{
+    float:right;
+    margin-right: 10px;
+    
+}
+
+.proinfo{
+    width:500px;
+    height:300px;
+}
+
+.proinfo tr td img{
+    width:300px;
+    height:300px;
+}
+
+
+.subtext{
+    color: #f24365;
+    font-weight: 900;
+    font-size: 36px;
+    font-family: '나눔스퀘어';
+    text-align: left;
+    margin-left: 20px;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+
+
+.reviewtable{
+    width: 460px;
+    height:150px;
+    margin-left:20px;
+    margin-right: 20px;
+    border-top: solid 1px lightgray;
+    border-bottom: solid 1px lightgray;
+}
+
+
+
+.reviewId{
+    width:100px;
+    text-align: center;
+}
+
+.reviewId b{
+    font-size: 20px;
+}
+
+.reviewContent{
+    position: absolute;
+    width:360px;
+    height: 150px;
+    overflow: scroll;
+    text-align: left;
+    margin-right: 30px;
+    
+}
+
+.reviewContent::-webkit-scrollbar{
+    width:0px;
+}
+.tutorpro{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tutorpro oi{
+    padding : 10px 0px 5px 5px;
+    margin-bottom: 10px;
+    break-inside: auto;
+    display: block;
+    
+}
+
+/* .review_content input[type="password"] {
+    width: 100%;
+    height: auto;
+    line-height : normal;
+    padding: .8em .5em;
+    -moz-appearance: none;
+    appearance: none;
+} */
+
+/*--수업 리스트 ------*/
+
+
+img.lectureImg {
+	width: 338px;
+}
+
+/*--회원가입에 들어가는 버튼 --*/
+
+input.inputbtn , input.btnregister{
+		width: 130px;
+	height: 30px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: rgb(255, 255, 255);
+	text-align: center;
+	line-height: 2em;
+	border-radius: 4px;
+	background-color: #eb9f9f;
+	border: none;
+}
+
+
+
+
+/* 결제창 */
+.class-pay-container{
+    margin-top: 30px;
+	
+}
+
+.col-md-4 {
+	background-color: lightgray;
+}
+
+#class-pay-tbl{
+	text-align : center;
+	border: 1px solid lightgray;
+	width: 500px;
+}
+
+#class-pay-tbl tr{
+	height: 30px;
+	margin-bottom : 30px;
+}
+
+#class-pay-tbl tr:nth-child(2n) {
+		background-color: lightpink;	
+}
+
+#class-pay-tbl tr th {
+	border-right: 1px solid gray;
+	
+}
+
+#class-payment-submit{
+	width: 100px;
+    height: 30px;
+    margin: 10px;
+    background-color: #eb9f9f;
+    color: #fff;
+    border: none;
+}
+
+.card-title{
+	font-weight: 900;
+}
+.card-body{
+	text-align: center;
+}
+
+
+
+
+

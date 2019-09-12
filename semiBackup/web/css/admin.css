@@ -1,0 +1,396 @@
+@charset "UTF-8";
+
+.center1{
+    width:fit-content;
+    left:0;
+    right:0;
+    margin: 0 auto;
+}
+
+/* admin */
+body{
+    width: 1024px
+}
+
+#header-line{
+    list-style: none;
+    width: 1024px;
+    height: 70px;
+    border-bottom: 2px solid whitesmoke;
+    background-color: rgba(255, 212, 219, 0.87);
+}
+.admin-header ul li{
+	line-height: 70px;
+	font-size: 1.6em;
+	font-weight: 900;
+    font: 맑은 고딕;    
+    display: inline;
+    margin-right: 50px;
+    
+}
+
+.admin-header ul li a{
+	color: #f24365;
+}
+
+#exit{
+	line-height:40px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 30px;
+    width: 80px;
+    background-color:#eb9f9f;
+    color:white;
+}
+
+header1{
+    height: 150px;
+}
+
+.adminWrap{
+    width:1024px;
+    min-height:800px;
+    position: absolute;
+    
+}
+
+footer{
+    background-color:rgba(255, 212, 219, 0.87);
+    clear:both;height:75px;text-align:center;
+    padding-top:30px;
+}
+
+/* 회원관리 */
+
+.border-test{
+    border: 1px solid blue;
+}
+
+.search1{
+    padding-left: 30px;
+    float: left;
+}
+
+.person-table{
+    border: 1px solid red;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 멘토관리 */
+article.admin-list{
+	width: 700px;
+}
+/* 관리자승인관리 */
+div#admin-Mento-Search-container {
+	
+}
+div#search-mId{
+	display: inline-block;
+}
+div#search-mName{
+	display:none;
+}
+
+div#admin-appro-pageBar{
+	margin-top:10px; 
+	text-align:center;
+}
+div#admin-appro-pageBarr span.admin-appro-cPage{
+	color: darkgray;
+}
+
+.approImg{
+	width: 150px;
+	height: 150px;
+	border-radius: 30px;
+}
+
+
+.admin-list-container{
+	float: right;
+	width: 780px;
+}
+
+table.tbl-appro{
+	width:100%;
+}
+
+table.tbl-appro tr td:first-child{
+	float:left;
+}
+
+a.appro-aTag {
+	text-decoration: none;	
+	color: darkgray;
+	
+}
+
+.admin-floatTitle {
+	text-align: center;
+}
+.admin-floatMenu {
+	position: absolute;
+	width: 200px;
+    margin-top: 50px;
+	background-color: #fff;
+	color: darkgray;
+	
+}
+
+.admin-floatMenu ul li {
+	list-style: none;
+	margin-bottom: 10px;
+	text-align: left;
+	font-weight: 800;
+}
+
+.admin-floatMenu ul li a:hover {
+	list-style: none;
+	margin-left: 10px;
+	text-align: center;
+	font-weight: 900;
+	color: black;
+	text-decoration: none;
+}
+
+.admintitle{
+	text-align: center;
+	margin-bottom:30px;
+	margin-top : 30px;
+}
+
+div.approContent .card-title{
+	text-align:left;
+}
+
+
+/* 멘토상세보기 */
+article#admin-mento-wrap{
+	width: 780px;
+	float:right;
+}
+
+div.appro-btn-wrap{
+	text-align:center;
+}
+.mento_info_child{
+    padding-top: 20px;
+}
+
+.mento_info_child h1{
+    padding-left: 20px;
+}
+
+div#picture-cover .mento-profile-img .lecture-cover-img{
+    width:auto; height: auto;
+    min-width:400px; min-height: 400px;
+    max-width: 500px; max-height: 500px;
+	border: 1px solid gray;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 0;
+}
+
+div.admin-detail-frm-wrap{
+	border: 1px solid lightgray;
+	
+}
+div.admin-mento-detailwrap>h1{
+	text-align:center;
+	background-color: lightgray;
+	margin-bottom: 0;
+	height: 60px;
+}
+
+div.admin-mento-detailwrap h2{
+	text-align:center;
+	background-color: lightgray;
+	margin-bottom: 0;
+	height: 40px;
+	width: 100%;
+}
+
+form.admin-mento-detail-frm{
+	border : 1px solid rgb(255, 207, 207);
+}
+.admin-mento-detailwrap{
+    width: 780px;
+    float:right;
+}
+
+.admin-mento-detailwrap img{
+    width:auto; height: auto;
+    max-width: 500px; max-height: 500px;
+    min-width: 400px; min-height: 400px;
+    margin-left: 40px;
+}
+
+.admin-mento-detailwrap hr{
+	width: 100%;
+	margin-left: 0;
+}
+.admin-mento-detailwrap p{
+	margin-left: 20px;
+}
+
+.admin-mento-detailwrap ul{
+    list-style: none;
+}
+
+.admin-mento-detailwrap label{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 900;
+
+}
+
+/* .checkbutton{
+    width: 150px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-align: center; 
+    line-height: 2em; 
+    border-radius: 4px; 
+    background-color: #96938f;
+} */
+
+input.mentosubmit {
+	 width: 150px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-align: center; 
+    line-height: 2em; 
+    border-radius: 4px; 
+    background-color: #96938f;
+    margin-right: 20px;
+}
+
+div#mento_info h5 {
+	padding-left: 30px;
+} 
+
+/* 강의상세보기 */
+
+
+.detailwrap{
+    width:700px;
+    background-color:rgba(211, 211, 211, 0.486);
+
+}
+
+img.detailimg{
+    width:700px;
+    height:400px;
+}
+
+.pricewrap{
+    float:right;
+}
+
+.detailbar{
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-right:1px solid rgba(0, 0, 0, 0.125);
+    background-color: black;
+    width:100%;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    vertical-align: middle;
+    color:#f24365;
+    font-family: "나눔스퀘어";
+    cursor: pointer;
+}
+
+.detailbar2{
+    position: fixed;
+    /* border: 1px solid rgba(0, 0, 0, 0.125); */
+    background-color: black;
+    width:500px;
+    height: 50px;
+    top:0px;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    vertical-align: middle;
+    color:#f24365;
+    font-family: "나눔스퀘어";
+    cursor: pointer;  
+}
+
+.detailbar tr td a{
+    color:#f24365;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+.detailbar2 tr td a{
+    color:#f24365;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.floatMenu {
+	position: absolute;
+	width: 200px;
+    height: 740px;
+    /* top:52%; */
+    margin-top: 50px;
+    margin-left:100px;
+	background-color: #f24365;
+	color: #fff;
+}
+
+.right2{
+    right:100px;
+}
+
+.title{
+    color:#f24365;
+    font-weight: 900;
+    font-size: 60px;
+    font-family: '나눔스퀘어';
+    text-align: center;
+    margin: 30px 10px 30px 10px;
+}
+
+.content{
+    margin: 0px 10px 10px 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.card-text{
+    float:right;
+    margin-right: 10px;
+    
+}
+
+.proinfo{
+    width:100%;
+}
+
+.proinfo tr td img{
+    width:300px;
+    height:300px;
+}
+
+.proinfo tr td ul oi{
+
+}
+
+.subtext{
+    color: #f24365;
+    font-weight: 900;
+    font-size: 36px;
+    font-family: '나눔스퀘어';
+    text-align: left;
+    margin-left: 20px;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
