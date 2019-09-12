@@ -5,7 +5,6 @@
     	
      Member memberLogin = (Member) session.getAttribute("loginMember");
      Cookie[] cookies = request.getCookies();
-     int readCount = request
 
    	 String saveId = null;
 	 if(cookies!=null){
