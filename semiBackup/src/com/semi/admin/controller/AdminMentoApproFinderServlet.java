@@ -74,8 +74,10 @@ public class AdminMentoApproFinderServlet extends HttpServlet {
 		request.setAttribute("mentoList",mentoList);
 		if(temp==0) {
 			request.getRequestDispatcher("/views/admin/adminMentoList.jsp").forward(request, response);
-		} else {
+		} else if(temp==1){
 			request.getRequestDispatcher("/views/admin/adminMentoApproval.jsp").forward(request, response);
+		} else if(temp==2) {
+			request.getRequestDispatcher("/views/admin/adminMentoNoApproval.jsp").forward(request, response);
 		}
 		
 	}

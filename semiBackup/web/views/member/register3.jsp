@@ -145,7 +145,7 @@
 
 	var count = 0;	//핸드폰인증이 됐는지 확인
 	  //핸드폰번호 인증
-	$(function(){
+	<%-- $(function(){
 		var key = "";
 		$('#sendSms').click(function(){
 			var tel1 = $('#tel1').val();
@@ -196,7 +196,7 @@
 			} 
 			
 		});
-	});	//핸드폰번호 인증 끝 --%>
+	});	//핸드폰번호 인증 끝 --%> --%>
 	
 
 	
@@ -367,11 +367,11 @@
 			return false;
 		}
 
-		//인증번호 체크글자가 보일때
+		/* //인증번호 체크글자가 보일때
 		if ($('#keyCheck').prop('disabled')) {
 			alert("인증번호를 확인하세요.");
 			return false;
-		}
+		} */
 		
 		//이메일 체크 글자가 보일때
 		if ($('#emailCheck').prop('disabled')) {
@@ -380,11 +380,11 @@
 		}
 		
 		//핸드폰인증을 진행하지 않았을때
-		if(count!=1) {
+/* 		if(count!=1) {
 			alert("핸드폰번호 인증을 진행해주세요.");
 			$('#checkNum').focus();
 			return false;
-		}
+		} */
 		return true;
 	};
 	//전화번호 체크

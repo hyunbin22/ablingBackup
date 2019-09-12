@@ -17,8 +17,8 @@
 			<input type="hidden" name="lecNum" id="lecNum" value="<%=lec.getLecNum()%>">
 			<br>
 			<%for(int i = 0; i < lec.getLectureUpList().size(); i++) {
-				if(lec.getLectureUpList().get(i).getUpLectureReCover()!=null) {%>
-			<img src="<%=request.getContextPath()%>/upload/lecture/<%=lec.getLectureUpList().get(i).getUpLectureReCover() %>" class="lecture-cover-img" alt="...">
+				if(lec.getLectureUpList().get(i).getUpLectureCategory().equals("cover")) {%>
+			<img src="<%=request.getContextPath()%>/upload/lecture/<%=lec.getLectureUpList().get(i).getUpLectureReName() %>" class="lecture-cover-img" alt="...">
 			<%}
 			}%>
 			<div class="detailbody">
@@ -38,13 +38,23 @@
 					</p>
 					<hr>
 					<p class="classinfo">
+						<h2>강의사진</h2>
+						<p>
+							<%for(int i = 0; i < lec.getLectureUpList().size(); i++) {
+								if(lec.getLectureUpList().get(i).getUpLectureCategory().equals("lecimage")) {%>
+							<img src=<%=request.getContextPath() %>/upload/lecture/<%=lec.getLectureUpList().get(i) %>>
+							<%}
+							}%>
+						</p>
+					</p>
+					<p class="classinfo">
 						<h2>커리큘럼</h2>
 						<p>
 							<%=lec.getLecLectureContent() %>
 						</p>
 					</p>
 					<hr>
-					<%if(lec.getLecReason()!=null) {%>
+					<%if(temp==2) {%>
 						<p class="refusalinfo">
 							<h2>거절사유</h2>
 							<p>
@@ -77,7 +87,7 @@
 				$('#admin-mento-wrap').css('float','none');
 				$('#admin-mento-wrap').addClass('center1');
 				
-			<%} else if(temp==1) {%>
+			<%} else {%>
 				$('#btnclassAppro').addClass('mentosubmit');
 				$('#btnclassAppro').addClass('mentosubmit');
 				

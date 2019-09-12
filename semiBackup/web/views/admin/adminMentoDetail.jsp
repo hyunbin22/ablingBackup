@@ -18,8 +18,8 @@
 					<h2>프로필사진</h2>
 					<div id="picture-cover" class="picture center1">
 					<%for(int j = 0; j < mt.getList().size(); j++) {
-						if(mt.getList().get(j).getUpMentoReProfile()!=null) {%>
-						<img src="<%=request.getContextPath()%>/upload/mento/<%=mt.getList().get(j).getUpMentoReProfile() %>" class="mento-profile-img">
+						if(mt.getList().get(j).getUpMentoCategory().equals("profile")) {%>
+						<img src="<%=request.getContextPath()%>/upload/mento/<%=mt.getList().get(j).getUpMentoReName() %>" class="mento-profile-img">
 					<%} 
 					}%>
 					</div>
@@ -45,19 +45,18 @@
 					<%
 						}
 					for(int j = 0; j < mt.getList().size(); j++) {
-						if(mt.getList().get(j).getUpMentoReConfirm()!=null) {
+						if(mt.getList().get(j).getUpMentoCategory().equals("confirm")) {
 					%>
 					
-					<img alt="" src="<%=request.getContextPath() %>/upload/mento/<%=mt.getList().get(j).getUpMentoReConfirm()%>">
+					<img alt="" src="<%=request.getContextPath() %>/upload/mento/<%=mt.getList().get(j).getUpMentoReName()%>">
 					<%} 
 					}%>
 					<br /> <br />
 					<%for(int j = 0; j < mt.getList().size(); j++) {
-					 	if(mt.getList().get(j).getUpMentoReLicense()!=null) {%>
+					 	if(mt.getList().get(j).getUpMentoCategory().equals("license")) {%>
 					<h2>자격증</h2>
 					<p><%=mt.getList().get(j).getUpMentoNameLicense() %></p>
-					<img
-						src="<%=request.getContextPath() %>/upload/mento/<%=mt.getList().get(j).getUpMentoReLicense()%>">
+					<img src="<%=request.getContextPath() %>/upload/mento/<%=mt.getList().get(j).getUpMentoReName()%>">
 					<br> <br>
 	
 					<%}

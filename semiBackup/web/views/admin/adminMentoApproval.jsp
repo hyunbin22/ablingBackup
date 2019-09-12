@@ -61,7 +61,7 @@
 										</tr>
 										<tr>
 											<td rowspan="2"><img
-												src="<%=request.getContextPath()%>/upload/mento/<%=list.get(i).getList().get(i).getUpMentoReProfile() %>"
+												src="<%=request.getContextPath()%>/upload/mento/<%=list.get(i).getList().get(0).getUpMentoReName() %>"
 												class="approImg"></td>
 											<td><p class="approDate"><%=list.get(i).getMtaDate()%></p></td>
 											<td>
@@ -105,6 +105,14 @@ $(function(){
 	});
 	$("#searchType").trigger('change');
 	
+	
+	
+});
+
+$(function(){
+	if(<%=list.size()%>==0) {
+		alert("승인신청한 멘토가 없습니다.");
+	} 		
 });
 </script>
 <%@ include file="/views/common/adminFooter.jsp"%>

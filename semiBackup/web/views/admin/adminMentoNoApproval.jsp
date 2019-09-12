@@ -4,7 +4,7 @@
 <%@ page
 	import="com.semi.member.model.vo.Member, com.semi.mento.model.vo.Mento, java.util.*"%>
 <%
-	List<Mento> list = (List) request.getAttribute("mentoApproList");
+	List<Mento> list = (List) request.getAttribute("mentoList");
 	int cPage = (int)request.getAttribute("cPage");
 	String searchType = (String)request.getAttribute("searchType");
 	String searchKey = (String)request.getAttribute("searchKeyword");
@@ -22,6 +22,7 @@
 				<form action="<%=request.getContextPath()%>/admin/mentoApproFinder.do">
 					<input type="hidden" name="searchType" value="mId">
 					<input type="hidden" name="cPage" value="<%=cPage%>"> 
+					<input type="hidden" name="temp" value=2>
 					<input type="text" name="searchKeyword" placeholder="검색어 입력">
 					<button type="submit">검색</button>
 				</form>
@@ -30,6 +31,7 @@
 				<form action="<%=request.getContextPath()%>/admin/mentoApproFinder.do">
 					<input type="hidden" name="searchType" value="mName">
 					<input type="hidden" name="cPage" value="<%=cPage%>"> 
+					<input type="hidden" name="temp" value=2>
 					<input type="text" name="searchKeyword" placeholder="이름 입력"
 						value='<%="mName".equals(searchType)?searchKey:""%>'>
 					<button type="submit">검색</button>
@@ -60,7 +62,7 @@
 										</tr>
 										<tr>
 											<td rowspan="2"><img
-												src="<%=request.getContextPath()%>/upload/mento/<%=list.get(i).getList().get(i).getUpMentoReProfile() %>"
+												src="<%=request.getContextPath()%>/upload/mento/<%=list.get(i).getList().get(0).getUpMentoReName() %>"
 												class="approImg"></td>
 											<td><p class="approDate"><%=list.get(i).getMtaDate()%></p></td>
 											<td>
@@ -91,4 +93,12 @@
 	<%@ include file="/views/common/adminAside.jsp"%>
 
 </section>
+<script>
+ 	$(function(){
+ 		if(<%=list.size()%>==0) {
+ 			alert("승인거절된 멘토가 없습니다.");
+ 		} 		
+ 	});
+
+</script>
 <%@ include file="/views/common/adminFooter.jsp"%>

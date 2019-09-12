@@ -28,12 +28,13 @@ public class LectureUploadDao {
 	}
 
 
-	//강의번호에 맞는 이미지 넣기(단일)
-	public LectureUpload lectureUpCover(Connection conn, int lecNum) {
+	//강의번호에 맞는 커버사진 불러오기
+	public List<LectureUpload> lectureUpCover(Connection conn, int lecNum) {
 		Statement stmt = null;
+		List<LectureUpload> list = new ArrayList();
 		LectureUpload lecUp = null;
 		ResultSet rs = null;
-		String sql = "select up_lectureNum, lecnum, up_lecture_org_cover, up_lecture_re_cover from tb_upload_lecture where lecNum="+lecNum;
+		String sql = "select * from tb_upload_lecture where up_lecture_category='cover' and lecNum="+lecNum;
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -41,8 +42,10 @@ public class LectureUploadDao {
 				lecUp = new LectureUpload();
 				lecUp.setUpLectureNum(rs.getInt("up_lecturenum"));
 				lecUp.setLecNum(rs.getInt("lecnum"));
-				lecUp.setUpLectureOrgCover(rs.getString("up_lecture_org_cover"));
-				lecUp.setUpLectureReCover(rs.getString("up_lecture_re_cover"));
+				lecUp.setUpLectureCategory(rs.getString("up_Lecture_Category"));
+				lecUp.setUpLectureOrgName(rs.getString("up_Lecture_Org_Name"));
+				lecUp.setUpLectureReName(rs.getString("up_lecture_re_name"));
+				list.add(lecUp);
 			}
 			
 		} catch(Exception e) {
@@ -50,7 +53,7 @@ public class LectureUploadDao {
 		} finally {
 			close(rs);
 			close(stmt);
-		} return lecUp;
+		} return list;
 		
 	}
 	
@@ -64,12 +67,14 @@ public class LectureUploadDao {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				LectureUpload lul = new LectureUpload();
-				lul.setUpLectureNum(rs.getInt("up_lecturenum"));
-				lul.setLecNum(rs.getInt("lecnum"));
-				lul.setUpLectureOrgLecImg(rs.getString("up_lecture_org_lecimg"));
-				lul.setUpLectureReLecImg(rs.getString("up_lecture_re_lecimg"));
-				list.add(lul);
+				LectureUpload lecUp = new LectureUpload();
+				lecUp = new LectureUpload();
+				lecUp.setUpLectureNum(rs.getInt("up_lecturenum"));
+				lecUp.setLecNum(rs.getInt("lecnum"));
+				lecUp.setUpLectureCategory("up_Lecture_Category");
+				lecUp.setUpLectureOrgName("up_Lecture_Org_Name");
+				lecUp.setUpLectureReName(rs.getString("up_lecture_re_name"));
+				list.add(lecUp);
 			}
 			
 		} catch(Exception e) {
@@ -90,14 +95,14 @@ public class LectureUploadDao {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				LectureUpload lul = new LectureUpload();
-				lul.setUpLectureNum(rs.getInt("up_lecturenum"));
-				lul.setLecNum(rs.getInt("lecnum"));
-				lul.setUpLectureOrgCover(rs.getString("up_lecture_org_cover"));
-				lul.setUpLectureReCover(rs.getString("up_lecture_re_cover"));
-				lul.setUpLectureOrgLecImg(rs.getString("up_lecture_org_lecimg"));
-				lul.setUpLectureReLecImg(rs.getString("up_lecture_re_lecimg"));
-				list.add(lul);
+				LectureUpload lecUp = new LectureUpload();
+				lecUp = new LectureUpload();
+				lecUp.setUpLectureNum(rs.getInt("up_lecturenum"));
+				lecUp.setLecNum(rs.getInt("lecnum"));
+				lecUp.setUpLectureCategory("up_Lecture_Category");
+				lecUp.setUpLectureOrgName("up_Lecture_Org_Name");
+				lecUp.setUpLectureReName(rs.getString("up_lecture_re_name"));
+				list.add(lecUp);
 			}
 			
 		} catch(Exception e) {

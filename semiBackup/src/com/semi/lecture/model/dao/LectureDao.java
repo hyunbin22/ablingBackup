@@ -52,9 +52,6 @@ public class LectureDao {
 
 	public List<Lecture> lectureApproList(Connection conn, int cPage, int numPerPage) {
 
-		List<LectureUpload> setUpList = new ArrayList();
-		List<Mento> setmUpList = new ArrayList();
-
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("lectureApproList");
 		ResultSet rs = null;
@@ -91,10 +88,9 @@ public class LectureDao {
 				lec.setLecReason(rs.getString("lecReason"));
 				lec.setLecStatus(rs.getString("lecstatus").charAt(0));
 
-				LectureUpload lecUp = new LectureUploadDao().lectureUpCover(conn,rs.getInt("lecnum"));
+				List<LectureUpload> lecUp = new LectureUploadDao().lectureUpCover(conn,rs.getInt("lecnum"));
 				Mento m = new MentoDao().mentoView(conn, rs.getInt("mtnum"));
-				setUpList.add(lecUp);
-				lec.setLectureUpList(setUpList);
+				lec.setLectureUpList(lecUp);
 				lec.setLecMento(m);
 				list.add(lec);
 			}
@@ -153,10 +149,9 @@ public class LectureDao {
 				lec.setLecCheck(rs.getString("lecCheck").charAt(0));
 				lec.setLecReason(rs.getString("lecReason"));
 				lec.setLecStatus(rs.getString("lecstatus").charAt(0));
-				LectureUpload lecUp = new LectureUploadDao().lectureUpCover(conn,rs.getInt("lecnum"));
+				List<LectureUpload> lecUp = new LectureUploadDao().lectureUpCover(conn,rs.getInt("lecnum"));
 				Mento m = new MentoDao().mentoView(conn, rs.getInt("mtnum"));
-				setUpList.add(lecUp);
-				lec.setLectureUpList(setUpList);
+				lec.setLectureUpList(lecUp);
 				lec.setLecMento(m);
 				list.add(lec);
 			}

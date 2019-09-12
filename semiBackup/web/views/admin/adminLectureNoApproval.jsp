@@ -61,13 +61,9 @@
 										</tr>
 										<tr>
 											<td rowspan="2">
-											<%for(int j = 0; j < list.get(i).getLectureUpList().size(); j++) {
-												if(list.get(i).getLectureUpList().get(j).getUpLectureReCover()!=null && list.get(i).getLecNum()==list.get(i).getLectureUpList().get(j).getLecNum()) {%>
 											<img
-												src='<%=request.getContextPath()%>/upload/lecture/<%=list.get(i).getLectureUpList().get(j).getUpLectureReCover()%>'
+												src='<%=request.getContextPath()%>/upload/lecture/<%=list.get(i).getLectureUpList().get(0).getUpLectureReName()%>'
 												class="approImg"></td>
-											<%} 
-											}%>
 											<td><p class="approDate"><%=list.get(i).getLecADate()%></p></td>
 											<td>
 												<button type="submit" class="btn btn-primary btn-appro-view"
@@ -108,6 +104,13 @@ $(function(){
 		$("#search-"+this.value).show().css("display","inline-block");
 	});
 	$("#searchType").trigger('change');
+});
+
+$(function(){
+	if(<%=list.size()%>==0) {
+		alert("승인거절된 강의가 없습니다.");
+			
+	}
 });
 </script>
 <%@ include file="/views/common/adminFooter.jsp"%>

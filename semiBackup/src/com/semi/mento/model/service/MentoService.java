@@ -35,17 +35,17 @@ public class MentoService {
 	}
 	
 	//멘토 신청 이미지 등록
-	public int registerMentoImage(MentoUpload mtu, int mtnum) {
-		Connection conn=getConnection();
-		int result=dao.registerMentoImage(conn, mtu, mtnum);
-		if(result>0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
+//	public int registerMentoImage(MentoUpload mtu, int mtnum) {
+//		Connection conn=getConnection();
+//		int result=dao.registerMentoImage(conn, mtu, mtnum);
+//		if(result>0) {
+//			commit(conn);
+//		}else {
+//			rollback(conn);
+//		}
+//		close(conn);
+//		return result;
+//	}
 	
 	//멘토신청목록
 	public int countMentoApproval() {
@@ -108,13 +108,6 @@ public class MentoService {
 	public List<Mento> mentoFindList(String type, String data, int cPage, int numPerPage, int temp) {
 		Connection conn = getConnection();
 		List<Mento> list = dao.mentoFindList(conn, type, data, cPage, numPerPage, temp);
-		close(conn);
-		return list;
-	}
-	
-	public List<Mento> mentoFindList(String type, String data) {
-		Connection conn = getConnection();
-		List<Mento> list = dao.mentoFindList(conn, type, data);
 		close(conn);
 		return list;
 	}

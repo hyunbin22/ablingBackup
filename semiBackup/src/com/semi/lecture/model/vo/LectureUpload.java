@@ -4,34 +4,22 @@ public class LectureUpload {
 
 	private int upLectureNum;
 	private int lecNum;
-	private String upLectureOrgCover;
-	private String upLectureReCover;
-	private String upLectureOrgLecImg;
-	private String upLectureReLecImg;
+	private String upLectureCategory;
+	private String upLectureOrgName;
+	private String upLectureReName;
 	
 	public LectureUpload() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LectureUpload(int upLectureNum, int lecNum, String upLectureOrgCover, String upLectureReCover,
-			String upLectureOrgLecImg, String upLectureReLecImg) {
+	public LectureUpload(int upLectureNum, int lecNum, String upLectureCategory, String upLectureOrgName,
+			String upLectureReName) {
 		super();
 		this.upLectureNum = upLectureNum;
 		this.lecNum = lecNum;
-		this.upLectureOrgCover = upLectureOrgCover;
-		this.upLectureReCover = upLectureReCover;
-		this.upLectureOrgLecImg = upLectureOrgLecImg;
-		this.upLectureReLecImg = upLectureReLecImg;
-	}
-	
-	
-
-	public LectureUpload(int upLectureNum, int lecNum, String upLectureOrgCover, String upLectureReCover) {
-		super();
-		this.upLectureNum = upLectureNum;
-		this.lecNum = lecNum;
-		this.upLectureOrgCover = upLectureOrgCover;
-		this.upLectureReCover = upLectureReCover;
+		this.upLectureCategory = upLectureCategory;
+		this.upLectureOrgName = upLectureOrgName;
+		this.upLectureReName = upLectureReName;
 	}
 
 	public int getUpLectureNum() {
@@ -50,45 +38,37 @@ public class LectureUpload {
 		this.lecNum = lecNum;
 	}
 
-	public String getUpLectureOrgCover() {
-		return upLectureOrgCover;
+	public String getUpLectureCategory() {
+		return upLectureCategory;
 	}
 
-	public void setUpLectureOrgCover(String upLectureOrgCover) {
-		this.upLectureOrgCover = upLectureOrgCover;
+	public void setUpLectureCategory(String upLectureCategory) {
+		this.upLectureCategory = upLectureCategory;
 	}
 
-	public String getUpLectureReCover() {
-		return upLectureReCover;
+	public String getUpLectureOrgName() {
+		return upLectureOrgName;
 	}
 
-	public void setUpLectureReCover(String upLectureReCover) {
-		this.upLectureReCover = upLectureReCover;
+	public void setUpLectureOrgName(String upLectureOrgName) {
+		this.upLectureOrgName = upLectureOrgName;
 	}
 
-	public String getUpLectureOrgLecImg() {
-		return upLectureOrgLecImg;
+	public String getUpLectureReName() {
+		return upLectureReName;
 	}
 
-	public void setUpLectureOrgLecImg(String upLectureOrgLecImg) {
-		this.upLectureOrgLecImg = upLectureOrgLecImg;
-	}
-
-	public String getUpLectureReLecImg() {
-		return upLectureReLecImg;
-	}
-
-	public void setUpLectureReLecImg(String upLectureReLecImg) {
-		this.upLectureReLecImg = upLectureReLecImg;
+	public void setUpLectureReName(String upLectureReName) {
+		this.upLectureReName = upLectureReName;
 	}
 
 	@Override
 	public String toString() {
-		return "LectureUpload [upLectureNum=" + upLectureNum + ", lecNum=" + lecNum + ", upLectureOrgCover="
-				+ upLectureOrgCover + ", upLectureReCover=" + upLectureReCover + ", upLectureOrgLecImg="
-				+ upLectureOrgLecImg + ", upLectureReLecImg=" + upLectureReLecImg + "]";
+		return "LectureUpload [upLectureNum=" + upLectureNum + ", lecNum=" + lecNum + ", upLectureCategory="
+				+ upLectureCategory + ", upLectureOrgName=" + upLectureOrgName + ", upLectureReName=" + upLectureReName
+				+ "]";
 	}
 	
 	
-	
+
 }
