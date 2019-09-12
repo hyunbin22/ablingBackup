@@ -39,7 +39,7 @@ public class AdminMentoNoApprovalServlet extends HttpServlet {
 		}
 		int numPerPage=10;
 		int countMentoApproval = new MentoService().countMentoApproval();
-		List<Mento> mentoApproList = new MentoService().mentoApproList(cPage, numPerPage);
+		List<Mento> mentoList = new MentoService().mentoApproList(cPage, numPerPage);
 		
 		int mentoTotalPage=(int)Math.ceil((double)countMentoApproval/numPerPage);
 		String pageBar="";
@@ -72,7 +72,7 @@ public class AdminMentoNoApprovalServlet extends HttpServlet {
 		//view페이지에 데이터 전송
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
-		request.setAttribute("mentoApproList",mentoApproList);
+		request.setAttribute("mentoList",mentoList);
 		request.getRequestDispatcher("/views/admin/adminMentoNoApproval.jsp").forward(request, response);
 	}
 

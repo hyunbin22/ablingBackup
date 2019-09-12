@@ -21,7 +21,14 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 		if(name!=null && name.equals("pw")) {
 			value = getSha512(super.getParameter(name));
 			return value;
-		} else return super.getParameter(name);
+		} 
+		
+		if(name!=null && name.equals("mPw")) {
+			value = getSha512(super.getParameter(name));
+			return value;
+		} 
+
+		else return super.getParameter(name);
 	}
 	
 	private String getSha512(String val) {

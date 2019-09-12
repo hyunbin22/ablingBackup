@@ -28,31 +28,32 @@ public class MentoUploadDao {
 	}
 
 	//멘토 이미지 등록
-	public int registerMentoImage(Connection conn, MentoUpload mtu, int mtnum) {
-		PreparedStatement pstmt=null;
-		System.out.println("mtnum : "+mtnum);
-		int result=0;
-		String sql=prop.getProperty("registerMentoImage");
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, mtnum);
-			pstmt.setString(2, mtu.getUpMentoOrgProfile());
-			pstmt.setString(3, mtu.getUpMentoReProfile());
-			pstmt.setString(4, mtu.getUpMentoOrgConfirm());
-			pstmt.setString(5, mtu.getUpMentoReConfirm());
-			pstmt.setString(6, mtu.getUpMentoNameLicense());
-			pstmt.setString(7, mtu.getUpMentoOrgLicense());
-			pstmt.setString(8, mtu.getUpMentoReLicense());
-			result=pstmt.executeUpdate();
+	//	public int registerMentoImage(Connection conn, MentoUpload mtu, int mtnum) {
+	//		PreparedStatement pstmt=null;
+	//		System.out.println("mtnum : "+mtnum);
+	//		int result=0;
+	//		String sql=prop.getProperty("registerMentoImage");
+	//		try {
+	//			pstmt=conn.prepareStatement(sql);
+	//			pstmt.setInt(1, mtnum);
+	//			pstmt.setString(2, mtu.getUpMentoOrgProfile());
+	//			pstmt.setString(3, mtu.getUpMentoReProfile());
+	//			pstmt.setString(4, mtu.getUpMentoOrgConfirm());
+	//			pstmt.setString(5, mtu.getUpMentoReConfirm());
+	//			pstmt.setString(6, mtu.getUpMentoNameLicense());
+	//			pstmt.setString(7, mtu.getUpMentoOrgLicense());
+	//			pstmt.setString(8, mtu.getUpMentoReLicense());
+	//			result=pstmt.executeUpdate();
+	//
+	//		}catch(SQLException e) {
+	//			e.printStackTrace();
+	//		}finally {
+	//			close(pstmt);
+	//		}
+	//		return result;
+	//	}
 
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return result;
-	}
-
+	//첨부파일 전체불러오기
 	public List<MentoUpload> mentoUpList(Connection conn, int mtNum) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("mentoUpList");
@@ -66,13 +67,10 @@ public class MentoUploadDao {
 				MentoUpload mtu = new MentoUpload();
 				mtu.setUpMentoNum(rs.getInt("up_mentonum"));
 				mtu.setMtNum(rs.getInt("mtnum"));
-				mtu.setUpMentoOrgProfile(rs.getString("up_mento_org_profile"));
-				mtu.setUpMentoReProfile(rs.getString("up_mento_re_profile"));
-				mtu.setUpMentoOrgConfirm(rs.getString("up_mento_org_confirm"));
-				mtu.setUpMentoReConfirm(rs.getString("up_mento_re_confirm"));
+				mtu.setUpMentoCategory(rs.getString("up_mento_category"));
 				mtu.setUpMentoNameLicense(rs.getString("up_mento_name_license"));
-				mtu.setUpMentoOrgLicense(rs.getString("up_mento_org_license"));
-				mtu.setUpMentoReLicense(rs.getString("up_mento_re_license"));
+				mtu.setUpMentoOrgName(rs.getString("up_mento_org_name"));
+				mtu.setUpMentoReName(rs.getString("up_mento_re_name"));
 				list.add(mtu);
 			}
 
@@ -84,7 +82,7 @@ public class MentoUploadDao {
 		} return list;
 	}
 
-	//한개만 들어오는 데이터 
+	//프로필 사진 불러오기
 	public List<MentoUpload> mentoUpProList(Connection conn, int mtNum) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("mentoUpProList");
@@ -94,17 +92,16 @@ public class MentoUploadDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mtNum);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				if(rs.getString("up_mento_re_profile")!=null) {
-					MentoUpload mtu = new MentoUpload();
-					mtu.setUpMentoNum(rs.getInt("up_mentonum"));
-					mtu.setMtNum(rs.getInt("mtnum"));
-					mtu.setUpMentoOrgProfile(rs.getString("up_mento_org_profile"));
-					mtu.setUpMentoReProfile(rs.getString("up_mento_re_profile"));
-					mtu.setUpMentoOrgConfirm(rs.getString("up_mento_org_confirm"));
-					mtu.setUpMentoReConfirm(rs.getString("up_mento_re_confirm"));
-					list.add(mtu);
-				}
+			if(rs.next()) {
+				MentoUpload mtu = new MentoUpload();
+				mtu.setUpMentoNum(rs.getInt("up_mentonum"));
+				mtu.setMtNum(rs.getInt("mtnum"));
+				mtu.setUpMentoCategory(rs.getString("up_mento_category"));
+				mtu.setUpMentoNameLicense(rs.getString("up_mento_name_license"));
+				mtu.setUpMentoOrgName(rs.getString("up_mento_org_name"));
+				mtu.setUpMentoReName(rs.getString("up_mento_re_name"));
+				list.add(mtu);
+
 			}
 
 		} catch(Exception e) {
@@ -129,9 +126,10 @@ public class MentoUploadDao {
 				MentoUpload mtu = new MentoUpload();
 				mtu.setUpMentoNum(rs.getInt("up_mentonum"));
 				mtu.setMtNum(rs.getInt("mtnum"));
+				mtu.setUpMentoCategory(rs.getString("up_mento_category"));
 				mtu.setUpMentoNameLicense(rs.getString("up_mento_name_license"));
-				mtu.setUpMentoOrgLicense(rs.getString("up_mento_org_license"));
-				mtu.setUpMentoReLicense(rs.getString("up_mento_re_license"));
+				mtu.setUpMentoOrgName(rs.getString("up_mento_org_name"));
+				mtu.setUpMentoReName(rs.getString("up_mento_re_name"));
 				list.add(mtu);
 
 			}

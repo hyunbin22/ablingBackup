@@ -42,7 +42,6 @@ public class AdminMentoApprovalServlet extends HttpServlet {
 
 		List<Mento> mentoList = new MentoService().mentoApproList(cPage, numPerPage);
 
-
 		int mentoTotalPage=(int)Math.ceil((double)countMentoApproval/numPerPage);
 		String pageBar="";
 		int pageSizeBar=5;

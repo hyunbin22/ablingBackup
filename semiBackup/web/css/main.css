@@ -100,11 +100,12 @@ span#join, span#findId, span#findPw {
 	cursor: pointer;
 }
 
-#Main {
+img#logoImg {
 	float: left;
 	position: absolute;
 	right: 200px;
 	top: 15px;
+	width: 300px;
 }
 
 #menu {
@@ -220,6 +221,24 @@ nav, .footmenu {
     right:0;
     margin: 0 auto;
 }
+
+/* 메세지아이콘 */
+
+img#messageIcon{
+	width:45px;
+	position: absolute;
+	top: 8px;
+	left: 80px;
+}
+
+p#messageCount{
+	color: red;
+	position: absolute;
+	top: -10px;
+	left: 110px;
+	font-weight: 900;
+}
+
 
 /* 헤더용 센터 */
 #head {

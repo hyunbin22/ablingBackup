@@ -28,7 +28,7 @@
 <script>
  $(function(){
 	$('#rgEmail').click(function(){
-		location.href="<%=request.getContextPath()%>/views/register/register2.jsp";
+		location.href="<%=request.getContextPath()%>/views/member/register2.jsp";
 	});
 	
 	$('#rgKakao').click(function(){
