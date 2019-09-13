@@ -11,7 +11,7 @@ public class Message {
 	private int fromMNum;
 	private int toMNum;
 	private String messageText;
-	private Date messageSendDate;
+	private String messageSendDate;
 	private int messageReadCount;
 	private Member fromMember;
 	private Member toMember;
@@ -20,7 +20,7 @@ public class Message {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Message(int messageNum, int fromMNum, int toMNum, String messageText, Date messageSendDate,
+	public Message(int messageNum, int fromMNum, int toMNum, String messageText, String messageSendDate,
 			int messageReadCount, Member fromMember, Member toMember) {
 		super();
 		this.messageNum = messageNum;
@@ -65,11 +65,11 @@ public class Message {
 		this.messageText = messageText;
 	}
 
-	public Date getMessageSendDate() {
+	public String getMessageSendDate() {
 		return messageSendDate;
 	}
 
-	public void setMessageSendDate(Date messageSendDate) {
+	public void setMessageSendDate(String messageSendDate) {
 		this.messageSendDate = messageSendDate;
 	}
 
@@ -104,5 +104,6 @@ public class Message {
 				+ ", fromMember=" + fromMember + ", toMember=" + toMember + "]";
 	}
 
+	
 	
 }

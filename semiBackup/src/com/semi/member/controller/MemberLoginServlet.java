@@ -65,10 +65,11 @@ public class MemberLoginServlet extends HttpServlet {
 			}
 			
 			view = "/";
-			response.sendRedirect(request.getContextPath()+view);
-			
 			//채팅 안읽은수 
-			int readCount = new MessageService().allReadCount(m.getmNum());
+			int readCount = new MessageService().noReadCount(m.getmNum());
+			session.setAttribute("readCount", readCount);
+			
+			response.sendRedirect(request.getContextPath()+view);
 			
 			
 		}
@@ -84,13 +85,7 @@ public class MemberLoginServlet extends HttpServlet {
 			rd.forward(request, response);
 			
 		}
-		
 
-
-		
-	
-		
-		
 	}
 
 	/**

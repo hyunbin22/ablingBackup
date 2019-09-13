@@ -202,7 +202,7 @@
 	
 	//아이디 중복검사 
 	$(function(){
-	 	var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+	 	var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디가 적합한지 검사할 정규식
 	 	var idCheck = $('#idCheck');
 		$('#userId').blur(function(){
 			var rgUserId = $('#userId').val();

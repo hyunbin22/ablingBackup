@@ -41,6 +41,14 @@ public class MemberService {
 
 		return check;
 	}
+	
+	//회원번호로 조회
+	public Member selectMember(int mNum) {
+		Connection conn= JDBCTemplate.getConnection();
+		Member m=dao.selectMemberMnum(conn,mNum);
+		close(conn);
+		return m;      
+	}
 
 	//아이디로 조회 , 마이페이지
 	public Member selectMember(String mId) {

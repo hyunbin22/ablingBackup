@@ -62,6 +62,7 @@
 							</p>
 						</p>
 					<%} %>
+				<button class="mentosubmit" onclick="sendMessage">문의하기</button>
 				</div>
 			</div>
 			<%if(temp!=0) {%>
@@ -112,6 +113,17 @@
 				var url="<%=request.getContextPath()%>/lecture/updateCheckLecture.do?lecNum="+lecNum;
 				location.href=url;
 			}
+		});
+		
+		$('#sendMessage').click(function(){
+			var url = "<%=request.getContextPath()%>/message/openMessageView.do";
+			var status = "width=500, height=700, resizable=no, scrollbars=yes, status=no;";
+			var title="메세지"
+			var popUp = open("", title, status);
+			window.name="parentWin";
+			saveRefusalFrm.target = title;
+			saveRefusalFrm.action=url;
+			saveRefusalFrm.submit();
 		});
 	</script>
 <%@ include file="/views/common/adminFooter.jsp"%>

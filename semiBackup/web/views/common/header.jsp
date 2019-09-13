@@ -5,7 +5,11 @@
     	
      Member memberLogin = (Member) session.getAttribute("loginMember");
      Cookie[] cookies = request.getCookies();
-
+	 int readCount = 0;
+	 if(memberLogin!=null) {
+		 readCount = (int)session.getAttribute("readCount");
+	 }
+     
    	 String saveId = null;
 	 if(cookies!=null){
      for(Cookie c : cookies){
@@ -111,15 +115,7 @@
                     <div id = "myPro2"><%=memberLogin.getmId()%>님</div>
                     <div style = "text-align: center">환영합니다!</div>
                 		<img src="<%=request.getContextPath() %>/image/messageIcon.png" id="messageIcon">
-                		<p id="messageCount">1</p>
-                		<script>
-                			$(function(){
-                				$('#messageIcon').click(function(){
-                					
-                				});
-                			});
-                		
-                		</script>
+                		<p id="messageCount"><%=readCount %></p>
                 	</div>
                 </div>
                 <div id = "mypromenu">
@@ -199,15 +195,40 @@ $(function(){
 	$('#messageIcon').click(function(){
 		var url = "<%=request.getContextPath()%>/message/openMessage.do";
 		var status = "width=500, height=700, resizable=no, scrollbars=yes, status=no;";
-		var title="거절상세"
+		var title="메세지"
 		var popUp = open("", title, status);
 		window.name="parentWin";
-		saveRefusalFrm.target = title;
-		saveRefusalFrm.action=url;
-		saveRefusalFrm.submit();
+		openMessageFrm.target = title;
+		openMessageFrm.action=url;
+		openMessageFrm.submit();
 		
 	});
 });
+
+//안읽은메세지수 2초마다 불러옴
+$(function(){
+	if(memberLogin!=null) {
+		//알림기능
+		$.ajax ({
+			"url" : "<%=request.getContextPath()%>/message/readCount.do",
+			cache: false,
+			type:"get",
+			dataType:"json",
+			success : function(data) {
+				$('#messageCount').text(data);
+			}
+			
+		},2000);
+	}
+});
+
+//알림기능
+window.onload=function(){
+	if(window.Notification){
+		Notification.requestPermission();
+	}
+}
+
 
 </script>
 
