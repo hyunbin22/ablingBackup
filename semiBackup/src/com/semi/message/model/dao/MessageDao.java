@@ -52,7 +52,7 @@ public class MessageDao {
 	}
 	
 	//메세지 불러오기
-	public List<Message> messageList(Connection conn, int messageNum, int toMNum, int fromMNum) {
+	public List<Message> messageListByMNum(Connection conn, int fromMNum, int toMNum, int messageNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Message> list = new ArrayList();
@@ -64,6 +64,7 @@ public class MessageDao {
 			pstmt.setInt(3, toMNum);
 			pstmt.setInt(4, fromMNum);
 			pstmt.setInt(5, messageNum);
+			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Message me = new Message();
 				me.setMessageNum(rs.getInt("message_num"));
@@ -95,7 +96,7 @@ public class MessageDao {
 	}
 	
 	//메세지 불러오기
-	public List<Message> messageListByRecent(Connection conn, int messageNum, int fromMNum, int toMNum) {
+	public List<Message> messageListByRecent(Connection conn, int fromMNum, int toMNum, int number) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Message> list = new ArrayList();
@@ -106,7 +107,7 @@ public class MessageDao {
 			pstmt.setInt(2, toMNum);
 			pstmt.setInt(3, toMNum);
 			pstmt.setInt(4, fromMNum);
-			pstmt.setInt(5, messageNum);
+			pstmt.setInt(5, number);
 			while(rs.next()) {
 				Message me = new Message();
 				me.setMessageNum(rs.getInt("message_num"));
@@ -141,7 +142,7 @@ public class MessageDao {
 	public int insertMessage(Connection conn, String fromId, String toId, String text) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "insert into tb_message values(seq_message.nextval,(select mnum from tb_member where mid=?),(select mnum from tb_member where mid=?),?,default,default)";
+		String sql = "insert into tb_message values(seq_message.nextval,(select mnum from tb_member where mid=?),(select mnum from tb_member where mid=?),?,to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'),default)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, fromId);

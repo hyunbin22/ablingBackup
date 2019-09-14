@@ -1,4 +1,4 @@
-package common.websocket;
+package com.semi.message.controller;
 
 import java.io.IOException;
 import java.net.URLDecoder;

@@ -20,13 +20,19 @@ public class MessageService {
 		int result = dao.noReadCount(conn, mNum);
 		close(conn);
 		return result;
-		
 	}
 	
 	//메시지 불러오기
-	public List<Message> messageList(int messageNum, int toMNum, int fromMNum) {
+	public List<Message> messageListByMNum(int fromMNum,int toMNum,int messageNum) {
 		Connection conn = getConnection();
-		List<Message> list = dao.messageList(conn, messageNum, toMNum, fromMNum);
+		List<Message> list = dao.messageListByMNum(conn, fromMNum, toMNum, messageNum);
+		close(conn);
+		return list;
+	}
+	
+	public List<Message> messageListByRecent(int fromMNum, int toMNum, int number) {
+		Connection conn = getConnection();
+		List<Message> list = dao.messageListByRecent(conn, fromMNum, toMNum, number);
 		close(conn);
 		return list;
 	}

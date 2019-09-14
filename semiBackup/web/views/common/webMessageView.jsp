@@ -4,6 +4,11 @@
 <%@ page import= "com.semi.message.model.vo.Message"%>
 <%
 	Member m = (Member)session.getAttribute("loginMember");
+	String userId = m.getmId();
+	String toId = null;
+	if(request.getParameter("toId") != null) {
+		toId = (String)request.getParameter("toId");
+	}
 	List<Message> list = (List)request.getAttribute("messageList");
 
 %>
@@ -13,6 +18,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/messageChat.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.4.1.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Testing websockets</title>
 <style>
@@ -57,8 +64,46 @@ body {
 
 
 </style>
+<script>
+	function autoClosingAlert(selector, delay) {
+		var alert = $(selector).alert();
+		alert.show();
+		window.setTimeout(function() {alert.hide()}, delay);
+	}
+	function submitFunction() {
+		var fromId = '<%=userId%>';
+		var toId = '<%=toId%>';
+		var chatContent = $('#chatContent').val();
+		$.ajax({
+			type="post",
+			url="<%=request.getContextPath()%>/message/messageSubmit.do",
+			data:{
+				fromID: encodeURLComponent(fromID),
+				fromID: encodeURLComponent(fromID),
+				fromID: encodeURLComponent(fromID),
+			},
+			success: function(result){
+				if(result == 1) {
+					autoClosingAlert();
+				}
+			}
+		})
+	}
+
+</script>
 </head>
 <body>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" 
+			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+		</div>
+	
+	</nav>
 	<div class="chat_list_wrap">
 		<div class="header">상대방이름</div>
 		<div class="list">
@@ -68,11 +113,34 @@ body {
 				</div>
 		        <!-- <textarea id="messageWindow" rows="2" cols="50" readonly></textarea> -->
 		        <br/>
-		        <input id="inputMessage" type="text"/>
-		        <input type="submit" value="send" onclick="send()" />
+		        <input id="chatContent" type="text" placeholder="메세지를 입력하세요."/>
+		        <input type="button" value="전송" onclick="submitFunction();" />
 		    </fieldset>
 		</div>
 	</div>
+	<div class="alert alert-success" id="successMessage" style="display:none;">
+		<strong>메세지 전송에 성공했습니다.</strong>
+	</div>
+	<div class="alert alert-success" id="dangerMessage" style="display:none;">
+		<strong>이름과 내용을 모두 입력해주세요.</strong>
+	</div>
+	<div class="alert alert-success" id="warningMessage" style="display:none;">
+		<strong>오류가 발생했습니다.</strong>
+	</div>
+	<%
+		String messageContent = null;
+	if(session.getAttribute("messageContent") != null) {
+		messageContent=(String)session.getAttribute("messageContent");
+	}
+	String messageType=null;
+	if(session.getAttribute("messageType")!=null) {
+		messageType=(String)session.getAttribute("messageType");
+	}
+	
+	if(messageContent != null)
+	
+	
+	%>
 </body>
 
 
