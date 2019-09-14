@@ -194,16 +194,18 @@
 $(function(){
 	$('#messageIcon').click(function(){
 		var url = "<%=request.getContextPath()%>/message/openMessage.do";
-		var status = "width=500, height=700, resizable=no, scrollbars=yes, status=no;";
+		/* var status = "width=500, height=700, resizable=no, scrollbars=yes, status=no;";
 		var title="메세지"
 		var popUp = open("", title, status);
-		window.name="parentWin";
-		openMessageFrm.target = title;
+		window.name="parentWin"; 
+		openMessageFrm.target = title;*/
 		openMessageFrm.action=url;
 		openMessageFrm.submit();
 		
 	});
 });
+
+
 
 //안읽은메세지수 2초마다 불러옴
 $(function(){

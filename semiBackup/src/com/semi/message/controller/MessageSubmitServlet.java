@@ -27,20 +27,24 @@ public class MessageSubmitServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		int fromMNum = Integer.parseInt(request.getParameter("fromMNum"));
-		int toMNum = Integer.parseInt(request.getParameter("toMNum"));
+//		int fromMNum = Integer.parseInt(request.getParameter("fromMNum"));
+//		int toMNum = Integer.parseInt(request.getParameter("toMNum"));
+//		
+//		String fromId = new MemberService().selectMember(fromMNum).getmId();
+//		String toId = new MemberService().selectMember(toMNum).getmId();
 		
-		String fromId = new MemberService().selectMember(fromMNum).getmId();
-		String toId = new MemberService().selectMember(toMNum).getmId();
+		String fromId = request.getParameter("fromId");
+		String toId = request.getParameter("toId");
+
 		
-		String text = request.getParameter("text");
+		String text = request.getParameter("chatContent");
 		if(fromId == null || fromId.equals("") || toId == null || toId.equals("") || text == null || text.equals("")) {
 			response.getWriter().write("0");
 		} else {
 			fromId = URLDecoder.decode(fromId, "UTF-8");
 			toId = URLDecoder.decode(toId, "UTF-8");
 			text = URLDecoder.decode(text, "UTF-8");
-			response.getWriter().write(new MessageService().insertMessage(toId,fromId,text)+"");
+			response.getWriter().write(new MessageService().insertMessage(fromId, toId, text)+"");
 			
 		}
 		

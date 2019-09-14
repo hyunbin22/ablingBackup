@@ -23,9 +23,9 @@ public class MessageService {
 	}
 	
 	//메시지 불러오기
-	public List<Message> messageListByMNum(int fromMNum,int toMNum,int messageNum) {
+	public List<Message> messageListById(int fromMNum,int toMNum,String chatId) {
 		Connection conn = getConnection();
-		List<Message> list = dao.messageListByMNum(conn, fromMNum, toMNum, messageNum);
+		List<Message> list = dao.messageListById(conn, fromMNum, toMNum, chatId);
 		close(conn);
 		return list;
 	}

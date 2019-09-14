@@ -26,26 +26,8 @@ public class OpenMessageServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		Member m = (Member) session.getAttribute("loginMember");
-//		Mento mt = new MentoService().mentoView(m.getmNum());
-//		if(mt!=null) {
-//			mt = (Mento) session.getAttribute("loginMento");
-//		}
-//		
-//		int readCount = new MessageService().noReadCount(m.getmNum());
-//		
-//		request.setAttribute("member", m);
-//		request.setAttribute("mento", mt);
-//		request.setAttribute("readCount", readCount);
-		
-//		List<Message> messageList = new MessageService().messageList(m.getmNum(),m.getmNum());
-//		request.setAttribute("messageList", messageList);
-//		request.getRequestDispatcher("/views/common/webMessage.jsp").forward(request, response);
-		
-//		response.sendRedirect(request.getContextPath()+"/views/common/webMessage.jsp");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		response.sendRedirect(request.getContextPath()+"/views/common/webMessage.jsp");
 
 	}
 

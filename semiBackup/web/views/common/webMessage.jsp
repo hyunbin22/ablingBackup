@@ -3,12 +3,18 @@
 <%@ page import="java.util.*, com.semi.message.model.vo.Message, com.semi.member.model.vo.Member, com.semi.mento.model.vo.Mento, java.sql.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 	<%
-		String userID=null;
-		Member m = null;
-		if(session.getAttribute("memberLogin")!=null) {
-			m = (Member)session.getAttribute("memberLogin");
-			userID = m.getmId();
-		}
+	Member m = null;
+	String userId = null;
+	String toId = null;
+	
+	if(session.getAttribute("loginMember")!=null) {
+		m = (Member)session.getAttribute("loginMember");
+		userId=m.getmId();
+	}
+	if(request.getParameter("toId") != null) {
+		toId = (String)request.getParameter("toId");
+	}
+	
 	
 %>
 <!DOCTYPE html>
@@ -57,6 +63,7 @@
 		</div>
 	</nav>	
 	
+	
 		<%
 		String messageContent = null;
 		if(session.getAttribute("messageContent") != null) {
@@ -94,12 +101,68 @@
 	</div> 
 	<script>
 		$('#messageModal').modal("show");
+		$(document).ready(function(){
+			chatListFunction('ten');
+			getInfiniteChat
+		})
 	</script>
 	<%
 		session.removeAttribute("messageContent");
 		session.removeAttribute("messageType");
 		
 		} %>
+	<script>
+	var lastId=0;
+	function chatListFunction(type){
+		var fromId = '<%=userId%>';
+		var toId = '<%=toId%>';
+		$.ajax({
+			type:"post",
+			url:"<%=request.getContextPath()%>/message/messageList.do",
+			data:{
+				fromId: encodeURIComponent(fromId),
+				toId: encodeURIComponent(toId),
+				chatContent: encodeURIComponent(chatContent),
+			},
+			success: function(data){
+				if(data=="") return;
+				var parsed = JSON.parse(data);
+				var result = parsed.result;
+				for(var i = 0; i < result.length; i++) {
+					addChat(result[i][0].value, result[i][2].value, result[i][3].value);
+				}
+				lastId = Number(parsed.last);
+			}
+		})
+	}
+	
+	function addChat(chatName, chatContent, chatTime) {
+		$('#chatList').append('<div class="row">' +
+			'<div class="col-lg-12">' +
+			'<div class="media">' +
+			'<a class="pull-left" href="#">' +
+			'<img class="media-object img-circle" src="images.icon.png" alt="">' +
+			'</a>' +
+			'<div class="media-body">' +
+			'<h4 class="media-heading">' +
+			chatName +
+			'<span class="small pull-right">' +
+			chatTime +
+			'</span></h4>'+
+			'<p>' + chatContent + '</p>' +
+			'</div></div></div></div>' +
+			'<hr>');
+		$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
+	}
+	function getInfiniteChat() {
+		setInterval(function() {
+			chatListFunction(lastId);
+		}, 3000);
+	}
+	
+
+	
+	</script>
 </body>
 
 </html>

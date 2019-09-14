@@ -52,18 +52,18 @@ public class MessageDao {
 	}
 	
 	//메세지 불러오기
-	public List<Message> messageListByMNum(Connection conn, int fromMNum, int toMNum, int messageNum) {
+	public List<Message> messageListById(Connection conn, int fromMNum, int toMNum, String chatId) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Message> list = new ArrayList();
-		String sql = "select * from tb_message where ((from_mnum=? and to_mnum=?) or (from_mnum=? and to_mnum=?)) and messageNum > ? order by message_sendDate";
+		String sql = "select * from tb_message where ((from_mnum=? and to_mnum=?) or (from_mnum=? and to_mnum=?)) and message_Num > ? order by message_sendDate";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, fromMNum);
 			pstmt.setInt(2, toMNum);
 			pstmt.setInt(3, toMNum);
 			pstmt.setInt(4, fromMNum);
-			pstmt.setInt(5, messageNum);
+			pstmt.setInt(5, Integer.parseInt(chatId));
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Message me = new Message();
@@ -100,7 +100,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Message> list = new ArrayList();
-		String sql = "select * from tb_message where ((from_mnum=? and to_mnum=?) or (from_mnum=? and to_mnum=?)) and messageNum > (select max(messageNum)-? from tb_message) order by message_sendDate";
+		String sql = "select * from tb_message where ((from_mnum=? and to_mnum=?) or (from_mnum=? and to_mnum=?)) and message_Num > (select max(message_Num)-? from tb_message) order by message_sendDate";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, fromMNum);
@@ -108,6 +108,7 @@ public class MessageDao {
 			pstmt.setInt(3, toMNum);
 			pstmt.setInt(4, fromMNum);
 			pstmt.setInt(5, number);
+			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Message me = new Message();
 				me.setMessageNum(rs.getInt("message_num"));
@@ -140,9 +141,10 @@ public class MessageDao {
 	
 	//메세지 저장
 	public int insertMessage(Connection conn, String fromId, String toId, String text) {
+
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "insert into tb_message values(seq_message.nextval,(select mnum from tb_member where mid=?),(select mnum from tb_member where mid=?),?,to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'),default)";
+		String sql = "insert into tb_message values(seq_message.nextval,(select mnum from tb_member where mid=?),(select mnum from tb_member where mid=?),?,default,default)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, fromId);
