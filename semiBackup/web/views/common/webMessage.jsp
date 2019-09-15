@@ -80,19 +80,15 @@
 	</div> 
 	<script>
 		$('#messageModal').modal("show");
+		
 		$(document).ready(function(){
 			chatListFunction('ten');
 			getInfiniteChat();
+			/* getInfiniteUnread(); */
 		})
+
 	</script>
-	<%if(userId != null) {%>
-		<script>
-			$(document).ready(function(){
-				getInfiniteUnread();
-			});
-		
-		</script>
-	<%} %>
+
 	<%
 		session.removeAttribute("messageContent");
 		session.removeAttribute("messageType");
@@ -148,7 +144,7 @@
 	}
 	
 	//안읽은메세지수 출력
-	function getUnread(){
+	$(function(){
 		$.ajax({
 			type:"post",
 			url: "<%=request.getContextPath()%>/message/readCount.do",
@@ -158,18 +154,14 @@
 			success: function(result) {
 				if(result>=1) {
 					showUnread(result);
+					console.log(result);
 				} else {
 					showUnread('');
 				}
 			}
-		});
-	}
-	
-	function getInfiniteUnread(){
-		setInterval(function(){
-			getUnread();
 		},3000);
-	}
+	});
+
 	function showUnread(result){
 		$('#unread').html(result);
 	}

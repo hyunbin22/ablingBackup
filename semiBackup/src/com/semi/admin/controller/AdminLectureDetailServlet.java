@@ -34,6 +34,7 @@ public class AdminLectureDetailServlet extends HttpServlet {
 		int lecNum = Integer.parseInt(request.getParameter("lecNum"));
 		int temp = 0;
 		Lecture lec = new LectureService().lectureView(lecNum);
+		System.out.println(lec);
 		if(lec.getLecCheck()=='N') {
 			temp = 1;
 			if(lec.getLecReason()!=null) {

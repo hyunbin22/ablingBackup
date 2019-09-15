@@ -1,6 +1,26 @@
 @charset "UTF-8";
 
-
+* {
+  font-family: 'Nanum Gothic';
+  margin: 0;
+  padding: 0;
+}
+h5 {
+	font-family: 'Noto Sans KR';
+	font-size: 15px;
+}
+h4 {
+	font-family: 'Noto Sans KR';
+}
+h3 {
+	font-family: 'Hanna';
+}
+h2 {
+	font-family: 'Hanna';
+}
+h1 {
+	font-family: 'Hanna';
+}
 
 header#mainHeader {
 	min-height: 300px;

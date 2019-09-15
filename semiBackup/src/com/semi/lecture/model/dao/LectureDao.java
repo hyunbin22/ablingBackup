@@ -169,7 +169,6 @@ public class LectureDao {
 	public Lecture lectureView(Connection conn, int lecNum) {
 		
 		List<LectureUpload> setUpList = new ArrayList();
-		List<Mento> setmUpList = new ArrayList();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

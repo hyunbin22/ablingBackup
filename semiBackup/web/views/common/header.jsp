@@ -117,7 +117,7 @@
                     <div id = "myPro2"><%=memberLogin.getmId()%>님</div>
                     <div style = "text-align: center">환영합니다!</div>
                 		<img src="<%=request.getContextPath() %>/image/messageIcon.png" id="messageIcon">
-                		<p id="messageCount"><%=readCount %></p>
+                		<p id="messageCount"><span id = "unread" class="label label-info"></span></p>
                 	</div>
                 </div>
                 <div id = "mypromenu">
@@ -210,20 +210,26 @@ $(function(){
 //안읽은메세지수 2초마다 불러옴
 $(function(){
 	if('<%=memberLogin%>'!=null) {
-		$.ajax ({
-			"url" : "<%=request.getContextPath()%>/message/readCount.do",
-			cache: false,
-			type:"get",
+		$.ajax({
+			type:"post",
+			url: "<%=request.getContextPath()%>/message/readCount.do",
 			data: {
 				userId: encodeURIComponent('<%=userId%>'),
 			},
-			success : function(data) {
-				$('#messageCount').text(data);
+			success: function(result) {
+				if(result>=1) {
+					showUnread(result);
+					console.log(result);
+				} else {
+					showUnread('');
+				}
 			}
-		},2000);
+		},3000);
 	}
 });
-
+function showUnread(result){
+	$('#unread').html(result);
+}
 //알림기능
 window.onload=function(){
 	if(window.Notification){

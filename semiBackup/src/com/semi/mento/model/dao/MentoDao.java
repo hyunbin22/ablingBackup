@@ -148,6 +148,8 @@ public class MentoDao {
 				mt.setMtAcademic(rs.getString("mtAcademic"));
 				mt.setMtAcademicDept(rs.getString("mtAcademicDept"));
 				mt.setMtGraduation(rs.getString("mtGraduation"));
+				mt.setMtBank(rs.getString("mtBank"));
+				mt.setMtAccountNumber("mtaccountnumber");
 				mt.setMtaDate(rs.getDate("mtaDate"));
 				mt.setMtCheck(rs.getString("mtcheck").charAt(0));
 				mt.setMtReason(rs.getString("mtReason"));
@@ -190,6 +192,8 @@ public class MentoDao {
 				mt.setMtAcademic(rs.getString("mtAcademic"));
 				mt.setMtAcademicDept(rs.getString("mtAcademicDept"));
 				mt.setMtGraduation(rs.getString("mtGraduation"));
+				mt.setMtBank(rs.getString("mtBank"));
+				mt.setMtAccountNumber("mtaccountnumber");
 				mt.setMtaDate(rs.getDate("mtaDate"));
 				mt.setMtCheck(rs.getString("mtcheck").charAt(0));
 				mt.setMtReason(rs.getString("mtReason"));
@@ -299,6 +303,8 @@ public class MentoDao {
 				mt.setMtAcademic(rs.getString("mtAcademic"));
 				mt.setMtAcademicDept(rs.getString("mtAcademicDept"));
 				mt.setMtGraduation(rs.getString("mtGraduation"));
+				mt.setMtBank(rs.getString("mtBank"));
+				mt.setMtAccountNumber("mtaccountnumber");
 				mt.setMtaDate(rs.getDate("mtaDate"));
 				mt.setMtCheck(rs.getString("mtcheck").charAt(0));
 				mt.setMtReason(rs.getString("mtReason"));
@@ -339,6 +345,8 @@ public class MentoDao {
 				mt.setMtAcademic(rs.getString("mtAcademic"));
 				mt.setMtAcademicDept(rs.getString("mtAcademicDept"));
 				mt.setMtGraduation(rs.getString("mtGraduation"));
+				mt.setMtBank(rs.getString("mtBank"));
+				mt.setMtAccountNumber("mtaccountnumber");
 				mt.setMtaDate(rs.getDate("mtaDate"));
 				mt.setMtCheck(rs.getString("mtcheck").charAt(0));
 				mt.setMtReason(rs.getString("mtReason"));
@@ -407,6 +415,8 @@ public class MentoDao {
 				mt.setMtAcademic(rs.getString("mtAcademic"));
 				mt.setMtAcademicDept(rs.getString("mtAcademicDept"));
 				mt.setMtGraduation(rs.getString("mtGraduation"));
+				mt.setMtBank(rs.getString("mtBank"));
+				mt.setMtAccountNumber("mtaccountnumber");
 				mt.setMtaDate(rs.getDate("mtaDate"));
 				mt.setMtCheck(rs.getString("mtcheck").charAt(0));
 				mt.setMtReason(rs.getString("mtReason"));
