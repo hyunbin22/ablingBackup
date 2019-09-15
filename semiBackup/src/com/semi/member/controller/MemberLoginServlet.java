@@ -66,7 +66,7 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			view = "/";
 			//채팅 안읽은수 
-			int readCount = new MessageService().noReadCount(m.getmNum());
+			int readCount = new MessageService().noReadCount(m.getmId());
 			session.setAttribute("readCount", readCount);
 			
 			response.sendRedirect(request.getContextPath()+view);

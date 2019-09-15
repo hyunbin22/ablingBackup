@@ -29,7 +29,6 @@ public class MessageListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		
 		String fromId = request.getParameter("fromId");
 		String toId = request.getParameter("toId");
 		String listType = request.getParameter("listType");
@@ -54,7 +53,7 @@ public class MessageListServlet extends HttpServlet {
 		int fromMNum = new MemberService().selectMember(fromId).getmNum();
 		int toMNum = new MemberService().selectMember(toId).getmNum();
 		
-		List<Message> chatList = service.messageListByRecent(fromMNum, toMNum, 10);
+		List<Message> chatList = service.messageListByRecent(fromMNum, toMNum, 100);
 		if(chatList.size()==0) return "";
 		for(int i = 0; i < chatList.size(); i++) {
 			result.append("[{\"value\": \"" + chatList.get(i).getFromMember().getmId() + "\"},");
@@ -65,6 +64,7 @@ public class MessageListServlet extends HttpServlet {
 			
 		}
 		result.append("], \"last\":\"" + chatList.get(chatList.size()-1).getMessageNum() + "\"}");
+		service.readChat(fromMNum, toMNum);
 		return result.toString();
 	}
 	

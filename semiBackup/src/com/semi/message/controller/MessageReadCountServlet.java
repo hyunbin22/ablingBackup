@@ -1,6 +1,7 @@
 package com.semi.message.controller;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,17 +27,14 @@ public class MessageReadCountServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
 		
-		HttpSession session = request.getSession();
-		Member m = (Member) session.getAttribute("loginMember");
-		int readCount = (int) session.getAttribute("readCount");
-		int newReadCount = new MessageService().noReadCount(m.getmNum());
-		if(readCount != newReadCount) {
-			session.setAttribute("readCount", newReadCount);
+		String userId = request.getParameter("userId");
+		if(userId==null || userId.equals("")) {
+			response.getWriter().write("0");
+		} else {
+			userId = URLDecoder.decode(userId,"UTF-8");
+			response.getWriter().write(new MessageService().noReadCount(userId)+"");
 		}
-		response.getWriter().write(newReadCount);
 		
 	}
 

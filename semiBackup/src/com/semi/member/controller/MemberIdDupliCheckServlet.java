@@ -26,6 +26,7 @@ public class MemberIdDupliCheckServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		String userId = request.getParameter("userId");
+		if(userId== null || userId.equals("")) response.getWriter().write(-1);
 		response.getWriter().write(new MemberService().idDupliCheck(userId)+"");
 
 	}

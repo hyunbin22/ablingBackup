@@ -5,9 +5,11 @@
     	
      Member memberLogin = (Member) session.getAttribute("loginMember");
      Cookie[] cookies = request.getCookies();
+     String userId = "";
 	 int readCount = 0;
 	 if(memberLogin!=null) {
 		 readCount = (int)session.getAttribute("readCount");
+		 userId = memberLogin.getmId();
 	 }
      
    	 String saveId = null;
@@ -194,32 +196,30 @@
 $(function(){
 	$('#messageIcon').click(function(){
 		var url = "<%=request.getContextPath()%>/message/openMessage.do";
-		/* var status = "width=500, height=700, resizable=no, scrollbars=yes, status=no;";
+		var status = "width=400, height=600, resizable=no, status=no, toolbars=no, menubar=no";
 		var title="메세지"
 		var popUp = open("", title, status);
 		window.name="parentWin"; 
-		openMessageFrm.target = title;*/
+		openMessageFrm.target = title;
 		openMessageFrm.action=url;
 		openMessageFrm.submit();
 		
 	});
 });
 
-
-
 //안읽은메세지수 2초마다 불러옴
 $(function(){
-	if(memberLogin!=null) {
-		//알림기능
+	if('<%=memberLogin%>'!=null) {
 		$.ajax ({
 			"url" : "<%=request.getContextPath()%>/message/readCount.do",
 			cache: false,
 			type:"get",
-			dataType:"json",
+			data: {
+				userId: encodeURIComponent('<%=userId%>'),
+			},
 			success : function(data) {
 				$('#messageCount').text(data);
 			}
-			
 		},2000);
 	}
 });

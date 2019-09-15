@@ -9,18 +9,17 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>관리자</title>
 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Stylish&display=swap"
 	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="<%=request.getContextPath() %>/js/bootstrap.js"></script>
 <script src="<%=request.getContextPath() %>/js/jquery-3.4.1.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css">
 <style>
 p {
 	margin: 20px 0px;

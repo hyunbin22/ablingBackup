@@ -23,18 +23,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/custom.css">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/custom.css"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="<%=request.getContextPath() %>/js/jquery-3.4.1.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <title>Testing websockets</title>
 <style>
 @charset "UTF-8";
@@ -43,30 +35,19 @@
 </style>
 
 </head>
-<body>
+<body onresize="parent.resizeTo(450,600)" onload="parent.resizeTo(450,600)">
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
+			<!-- <button type="button" class="navbar-toggle collapsed"
 			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 			aria-expanded="false">
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
-			</button>
+			</button> -->
 			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK</a>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="webMessage.jsp">메인</a>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
-				aria-haspopup="true" aria-expanded="false">멘토에게<span class="caret"></span>
-				</a>
-			</li>
-		</ul>
-
+			<a class="navbar-brand" href="webMessage.jsp">멘토찾기</a>
+			<a class="navbar-brand" href="messageMemberFind.jsp">친구찾기</a>
 		</div>
 	</nav>	
 	<div class="container bootstrap snippet">
@@ -75,7 +56,7 @@
 				<div class="portlet portlet-default">
 					<div class="portlet-heading">
 						<div class="portlet-title">
-							<h4><i class="fa fa-circle text-green"></i>ABLINGCHAT</h4>
+							<h4><i class="fa fa-circle text-green"></i><%=toId %></h4>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -206,6 +187,9 @@
 				var parsed = JSON.parse(data);
 				var result = parsed.result;
 				for(var i = 0; i < result.length; i++) {
+					if(result[i][0].value== fromId) {
+						result[i][0].value = '나';
+					}
 					addChat(result[i][0].value, result[i][2].value, result[i][3].value);
 				}
 				lastId = Number(parsed.last);

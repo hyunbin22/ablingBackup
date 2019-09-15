@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.semi.category.model.dao.CategoryDao;
 import com.semi.member.model.dao.MemberDao;
+import com.semi.member.model.service.MemberService;
 import com.semi.message.model.vo.Message;
 
 public class MessageDao {
@@ -30,7 +31,9 @@ public class MessageDao {
 	}
 	
 	//헤더에서 안읽은 메세지수 보여주기
-	public int noReadCount(Connection conn, int mNum) {
+	public int noReadCount(Connection conn, String id) {
+		int mNum = new MemberService().selectMember(id).getmNum();
+		
 		Statement stmt = null;
 		ResultSet rs = null;
 		int result = 0;
@@ -48,6 +51,24 @@ public class MessageDao {
 			close(stmt);
 		}
 		
+		return result;
+	}
+	
+	//메세지 읽음 표시
+	public int readChat(Connection conn, int fromMNum, int toMNum) {
+		PreparedStatement pstmt = null;
+		String sql = "update tb_message set message_readcount=1 where (from_mnum=? and to_mnum=?)";
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, toMNum);
+			pstmt.setInt(2, fromMNum);
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		return result;
 	}
 	
@@ -100,7 +121,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Message> list = new ArrayList();
-		String sql = "select * from tb_message where ((from_mnum=? and to_mnum=?) or (from_mnum=? and to_mnum=?)) and message_Num > (select max(message_Num)-? from tb_message) order by message_sendDate";
+		String sql = "select * from tb_message where ((from_mnum=? and to_mnum=?) or (from_mnum=? and to_mnum=?)) and message_Num > (select max(message_Num)-? from tb_message where (from_mnum=? and to_mnum=?) or (from_mnum=? and to_mnum=?)) order by message_sendDate";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, fromMNum);
@@ -108,6 +129,10 @@ public class MessageDao {
 			pstmt.setInt(3, toMNum);
 			pstmt.setInt(4, fromMNum);
 			pstmt.setInt(5, number);
+			pstmt.setInt(6, fromMNum);
+			pstmt.setInt(7, toMNum);
+			pstmt.setInt(8, toMNum);
+			pstmt.setInt(9, fromMNum);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Message me = new Message();

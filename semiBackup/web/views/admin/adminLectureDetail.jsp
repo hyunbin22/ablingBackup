@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/adminHeader.jsp"%>
-<%@ page import="com.semi.lecture.model.vo.Lecture" %>
+<%@ page import="com.semi.lecture.model.vo.Lecture, com.semi.member.model.vo.Member" %>
 <% 
 	Lecture lec = (Lecture)request.getAttribute("lecture");
 	int temp = (int)request.getAttribute("temp");
-
+	Member m = (Member)session.getAttribute("loginMember");
 %>
 
 <section>
@@ -62,7 +62,6 @@
 							</p>
 						</p>
 					<%} %>
-				<button class="mentosubmit" onclick="sendMessage">문의하기</button>
 				</div>
 			</div>
 			<%if(temp!=0) {%>
@@ -70,9 +69,14 @@
 				<button class="mentosubmit" id="btnclassRefusal" onclick="popOpen();">거절</button>
 			<%} %>
 			</form>
-	
+			
 			<form name="saveRefusalFrm" method="post">
 				<input type="hidden" name="lecNum" id="inputlecNum">
+			</form>
+			<button class="mentosubmit" onclick="sendMessage();" id="sendMessage">문의하기</button>
+			<form name="openMessageFrm" method="post">
+				<input type="hidden" name="toId" value="<%=lec.getLecMento().getMember().getmId()%>">
+				<input type="hidden" name="fromId" value="<%=m.getmId()%>">
 			</form>
 			</div>
 		</div>
@@ -80,7 +84,6 @@
 		<%if(temp!=0) {%>
 	<%@ include file="/views/common/adminAside.jsp" %>
 	<%} %>
-
 </section>
 	<script>
 		$(function(){
@@ -115,15 +118,17 @@
 			}
 		});
 		
-		$('#sendMessage').click(function(){
-			var url = "<%=request.getContextPath()%>/message/openMessageView.do";
-			var status = "width=500, height=700, resizable=no, scrollbars=yes, status=no;";
-			var title="메세지"
-			var popUp = open("", title, status);
-			window.name="parentWin";
-			saveRefusalFrm.target = title;
-			saveRefusalFrm.action=url;
-			saveRefusalFrm.submit();
+		$(function(){
+			$('#sendMessage').click(function(){
+				var url = "<%=request.getContextPath()%>/message/openMessage.do";
+				var status = "width=400, height=600, resizable=no, status=no, toolbars=no, menubar=no";
+				var title="메세지"
+				var popUp = open("", title, status);
+				window.name="parentWin"; 
+				openMessageFrm.target = title;
+				openMessageFrm.action=url;
+				openMessageFrm.submit();
+			});
 		});
 	</script>
 <%@ include file="/views/common/adminFooter.jsp"%>
