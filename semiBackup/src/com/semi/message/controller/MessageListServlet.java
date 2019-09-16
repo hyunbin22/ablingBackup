@@ -31,6 +31,7 @@ public class MessageListServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		String fromId = request.getParameter("fromId");
 		String toId = request.getParameter("toId");
+		
 		String listType = request.getParameter("listType");
 		
 		String text = request.getParameter("chatContent");

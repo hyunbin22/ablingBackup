@@ -259,6 +259,11 @@ p#messageCount{
 	font-weight: 900;
 }
 
+span#unread{
+	color: red;
+	font-weight: 900;
+}
+
 
 /* 헤더용 센터 */
 #head {

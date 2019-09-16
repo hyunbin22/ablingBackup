@@ -5,17 +5,12 @@
 	<%
 	Member m = null;
 	String userId = null;
-	String toId = null;
 	
 	if(session.getAttribute("loginMember")!=null) {
 		m = (Member)session.getAttribute("loginMember");
 		userId=m.getmId();
 	}
-	if(request.getParameter("toId") != null) {
-		toId = (String)request.getParameter("toId");
-	}
-	
-	
+
 %>
 <!DOCTYPE html>
 <html>
@@ -39,7 +34,7 @@
 			</button> -->
 			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
 			<a class="navbar-brand" href="webMessage.jsp">멘토찾기</a>
-			<a class="navbar-brand" href="messageMemberFind.jsp">친구찾기</a>
+			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/memberFind.do">친구찾기</a>
 			<!-- <a class="navbar-brand" href="box.jsp">메세지함<span id = "unread" class="label label-info"></span></a> -->
 		</div>
 	</nav>	
@@ -97,6 +92,7 @@
 			</div>
 		</div>
 	</div> 
+
 	<script>
 		$('#messageModal').modal("show");
 	</script>
@@ -128,7 +124,7 @@
 					}
 				}
 			});
-		},2000);
+		},1000);
 		
 	});
 
@@ -161,21 +157,21 @@
 					}
 				}
 			});
-		},2000);
+		},1000);
 		
 	});
 	
-	function addBox(lastId, toId, chatContent, chatTime) {
-		
-		$('#boxTable').append('<tr onclick="location.href=\'<%=request.getContextPath()%>/views/common/webMessageView.jsp?toId=' + encodeURIComponent(toId) + '\'">' +
-				'<td style="width: 150px;"><h5>' + lastId + '</h5></td>' +
-				'<td><h5>' + chatContent + '</h5>' +
-				'<span class="label label-info">' + unread + '</span>' +
+	
+	
+	function addBox(lastId, toId, chatContent, chatTime, unread) {
+		console.log(toId);
+		$('#boxTable').append('<tr onclick="location.href=\'<%=request.getContextPath()%>/message/messageList.do?toId=' + encodeURIComponent(toId) + '\'">' +
+				'<td style="width: 150px;"><h5>' + lastId + '<span class="label label-info">' + unread + '</span></h5></td>' +
+				'<td><h5>' + chatContent +
+				'</h5>' +
 				'<div class="pull-right">' + chatTime + '</div>' + 
 				'</td>' +
 				'</tr>' );
-		console.log(chatContent);
-
 	}
 	
 	</script>

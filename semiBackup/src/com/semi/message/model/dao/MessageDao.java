@@ -58,15 +58,14 @@ public class MessageDao {
 	public int noReadCountById(Connection conn, String fromId, String toId) {
 		int fromMNum = new MemberService().selectMember(fromId).getmNum();
 		int toMNum = new MemberService().selectMember(toId).getmNum();
-		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = 0;
 		String sql = "select count(*) from tb_message where message_readCount=0 and to_mnum=? and from_mnum=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, fromMNum);
-			pstmt.setInt(2, toMNum);
+			pstmt.setInt(1, toMNum);
+			pstmt.setInt(2, fromMNum);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				result = rs.getInt(1);

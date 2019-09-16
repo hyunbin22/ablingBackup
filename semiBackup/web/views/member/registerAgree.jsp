@@ -10,7 +10,7 @@
 			<br>
 			<hr>
 		</div>
-		<form action="<%=request.getContextPath() %>/views/member/register3.jsp" method="post" onsubmit="return checkAgree();">
+		<form action="<%=request.getContextPath() %>/member/memberRegAgreeEnd.do" method="post" onsubmit="return checkAgree();">
 			<table class="tbl-register2 center1">
 				<tr>
 					<th><h3>개인정보 수집 및 이용에 대한 안내</h3></th>

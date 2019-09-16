@@ -30,19 +30,20 @@ public class MessageMainListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String userId = request.getParameter("userId");
-		if(userId==null || userId.equals("")) {
-			response.getWriter().write("0");
-		} else {
+//		if(userId==null || userId.equals("")) {
+//			response.getWriter().write("0");
+//		} else {
 			try {
 				userId = URLDecoder.decode(userId,"UTF-8");
 				response.getWriter().write(getBox(userId));
 				
 			} catch(Exception e) {
 				System.out.println("오류발생");
+				e.printStackTrace();
 				response.getWriter().write(new MessageService().noReadCount(userId)+"");				
 			}
 		}
-	}
+//	}
 	
 	public String getBox(String userId) {
 		StringBuffer result = new StringBuffer("");
@@ -50,11 +51,13 @@ public class MessageMainListServlet extends HttpServlet {
 		MessageService service = new MessageService();
 		
 		List<Message> chatList = service.getMessageBox(userId);
-
+		System.out.println(chatList);
 		if(chatList.size()==0) return "";
-		for(int i = 0; i < chatList.size(); i++) {
+		for(int i = chatList.size()-1; i >= 0; i--) {
 			String unread = "";
-			if(userId.equals(chatList.get(i).getMessageNum())) {
+			System.out.println(userId);
+			System.out.println(chatList.get(i).getToMember().getmId());
+			if(userId.equals(chatList.get(i).getToMember().getmId())) {	//로그인한 사람이랑 채팅리스트에서 받는사람이 같을때
 				unread = service.noReadCountById(chatList.get(i).getFromMember().getmId(), userId)+"";
 				if(unread.equals("0")) unread = "";
 			}
@@ -63,7 +66,7 @@ public class MessageMainListServlet extends HttpServlet {
 			result.append("{\"value\": \"" + chatList.get(i).getMessageText() + "\"},");
 			result.append("{\"value\": \"" + chatList.get(i).getMessageSendDate() + "\"},");
 			result.append("{\"value\": \"" + unread + "\"}]");
-			if(i != chatList.size()-1) result.append(",");
+			if(i != 0) result.append(",");
 			
 		}
 		result.append("], \"last\":\"" + chatList.get(chatList.size()-1).getMessageNum() + "\"}");

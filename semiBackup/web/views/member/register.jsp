@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
-<!-- sms인증 -->
+
 <section class="center1">
 	<div class="wrap">
 		<div class="bar">
@@ -196,7 +196,7 @@
 			} 
 			
 		});
-	});	//핸드폰번호 인증 끝 --%> --%>
+	});	//핸드폰번호 인증 끝 --%> 
 	
 
 	

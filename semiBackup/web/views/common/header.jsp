@@ -6,11 +6,10 @@
      Member memberLogin = (Member) session.getAttribute("loginMember");
      Cookie[] cookies = request.getCookies();
      String userId = "";
-	 int readCount = 0;
+/* 	 int readCount = 0;*/
 	 if(memberLogin!=null) {
-		 readCount = (int)session.getAttribute("readCount");
 		 userId = memberLogin.getmId();
-	 }
+	 } 
      
    	 String saveId = null;
 	 if(cookies!=null){
@@ -107,7 +106,7 @@
             </form>
             </div>
                 <div id = "loginmenu2">
-                <span onclick = "location.href='<%=request.getContextPath()%>/views/member/registerChoice.jsp'" id = "join">회원가입</span>
+                <span onclick = "location.href='<%=request.getContextPath()%>/member/memberRegAgree.do'" id = "join">회원가입</span>
                 <span onclick = "location.href='<%=request.getContextPath()%>/views/member/FINDID.jsp'" id = findId>아이디 찾기</span>
                 <span onclick = "location.href='<%=request.getContextPath()%>/views/member/FINDPWD.jsp'" id = findPw>비밀번호 찾기</span>
                    <%} else {%>
@@ -117,7 +116,7 @@
                     <div id = "myPro2"><%=memberLogin.getmId()%>님</div>
                     <div style = "text-align: center">환영합니다!</div>
                 		<img src="<%=request.getContextPath() %>/image/messageIcon.png" id="messageIcon">
-                		<p id="messageCount"><span id = "unread" class="label label-info"></span></p>
+                		<span id = "unread" class="label label-info"></span>
                 	</div>
                 </div>
                 <div id = "mypromenu">
@@ -225,7 +224,7 @@ $(function(){
 				}
 			}
 		});
-	},2000);
+	},1000);
 	
 });
 

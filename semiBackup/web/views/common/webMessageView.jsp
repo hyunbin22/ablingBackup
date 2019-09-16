@@ -11,9 +11,9 @@
 		m = (Member)session.getAttribute("loginMember");
 		userId=m.getmId();
 	}
-	if(request.getParameter("toId") != null) {
-		toId = (String)request.getParameter("toId");
-	}
+
+	toId = (String)request.getAttribute("toId");
+	
 	
 	List<Integer> adminList = new ArrayList();
 	for(int i = 1; i <= 5; i++) {
@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/custom.css"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>Testing websockets</title>
+<title>ABLINGTALK</title>
 <style>
 @charset "UTF-8";
 
@@ -247,7 +247,7 @@
 					}
 				}
 			});
-		},2000);
+		},1000);
 		
 	});
 

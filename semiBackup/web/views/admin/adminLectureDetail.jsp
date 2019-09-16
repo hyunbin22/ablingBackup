@@ -6,6 +6,7 @@
 	Lecture lec = (Lecture)request.getAttribute("lecture");
 	int temp = (int)request.getAttribute("temp");
 	Member m = (Member)session.getAttribute("loginMember");
+	String toId = lec.getLecMento().getMember().getmId();
 %>
 
 <section>
@@ -42,7 +43,7 @@
 						<p>
 							<%for(int i = 0; i < lec.getLectureUpList().size(); i++) {
 								if(lec.getLectureUpList().get(i).getUpLectureCategory().equals("lecimage")) {%>
-							<img src=<%=request.getContextPath() %>/upload/lecture/<%=lec.getLectureUpList().get(i) %>>
+							<img src='<%=request.getContextPath() %>/upload/lecture/<%=lec.getLectureUpList().get(i) %>'>
 							<%}
 							}%>
 						</p>
@@ -73,11 +74,13 @@
 			<form name="saveRefusalFrm" method="post">
 				<input type="hidden" name="lecNum" id="inputlecNum">
 			</form>
-			<button class="mentosubmit" onclick="sendMessage();" id="sendMessage">문의하기</button>
+			<button class="mentosubmit" id="sendMessage">문의하기</button>
+			
 			<form name="openMessageFrm" method="post">
 				<input type="hidden" name="toId" value="<%=lec.getLecMento().getMember().getmId()%>">
 				<input type="hidden" name="fromId" value="<%=m.getmId()%>">
 			</form>
+			
 			</div>
 		</div>
 		</article>
@@ -118,11 +121,14 @@
 			}
 		});
 		
+		//문의하기
 		$(function(){
 			$('#sendMessage').click(function(){
-				var url = "<%=request.getContextPath()%>/message/openMessage.do";
+				var toId = "<%=toId%>";
+				var fromId = "<%=m.getmId()%>"
+				var url = "<%=request.getContextPath()%>/message/openLecMessage.do?toId="+toId;
 				var status = "width=400, height=600, resizable=no, status=no, toolbars=no, menubar=no";
-				var title="메세지"
+				var title="ABLINGTALK"
 				var popUp = open("", title, status);
 				window.name="parentWin"; 
 				openMessageFrm.target = title;
