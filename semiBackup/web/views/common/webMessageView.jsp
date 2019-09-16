@@ -5,22 +5,23 @@
 <%
 	Member m = null;
 	String userId = null;
-	String toId = null;
+	String toId = (String)request.getAttribute("toId");
 	
 	if(session.getAttribute("loginMember")!=null) {
 		m = (Member)session.getAttribute("loginMember");
 		userId=m.getmId();
 	}
+	String lecName = "";
+	if(request.getAttribute("lecName")!=null && !request.getAttribute("lecName").equals("")) {
+		lecName = (String)request.getAttribute("lecName");
+	}
 
-	toId = (String)request.getAttribute("toId");
-	
-	
-	List<Integer> adminList = new ArrayList();
+	/* List<Integer> adminList = new ArrayList();
 	for(int i = 1; i <= 5; i++) {
 		adminList.add(i);
 	}
 	
-	List<Message> list = (List)request.getAttribute("messageList");
+	List<Message> list = (List)request.getAttribute("messageList"); */
 
 %>
 
@@ -50,14 +51,14 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button> -->
-			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
-			<a class="navbar-brand" href="webMessage.jsp">멘토찾기</a>
-			<a class="navbar-brand" href="messageMemberFind.jsp">친구찾기</a>
+			<a class="navbar-brand" href="<%=request.getContextPath()%>/message/openMessage.do">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
+			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/mentoFind.do">멘토찾기</a>
+			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/memberFind.do">친구찾기</a>
 			<!-- <a class="navbar-brand" href="box.jsp">메세지함<span id = "unread" class="label label-info"></span></a> -->
 		</div>
 	</nav>	
 	<div class="container bootstrap snippet">
-		<div class="row">
+		<div class="row"> 
 			<div class="col-xs-12">
 				<div class="portlet portlet-default">
 					<div class="portlet-heading">
@@ -67,7 +68,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div id= "chat" class="panel-collapse collapse in">
-						<div id="chatList" class="porlet-body chat-widget" style="overflow-y:auto; width: auto; height: 400px;">
+						<div id="chatList" class="porlet-body chat-widget" style="overflow-y:auto; width: auto; height: 300px;">
 						</div>
 						<div class="portlet-footer">
 							<!-- <div class="row">
@@ -77,14 +78,25 @@
 							</div> -->
 							<div class="row" style="height:90px;">
 								<div class="form-group col-xs-10">
-								<%-- <%if() {%> --%>
-									<textarea style="height: 80px;" id="chatContent" class="form-control" placeholder="메세지 입력" maxlength="100"></textarea>
-								<%-- <%} %> --%>
-								</div> 
-								<div class="form-group col-xs-2">
+								<%if(!toId.equals("msgAdmin")) {%>
+									<%if(lecName!=null && !lecName.equals("")) {%> 
+										<textarea style="height: 70px;" id="chatContent" class="form-control" maxlength="100">[<%=lecName %>] 수업 문의합니다!</textarea>
+									<%} else { %>
+										<textarea style="height: 70px;" id="chatContent" class="form-control" maxlength="100" placeholder="메세지를 입력하세요."></textarea>
+									<%} %>
+									</div> 
+										<div class="form-group col-xs-2">
+											<button type="button" class="btn btn-default pull-right" onclick="submitFunction();">전송</button>
+											<div class="clearfix"></div>
+										</div>
+								<%} else {%>	<!-- 관리자로부터 받은경우 -->
+										<textarea style="height: 70px;" id="chatContent" class="form-control" readonly>이 발신자는 읽기만 가능합니다.</textarea>
+									</div> 
+								<%} %>
+								<!-- <div class="form-group col-xs-2">
 									<button type="button" class="btn btn-default pull-right" onclick="submitFunction();">전송</button>
 									<div class="clearfix"></div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -184,7 +196,7 @@
 		var toId = '<%=toId%>';
 		$.ajax({
 			type:"post",
-			url:"<%=request.getContextPath()%>/message/messageList.do",
+			url:"<%=request.getContextPath()%>/message/messageListEnd.do",
 			data:{
 				fromId: encodeURIComponent(fromId),
 				toId: encodeURIComponent(toId),
@@ -205,6 +217,35 @@
 		})
 	}
 	
+/* 	function addChat(chatName, chatContent, chatTime) {
+		console.log(chatName)
+		$('#chatList').append('<div class="row">' +
+			'<div class="col-lg-12">' +
+			'<div class="media">' +
+			/* '<a class="pull-left" href="#">' +
+			'<img class="media-object img-circle" style="width:30px; height:30px;" src="images.icon.png" alt="">' +
+			'</a>' + */
+			/* '<div class="media-body">' +
+			((chatName=='나') ? "'<h5 class=\"media-heading\">' +
+					'<span class=\"small pull-left\">' +
+					chatTime +
+					'</span>' +
+					chatName +
+					'</h5>'+
+					'<p class=\"pull-right\">' + chatContent + '</p>'"
+					:
+					"'<h5 class=\"media-heading\">' +
+					chatName +
+					'<span class=\"small pull-right\">' +
+					chatTime +
+					'</span></h5>'+
+					'<p>' + chatContent + '</p>'") +
+				
+			'</div></div></div></div>' +
+			'<hr>');
+		$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
+	} */
+	
 	function addChat(chatName, chatContent, chatTime) {
 		$('#chatList').append('<div class="row">' +
 			'<div class="col-lg-12">' +
@@ -214,7 +255,7 @@
 			'</a>' + */
 			'<div class="media-body">' +
 			'<h4 class="media-heading">' +
-			chatName +
+			(chatName=='msgAdmin'?"관리자":chatName) +
 			'<span class="small pull-right">' +
 			chatTime +
 			'</span></h4>'+
@@ -250,12 +291,10 @@
 		},1000);
 		
 	});
-
 	function showUnread(result){
 		$('#unread').html(result);
 	}
 	
-
 	
 	
 </script>
@@ -264,7 +303,6 @@
 		chatListFunction('0');
 		getInfiniteChat();
 	});
-
 </script>
 
 </body>

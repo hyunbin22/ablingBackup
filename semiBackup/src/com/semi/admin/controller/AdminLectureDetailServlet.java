@@ -45,7 +45,6 @@ public class AdminLectureDetailServlet extends HttpServlet {
 		}
 		request.setAttribute("temp", temp);
 		request.setAttribute("lecture", lec);
-		System.out.println(lec);
 		request.getRequestDispatcher("/views/admin/adminLectureDetail.jsp").forward(request, response);
 	}
 

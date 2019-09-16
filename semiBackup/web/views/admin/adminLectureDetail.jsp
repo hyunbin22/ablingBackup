@@ -79,6 +79,7 @@
 			<form name="openMessageFrm" method="post">
 				<input type="hidden" name="toId" value="<%=lec.getLecMento().getMember().getmId()%>">
 				<input type="hidden" name="fromId" value="<%=m.getmId()%>">
+				<input type="hidden" name="lectureName" value="<%=lec.getLecName() %>">
 			</form>
 			
 			</div>

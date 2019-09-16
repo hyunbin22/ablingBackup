@@ -8,27 +8,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class OpenLecMessageServlet
+ * Servlet implementation class MessageMentoFindServlet
  */
-@WebServlet("/message/openLecMessage.do")
-public class OpenLecMessageServlet extends HttpServlet {
+@WebServlet("/message/mentoFind.do")
+public class MessageMentoFindServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public OpenLecMessageServlet() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public MessageMentoFindServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String toId = request.getParameter("toId");
-		String lecName = request.getParameter("lectureName");
-		request.setAttribute("toId", toId);
-		request.setAttribute("lecName", lecName);
-		request.getRequestDispatcher("/views/common/webMessageView.jsp?toId="+toId).forward(request, response);;
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

@@ -3,14 +3,8 @@
 <%@ page import="java.util.*, com.semi.message.model.vo.Message, com.semi.member.model.vo.Member, com.semi.mento.model.vo.Mento, java.sql.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 	<%
-	Member m = null;
-	String userId = null;
-	
-	if(session.getAttribute("loginMember")!=null) {
-		m = (Member)session.getAttribute("loginMember");
-		userId=m.getmId();
-	}
-
+	Member m = (Member)session.getAttribute("loginMember");
+	String userId = m.getmId();
 %>
 <!DOCTYPE html>
 <html>
@@ -32,8 +26,8 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button> -->
-			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
-			<a class="navbar-brand" href="webMessage.jsp">멘토찾기</a>
+			<a class="navbar-brand" href="#">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
+			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/mentoFind.do">멘토찾기</a>
 			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/memberFind.do">친구찾기</a>
 			<!-- <a class="navbar-brand" href="box.jsp">메세지함<span id = "unread" class="label label-info"></span></a> -->
 		</div>
@@ -166,7 +160,7 @@
 	function addBox(lastId, toId, chatContent, chatTime, unread) {
 		console.log(toId);
 		$('#boxTable').append('<tr onclick="location.href=\'<%=request.getContextPath()%>/message/messageList.do?toId=' + encodeURIComponent(toId) + '\'">' +
-				'<td style="width: 150px;"><h5>' + lastId + '<span class="label label-info">' + unread + '</span></h5></td>' +
+				'<td style="width: 150px;"><h5>' + (lastId=='msgAdmin'?"관리자":lastId) + '<span class="label label-info">' + unread + '</span></h5></td>' +
 				'<td><h5>' + chatContent +
 				'</h5>' +
 				'<div class="pull-right">' + chatTime + '</div>' + 

@@ -1,32 +1,32 @@
-package com.semi.message.controller;
+package com.semi.order.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.semi.order.model.service.OrderService;
+
 /**
- * Servlet implementation class OpenLecMessageServlet
+ * Servlet implementation class OrderUpdatePaymentServlet
  */
-@WebServlet("/message/openLecMessage.do")
-public class OpenLecMessageServlet extends HttpServlet {
+@WebServlet("/order/orderUpdatePayment.do")
+public class OrderUpdatePaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public OpenLecMessageServlet() {
+    public OrderUpdatePaymentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String toId = request.getParameter("toId");
-		String lecName = request.getParameter("lectureName");
-		request.setAttribute("toId", toId);
-		request.setAttribute("lecName", lecName);
-		request.getRequestDispatcher("/views/common/webMessageView.jsp?toId="+toId).forward(request, response);;
-		
+		int oNum = Integer.parseInt(request.getParameter("oNum"));
+		int result = new OrderService().updatePayment(oNum);
+		response.getWriter().write(result);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

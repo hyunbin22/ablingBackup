@@ -40,6 +40,7 @@
     <script src="<%=request.getContextPath() %>/js/jquery-3.4.1.js"></script>
     <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>	<!-- sms인증 -->
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>	<!-- kakao -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script> <!-- 결제인증 -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
@@ -139,7 +140,7 @@
                 <li><a href="<%=request.getContextPath()%>/admin/AdminMentoApproval.do">뷰티</a>
        
                    <ul>
-                      <li><a href="#">메이크업</a></li>
+                      <li><a href="<%=request.getContextPath()%>/order/OrderPaymentView.do">메이크업</a></li>
                       <li><a href="#">네일</a></li>
                       <li><a href="#">헤어</a></li>
                    </ul>
@@ -189,8 +190,9 @@
 
 <!-- 채팅시 넘어갈 데이터 -->
 <form name="openMessageFrm" method="post">
-
 </form>
+
+<!-- 결제하기 버튼 -->
 <script>
 $(function(){
 	$('#messageIcon').click(function(){

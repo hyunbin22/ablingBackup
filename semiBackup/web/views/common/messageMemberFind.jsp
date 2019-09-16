@@ -40,9 +40,9 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button> -->
-			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
-			<a class="navbar-brand" href="webMessage.jsp">멘토찾기</a>
-			<a class="navbar-brand" href="messageMemberFind.jsp">친구찾기</a>
+			<a class="navbar-brand" href="<%=request.getContextPath()%>/message/openMessage.do">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
+			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/mentoFind.do">멘토찾기</a>
+			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/memberFind.do">친구찾기</a>
 			<!-- <a class="navbar-brand" href="box.jsp">메세지함<span id = "unread" class="label label-info"></span></a> -->
 		</div>
 	</nav>	
@@ -223,7 +223,7 @@
 			'<th><h4>검색 결과</h4></th>' +
 			'</tr></thead>' +
 			'<tbody><tr>' +
-			'<td style="text-align: center;"><h3>' + findId + '</h3><a href="webMessageView.jsp?toId='+encodeURIComponent(findId) + '" class="btn btn-primary pull-right">' +
+			'<td style="text-align: center;"><h3>' + findId + '</h3><a href="<%=request.getContextPath()%>/message/messageList.do?toId='+encodeURIComponent(findId) + '" class="btn btn-primary pull-right">' +
 			'메세지 보내기</a></td>' +
 			'</tr></tbody>'
 		);

@@ -29,11 +29,7 @@ public class OpenMessageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 
-		String toId = request.getParameter("toId");
-		request.setAttribute("toId", toId);
-		
-		request.getRequestDispatcher("/views/common/webMessage.jsp").forward(request, response);
-
+		response.sendRedirect(request.getContextPath()+"/views/common/webMessage.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

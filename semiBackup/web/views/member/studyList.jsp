@@ -44,6 +44,7 @@
                         <tr class = "list">
                             <td class = "listNumber">1</td>
                             <td class = "listContent"><span>박기오와 함께하는 기타 수업</span></td>
+                            <td><button id="btn-goPay" class="btn btn-primary">결제하기</button></td>
                             <!-- <td class = "listCheck"><input type = "checkbox" name = "check" value = "1"></td> -->
                         </tr>
                         <tr class = "list">
@@ -77,4 +78,24 @@
                 </div>
             </div>
       </section>
+      
+      <!-- 결제창 보낼 데이터 -->
+      <form method="post" name="orderPayFrm">
+      	<input type="hidden" name="mNum" value=<%=m.getmNum()%>>
+      	<!-- <input type="hidden" name="lecNum" value=2> -->
+      	<input type="hidden" name="oNum" value=1>
+      </form>
+      
+      <script>
+      	$(function(){
+      		$('#btn-goPay').click(function(){
+      			console.log('야야');
+      			var url="<%=request.getContextPath()%>/order/orderPaymentView.do";
+      			orderPayFrm.action=url;
+      			orderPayFrm.submit();
+      		});
+      	});
+      
+      
+      </script>
     <%@ include file = "/views/common/footer.jsp" %>

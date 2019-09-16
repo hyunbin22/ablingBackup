@@ -1,4 +1,4 @@
-package com.semi.message.controller;
+package com.semi.order.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,25 +8,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class OpenLecMessageServlet
+ * Servlet implementation class OrderPaySuccessServlet
  */
-@WebServlet("/message/openLecMessage.do")
-public class OpenLecMessageServlet extends HttpServlet {
+@WebServlet("/order/orderPaySuccess.do")
+public class OrderPaySuccessEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public OpenLecMessageServlet() {
+    public OrderPaySuccessEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String toId = request.getParameter("toId");
-		String lecName = request.getParameter("lectureName");
-		request.setAttribute("toId", toId);
-		request.setAttribute("lecName", lecName);
-		request.getRequestDispatcher("/views/common/webMessageView.jsp?toId="+toId).forward(request, response);;
-		
+		String msg = request.getParameter("msg");
+		String loc = "/";
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msp.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
