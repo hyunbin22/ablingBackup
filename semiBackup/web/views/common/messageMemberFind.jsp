@@ -40,9 +40,10 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button> -->
-			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK</a>
+			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
 			<a class="navbar-brand" href="webMessage.jsp">멘토찾기</a>
 			<a class="navbar-brand" href="messageMemberFind.jsp">친구찾기</a>
+			<!-- <a class="navbar-brand" href="box.jsp">메세지함<span id = "unread" class="label label-info"></span></a> -->
 		</div>
 	</nav>	
 	
@@ -231,7 +232,32 @@
 	function failFriend(){
 		$('#memberResult').html("");
 	}
+	
+	//안읽은메세지수 출력
+	$(function(){
+		timer = setInterval(function(){
+			$.ajax({
+				type:"post",
+				url: "<%=request.getContextPath()%>/message/readCount.do",
+				data: {
+					userId: encodeURIComponent('<%=userId%>'),
+				},
+				success: function(result) {
+					if(result>=1) {
+						showUnread(result);
+						console.log(result);
+					} else {
+						showUnread('');
+					}
+				}
+			});
+		},2000);
 		
+	});
+
+	function showUnread(result){
+		$('#unread').html(result);
+	}
 	
 	
 	</script>

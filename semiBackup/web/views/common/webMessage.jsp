@@ -37,12 +37,31 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button> -->
-			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK</a>
+			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
 			<a class="navbar-brand" href="webMessage.jsp">멘토찾기</a>
 			<a class="navbar-brand" href="messageMemberFind.jsp">친구찾기</a>
-			<a class="navbar-brand" href="box.jsp">메세지함<span id = "unread" class="label label-info"></span></a>
+			<!-- <a class="navbar-brand" href="box.jsp">메세지함<span id = "unread" class="label label-info"></span></a> -->
 		</div>
 	</nav>	
+	<div class="container">
+		<table class="table" style="margin: 0 auto;">
+			<thead>
+				<tr>
+					<th><h4>메세지 목록</h4></th>
+				</tr>
+			</thead>
+			<tbody>
+				<td>
+					<div style="overflow-y : auto; width: 100%; max-height: 450px;">
+						<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd; margin: 0 auto;">
+							<tbody id="boxTable">
+							</tbody>
+						</table>
+					</div>
+				</td>
+			</tbody>
+		</table>
+	</div>
 	<%
 		String messageContent = null;
 		if(session.getAttribute("messageContent") != null) {
@@ -80,13 +99,6 @@
 	</div> 
 	<script>
 		$('#messageModal').modal("show");
-		
-		$(document).ready(function(){
-			chatListFunction('ten');
-			getInfiniteChat();
-			/* getInfiniteUnread(); */
-		})
-
 	</script>
 
 	<%
@@ -96,77 +108,75 @@
 	} %>
 	<script>
 	var lastId=0;
-	function chatListFunction(type){
-		var fromId = '<%=userId%>';
-		var toId = '<%=toId%>';
-		$.ajax({
-			type:"post",
-			url:"<%=request.getContextPath()%>/message/messageList.do",
-			data:{
-				fromId: encodeURIComponent(fromId),
-				toId: encodeURIComponent(toId),
-				chatContent: encodeURIComponent(chatContent),
-			},
-			success: function(data){
-				if(data=="") return;
-				var parsed = JSON.parse(data);
-				var result = parsed.result;
-				for(var i = 0; i < result.length; i++) {
-					addChat(result[i][0].value, result[i][2].value, result[i][3].value);
-				}
-				lastId = Number(parsed.last);
-			}
-		})
-	}
-	
-	function addChat(chatName, chatContent, chatTime) {
-		$('#chatList').append('<div class="row">' +
-			'<div class="col-lg-12">' +
-			'<div class="media">' +
-			'<a class="pull-left" href="#">' +
-			'<img class="media-object img-circle" src="images.icon.png" alt="">' +
-			'</a>' +
-			'<div class="media-body">' +
-			'<h4 class="media-heading">' +
-			chatName +
-			'<span class="small pull-right">' +
-			chatTime +
-			'</span></h4>'+
-			'<p>' + chatContent + '</p>' +
-			'</div></div></div></div>' +
-			'<hr>');
-		$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
-	}
-	function getInfiniteChat() {
-		setInterval(function() {
-			chatListFunction(lastId);
-		}, 3000);
-	}
+
 	
 	//안읽은메세지수 출력
 	$(function(){
-		$.ajax({
-			type:"post",
-			url: "<%=request.getContextPath()%>/message/readCount.do",
-			data: {
-				userId: encodeURIComponent('<%=userId%>'),
-			},
-			success: function(result) {
-				if(result>=1) {
-					showUnread(result);
-					console.log(result);
-				} else {
-					showUnread('');
+		timer = setInterval(function(){
+			$.ajax({
+				type:"post",
+				url: "<%=request.getContextPath()%>/message/readCount.do",
+				data: {
+					userId: encodeURIComponent('<%=userId%>'),
+				},
+				success: function(result) {
+					if(result>=1) {
+						showUnread(result);
+						console.log(result);
+					} else {
+						showUnread('');
+					}
 				}
-			}
-		},3000);
+			});
+		},2000);
+		
 	});
 
 	function showUnread(result){
 		$('#unread').html(result);
 	}
 	
+	//메세지 목록
+	$(function(){
+		timer = setInterval(function() {
+			var userId = '<%=userId%>';
+			$.ajax({
+				type: "post",
+				url:"<%=request.getContextPath()%>/message/messageMainList.do",
+				data: {
+					userId : encodeURIComponent(userId),
+				},
+				success: function(data) {
+					if(data == "") return;
+					$('#boxTable').html('');
+					var parsed = JSON.parse(data);
+					var result = parsed.result;
+					for(var i = 0; i < result.length; i++) {
+						if(result[i][0].value == userId) {	//메세지 보낸사람이 나인지 상대방인지
+							result[i][0].value = result[i][1].value;
+						} else {
+							result[i][1].value = result[i][0].value;
+						}
+						addBox(result[i][0].value, result[i][1].value, result[i][2].value, result[i][3].value, result[i][4].value);
+					}
+				}
+			});
+		},2000);
+		
+	});
+	
+	function addBox(lastId, toId, chatContent, chatTime) {
+		
+		$('#boxTable').append('<tr onclick="location.href=\'<%=request.getContextPath()%>/views/common/webMessageView.jsp?toId=' + encodeURIComponent(toId) + '\'">' +
+				'<td style="width: 150px;"><h5>' + lastId + '</h5></td>' +
+				'<td><h5>' + chatContent + '</h5>' +
+				'<span class="label label-info">' + unread + '</span>' +
+				'<div class="pull-right">' + chatTime + '</div>' + 
+				'</td>' +
+				'</tr>' );
+		console.log(chatContent);
 
+	}
 	
 	</script>
 </body>

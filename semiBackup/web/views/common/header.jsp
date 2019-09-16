@@ -207,9 +207,9 @@ $(function(){
 	});
 });
 
-//안읽은메세지수 2초마다 불러옴
+//안읽은메세지수 출력
 $(function(){
-	if('<%=memberLogin%>'!=null) {
+	timer = setInterval(function(){
 		$.ajax({
 			type:"post",
 			url: "<%=request.getContextPath()%>/message/readCount.do",
@@ -224,9 +224,11 @@ $(function(){
 					showUnread('');
 				}
 			}
-		},3000);
-	}
+		});
+	},2000);
+	
 });
+
 function showUnread(result){
 	$('#unread').html(result);
 }

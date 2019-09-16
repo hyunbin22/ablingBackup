@@ -15,6 +15,11 @@
 		toId = (String)request.getParameter("toId");
 	}
 	
+	List<Integer> adminList = new ArrayList();
+	for(int i = 1; i <= 5; i++) {
+		adminList.add(i);
+	}
+	
 	List<Message> list = (List)request.getAttribute("messageList");
 
 %>
@@ -45,9 +50,10 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button> -->
-			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK</a>
+			<a class="navbar-brand" href="webMessage.jsp">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
 			<a class="navbar-brand" href="webMessage.jsp">멘토찾기</a>
 			<a class="navbar-brand" href="messageMemberFind.jsp">친구찾기</a>
+			<!-- <a class="navbar-brand" href="box.jsp">메세지함<span id = "unread" class="label label-info"></span></a> -->
 		</div>
 	</nav>	
 	<div class="container bootstrap snippet">
@@ -71,7 +77,9 @@
 							</div> -->
 							<div class="row" style="height:90px;">
 								<div class="form-group col-xs-10">
+								<%-- <%if() {%> --%>
 									<textarea style="height: 80px;" id="chatContent" class="form-control" placeholder="메세지 입력" maxlength="100"></textarea>
+								<%-- <%} %> --%>
 								</div> 
 								<div class="form-group col-xs-2">
 									<button type="button" class="btn btn-default pull-right" onclick="submitFunction();">전송</button>
@@ -221,13 +229,39 @@
 		}, 1000);
 	}
 	
+	//안읽은메세지수 출력
+	$(function(){
+		timer = setInterval(function(){
+			$.ajax({
+				type:"post",
+				url: "<%=request.getContextPath()%>/message/readCount.do",
+				data: {
+					userId: encodeURIComponent('<%=userId%>'),
+				},
+				success: function(result) {
+					if(result>=1) {
+						showUnread(result);
+						console.log(result);
+					} else {
+						showUnread('');
+					}
+				}
+			});
+		},2000);
+		
+	});
+
+	function showUnread(result){
+		$('#unread').html(result);
+	}
+	
 
 	
 	
 </script>
 <script>
 	$(document).ready(function(){
-		chatListFunction('ten');
+		chatListFunction('0');
 		getInfiniteChat();
 	});
 

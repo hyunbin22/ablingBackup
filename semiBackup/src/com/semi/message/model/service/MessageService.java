@@ -23,6 +23,14 @@ public class MessageService {
 		return result;
 	}
 	
+	//대화상대별 안읽은 메세지 수
+	public int noReadCountById(String fromId, String toId) {
+		Connection conn = getConnection();
+		int result = dao.noReadCountById(conn, fromId, toId);
+		close(conn);
+		return result;
+	}
+	
 	//한 사용자 메세지 읽음 처리
 	public int readChat(int fromMNum, int toMNum) {
 		Connection conn = getConnection();
@@ -60,5 +68,14 @@ public class MessageService {
 		}
 		return result;
 	}
+	
+	//각 대화상대별 대화내역 가져오기
+	public List<Message> getMessageBox(String userId){
+		Connection conn = getConnection();
+		List<Message> list = dao.getMessageBox(conn, userId);
+		close(conn);
+		return list;
+	}
+
 	
 }

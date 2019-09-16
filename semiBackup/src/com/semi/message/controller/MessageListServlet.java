@@ -36,7 +36,8 @@ public class MessageListServlet extends HttpServlet {
 		String text = request.getParameter("chatContent");
 		if(fromId == null || fromId.equals("") || toId == null || toId.equals("") || listType == null || listType.equals("")) {
 			response.getWriter().write("");
-		} else if(listType.equals("ten")) response.getWriter().write(getTen(URLDecoder.decode(fromId,"UTF-8"), URLDecoder.decode(toId,"UTF-8")));
+		} 
+		else if(listType.equals("ten")) response.getWriter().write(getTen(URLDecoder.decode(fromId,"UTF-8"), URLDecoder.decode(toId,"UTF-8")));
 		else {
 			try {
 				response.getWriter().write(getId(URLDecoder.decode(fromId,"UTF-8"), URLDecoder.decode(toId,"UTF-8"), listType));
@@ -76,7 +77,7 @@ public class MessageListServlet extends HttpServlet {
 		int toMNum = new MemberService().selectMember(toId).getmNum();
 		
 		List<Message> chatList = service.messageListById(fromMNum, toMNum, chatId);
-		
+
 		if(chatList.size()==0) return "";
 		for(int i = 0; i < chatList.size(); i++) {
 			result.append("[{\"value\": \"" + chatList.get(i).getFromMember().getmId() + "\"},");
@@ -87,6 +88,7 @@ public class MessageListServlet extends HttpServlet {
 			
 		}
 		result.append("], \"last\":\"" + chatList.get(chatList.size()-1).getMessageNum() + "\"}");
+		service.readChat(fromMNum, toMNum);
 		return result.toString();
 	}
 

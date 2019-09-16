@@ -1,6 +1,7 @@
 package com.semi.message.controller;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -26,7 +27,8 @@ public class OpenMessageServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		
 		response.sendRedirect(request.getContextPath()+"/views/common/webMessage.jsp");
 
 	}
