@@ -6,17 +6,18 @@
             <div class="wrap">
                 <div class="bar">
                     <br>
-                    <h1 style="font-size: 40px; text-align: center;">비밀번호</h1>
+                    <h1 style="font-size: 40px; text-align: center;">비밀번호 찾기</h1>
+                    <h5 class = "center1">찾으시려는 비밀번호의 정보를 입력해주세요</h5>
                     <hr>
                     <br><br>
                 </div>
                 <div class="regdata center1">
-                 <form action = "" method="POST">
+                 <form action = "<%=request.getContextPath() %>/member/findPwd" method="POST">
                 <table class="tblreg">
                         <tr>
-                            <td>아이디 입력</td>
+                            <td>아이디</td>
                             <td>
-                                <input class="textfield" type="text" name="id" placeholder="아이디를 입력해주세요">
+                                <input class="textfield" type="text" name="mId" placeholder="아이디를 입력해주세요">
                             </td>
                             <td>
                             </td>
@@ -24,7 +25,7 @@
                         <tr></tr>
                         <tr></tr>
                         <tr>
-                            <td>이메일 인증</td>
+                            <td>이메일</td>
                             <td>
                                 <input class="textfield" type="text" name="email" placeholder="이메일을 입력해주세요">
                             </td>
@@ -33,26 +34,16 @@
                         <tr>
                         <td>
                     	</td>
-                            <td>
-                                <button class = "nextCode" onclick="">인증코드보내기</button>
-                            </td>
                         </tr>
-                        <tr></tr>
-                        <tr>
-                            <td>인증번호 입력</td>
-                            <td>
-                                <input class="textfield" type="email" name="emailCode" placeholder="인증번호를 입력해주세요."> 
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
+
                     
                     </table>
-                    </form>
                     <br><br>
   					<div class = "center1">
-                            <a href=""><input type="submit" value="확인" class="next center1"></a>
+                            <input type="submit" value="확인" class="next center1">
                     </div>
+                    </form>
+
                 
                 </div>
             </div>

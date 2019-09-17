@@ -30,7 +30,7 @@ public class UpdateCheckMentoServlet extends HttpServlet {
 		String msg = "";
 		String loc = "/admin/AdminMentoApproval.do";
 		msg = result>0?"멘토 승인하였습니다.":"멘토승인이 실패하였습니다.";
-		
+		System.out.println("updateMento" + msg);
 		//멘토 승인되었다는 메세지 보내기
 		Mento mt = new MentoService().mentoView(mtNum);
 		if(result>0) {

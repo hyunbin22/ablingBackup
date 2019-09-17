@@ -42,7 +42,7 @@
         <textarea name="reason" id="reason" cols="50" rows="10" style="resize:none;"><%if(lecReason!=null) {%><%=lecReason %><%} %></textarea>
     <%} %>
         <br>
-        <button type="button" id="saveRefusal">등록</button>
+        <button type="button" id="saveRefusal" class="next">등록</button>
     </form>
     
 	<script>

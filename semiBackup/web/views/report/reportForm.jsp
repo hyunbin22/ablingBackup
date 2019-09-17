@@ -9,7 +9,12 @@
 	<section class = "center1">
             <div class="wrap">
                 <div class="bar">
-                    <br><br><br>
+                    <br><table class = "MYLIST">
+                                <tr>
+                                    <td><button onclick="location.href='<%=request.getContextPath()%>/views/report/reportForm.jsp'" id = "listBtn">신고하기</button></td>
+                                    <td><button onclick="location.href='<%=request.getContextPath()%>/member/reportHistroy?mNum=<%=m.getmNum() %>'" id = "listBtn">신고내역</button></td>
+                                </tr>
+                        </table><br><br>
                     <h1 class="center1">신고하기</h1>
                     <br><br>
                     <hr>
@@ -31,7 +36,7 @@
                         <tr>
                             <td>신고할 사용자 ID</td>
                             <td>
-                                <input class="textfield" type="text" name="rId" id = "reportId1">
+                                <input class="textfield" type="text" name="rId" id = "reportId1" placeholder="신고할 사용자의 ID 입력">
                             </td>
                         </tr>
                         <tr>
@@ -52,7 +57,7 @@
  							<td>
  							</td>
                             <td>
-                               <textarea id = "reportContent1" name = "rContent" rows="30" cols="50" style="resize: none;"></textarea>
+                               <textarea id = "reportContent1" name = "rContent" rows="30" cols="50" style="resize: none;" placeholder="날짜 및 상황을 자세하게 작성해주세요."></textarea>
                             </td>
                         </tr>
                         <tr>

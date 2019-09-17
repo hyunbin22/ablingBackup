@@ -66,8 +66,11 @@
 				</div>
 			</div>
 			<%if(temp!=0) {%>
-				<button type="submit" class="mentosubmit" id="btnclassAppro">승인</button>
-				<button class="mentosubmit" id="btnclassRefusal" onclick="popOpen();">거절</button>
+			<div class="appro-btn-wrap">
+				<button type="submit" class="next" id="btnclassAppro">승인</button>
+				<button class="next" id="btnclassRefusal" onclick="popOpen();">거절</button>
+			<br><br><br>
+			</div>
 			<%} %>
 			</form>
 			
@@ -113,14 +116,15 @@
     		saveRefusalFrm.action=url;
     		saveRefusalFrm.submit();
 		};
-
-		$('#btnclassAppro').click(function() {
+		
+		function checkAppro() {
 			if(confirm('승인하시겠습니까?')){
 				var lecNum = <%=lec.getLecNum()%>;
 				var url="<%=request.getContextPath()%>/lecture/updateCheckLecture.do?lecNum="+lecNum;
 				location.href=url;
 			}
-		});
+		}
+
 		
 		//문의하기
 		$(function(){

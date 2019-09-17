@@ -33,17 +33,8 @@
 <body onresize="parent.resizeTo(450,600)" onload="parent.resizeTo(450,600)">
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
-			<!-- <button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-			aria-expanded="false">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			</button> -->
-			<a class="navbar-brand" href="<%=request.getContextPath()%>/message/openMessage.do">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
-			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/mentoFind.do">멘토찾기</a>
+			<a class="navbar-brand" href="#">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
 			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/memberFind.do">친구찾기</a>
-			<!-- <a class="navbar-brand" href="box.jsp">메세지함<span id = "unread" class="label label-info"></span></a> -->
 		</div>
 	</nav>	
 	

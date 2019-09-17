@@ -1,15 +1,17 @@
 package com.semi.member.model.service;
 
+import static common.template.JDBCTemplate.close;
+import static common.template.JDBCTemplate.commit;
+import static common.template.JDBCTemplate.getConnection;
+import static common.template.JDBCTemplate.rollback;
+
 import java.sql.Connection;
+import java.util.List;
 
 import com.semi.member.model.dao.MemberDao;
 import com.semi.member.model.vo.Member;
 
 import common.template.JDBCTemplate;
-import static common.template.JDBCTemplate.commit;
-import static common.template.JDBCTemplate.getConnection;
-import static common.template.JDBCTemplate.rollback;
-import static common.template.JDBCTemplate.close;
 
 public class MemberService {
 
@@ -84,6 +86,7 @@ public class MemberService {
 
 	}
 
+	//회원 수정
 	public int updateMember(String mPw , String mEmail, String mPhone, String mId) {
 		Connection conn= JDBCTemplate.getConnection();
 		int result=dao.updateMember(conn,mPw,mEmail,mPhone, mId);
@@ -98,4 +101,51 @@ public class MemberService {
 		close(conn);
 		return result;		
 	}
+	
+   //admin_member_list
+   public int selectCountMember() {
+      Connection conn=getConnection();
+      int count=dao.selectCountMember(conn);
+      close(conn);
+      return count;
+   }
+   public List<Member> selectListPage(int cPage,int numPerPage){
+      Connection conn=getConnection();
+      List<Member> list=dao.selectListPage(conn,cPage,numPerPage);
+      close(conn);
+      return list;
+      
+   }
+   
+ //비밀번호 찾기
+ 	public Member findMemberPwd(String mId, String email) {
+ 		Connection conn = JDBCTemplate.getConnection();
+ 		Member m = dao.findMemberPwd(conn , mId , email);
+ 		close(conn);
+ 		return m;
+ 	}
+ 	
+ 	//비밀번호 변경
+ 	public int updatePassword(String mId , String pwd) {
+ 		Connection conn = JDBCTemplate.getConnection();
+ 		int result = dao.updatePwd(conn, mId ,pwd);
+ 		if(result>0)
+ 		{
+ 			commit(conn);
+ 		}
+ 		else
+ 		{
+ 			rollback(conn);
+ 		}
+ 		
+ 		return result;
+ 	}
+
+ 	//아이디 찾기
+ 	public Member findMemberId(String name, String date, String phone) {
+ 		Connection conn = JDBCTemplate.getConnection();
+ 		Member m = dao.findMemberId(conn, name, date, phone);
+ 		close(conn);
+ 		return m;
+ 	}
 }

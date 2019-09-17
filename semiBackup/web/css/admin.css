@@ -12,6 +12,13 @@ body{
     width: 1024px
 }
 
+/* list가 0일때 */
+div#EmptyListWrap{
+	height: 500px;
+	border: none;
+}
+
+
 #header-line{
     list-style: none;
     width: 1024px;
@@ -60,6 +67,13 @@ footer{
     padding-top:30px;
 }
 
+
+/* 승인list꾸미기 */
+.card-header{
+	background-color: lavender;
+	font-weight: bold;
+}
+
 /* 회원관리 */
 
 .border-test{
@@ -97,7 +111,7 @@ div#admin-appro-pageBar{
 	margin-top:10px; 
 	text-align:center;
 }
-div#admin-appro-pageBarr span.admin-appro-cPage{
+div#admin-appro-pageBar span.admin-appro-cPage{
 	color: darkgray;
 }
 
@@ -175,6 +189,7 @@ article#admin-mento-wrap{
 div.appro-btn-wrap{
 	text-align:center;
 }
+
 .mento_info_child{
     padding-top: 20px;
 }
@@ -256,16 +271,20 @@ form.admin-mento-detail-frm{
     background-color: #96938f;
 } */
 
-input.mentosubmit {
-	 width: 150px;
-    font-size: 16px;
-    color: rgb(255, 255, 255);
-    text-align: center; 
-    line-height: 2em; 
-    border-radius: 4px; 
-    background-color: #96938f;
-    margin-right: 20px;
+
+.inputbtn, .next {
+	width: 130px;
+	height: 30px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: rgb(255, 255, 255);
+	text-align: center;
+	line-height: 2em;
+	border-radius: 4px;
+	background-color: #eb9f9f;
+	border: none;
 }
+
 
 div#mento_info h5 {
 	padding-left: 30px;
@@ -393,4 +412,114 @@ img.detailimg{
     margin-left: 20px;
     margin-top:10px;
     margin-bottom: 10px;
+}
+
+/*-- 신고 상세보기 페이지 report */
+#notice-nav{
+    float: left;
+    margin-left: 20px;
+    border: 1px solid red;
+}
+.notice-highlight1{
+
+}
+.notice-highlight-span{
+    width: 50px;
+}
+.notice-table{ /* 공지사항내용목록 */
+    margin : 20px 0 0;
+    float: left;
+    text-align: center;
+}
+.notice-top{
+    font-size: 20px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #cacaca;
+    background-color: #eb9f9f;
+    width : 800px;
+}
+
+.notice-top2{
+    font-size: 20px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #cacaca;
+    background-color: #eb9f9f;
+    width : 685px;
+}
+
+.notice-table-div{
+    border: 1px solid #f24365;
+}
+.null td{
+    height: 30px;
+    border-top: 1px solid #cacaca; 
+}
+.notice-highlight1{ /* 필독텍스트 */
+    width : 60px;
+}
+.notice-highlight{
+    width : 60px;
+    text-align: center;
+}
+.notice-highlight-div{
+    width: 30px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid #f24365;
+    background-color: #ffc6d1;
+    
+}
+/* .notice-highlight-str{
+    background-color: #e96a83;
+}*/
+.notice-highlight-span{
+    color : #f24365;
+    font-size: 10px;
+    border-bottom: 20px;
+} 
+.notice-date{ /* 작성일 */
+    width: 110px;
+}
+.notice-title{ /* 제목 */
+    width : 380px;
+
+}
+.notice-id{ /* 작성자 */
+    width: 120px;
+    text-align: center;
+}
+.notice-banner{
+    float: left;
+    width: 100px;
+    height: 100%;
+    border : 1px solid red;
+    margin : 0 0 0 50px;
+}
+.notice-content2{
+    border-radius: 20px;
+    height: 300px;;
+    background-color: #e7e7e7;
+    text-align: left;
+    font-size: 15pt;
+}
+
+.report-content{
+	margin: 20px;	
+}    
+
+.notice-content3{
+	border : solid 1px black;
+    height: 300px;;
+    font-size: 15pt;
+}
+
+button#seeMore , input#seeMore{
+	width: 120px;
+	height: 33px;
+	margin: 10px;
+	background-color: #eb9f9f;
+	color: black;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }

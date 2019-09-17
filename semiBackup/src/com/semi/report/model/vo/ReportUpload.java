@@ -3,7 +3,7 @@ package com.semi.report.model.vo;
 public class ReportUpload {
 	
 	
-	private int reportRefNum; // 신고게시글 참조 번호
+	private int reportRefNum; // 신고자 참조 번호
 	private String fileOriName; // 첨부파일 원래 이름
 	private String fileReNmae; // 첨부파일 바뀐 이름
 	
@@ -62,19 +62,6 @@ public class ReportUpload {
 
 	@Override
 	public String toString() {
-		return "ReportUpload [reportRefNum=" + reportRefNum + ", fileOriName=" + fileOriName + ", fileReNmae="
-				+ fileReNmae + "]";
+		return fileOriName + " / " + fileReNmae;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

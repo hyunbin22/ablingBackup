@@ -76,8 +76,8 @@
 					<br>
 					<%if(temp==1) {%>
 					<div class="appro-btn-wrap">
-						<input type="submit" value="승인" class="mentosubmit" id="btnclassAppro">
-						<input type="button" value="거절" class="mentosubmit" id="btnclassRefusal" onclick="openRefusal();">
+						<input type="submit" value="승인" class="next" id="btnclassAppro">
+						<input type="button" value="거절" class="next" id="btnclassRefusal" onclick="openRefusal();">
 						<br><br><br>
 					</div>
 					<%} %>
@@ -124,7 +124,6 @@
 	function checkAppro(){
 		if(confirm('승인하시겠습니까?')) {
 			var mtNum = <%=mt.getMtNum()%>;
-			console.log(mtNum);
 			var url="<%=request.getContextPath()%>/mento/updateCheckMento.do?mtNum="+mtNum;
 			location.href=url;
 		}

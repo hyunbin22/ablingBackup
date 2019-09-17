@@ -51,7 +51,7 @@
 							%>
 							<div class="mentoAppro-frm" style="height: 280px">
 								<!-- 멘토승인신청목록 -->
-								<div class="card-header mtAppro-name"><%=list.get(i).getMember().getmName()%>
+								<div class="card-header"><%=list.get(i).getMember().getmName()%>
 									(<%=list.get(i).getMember().getmId()%>)
 								</div>
 								<div class="card-body">

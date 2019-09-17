@@ -80,19 +80,20 @@
       </section>
       
       <!-- 결제창 보낼 데이터 -->
-      <form method="post" name="orderPayFrm">
-      	<input type="hidden" name="mNum" value=<%=m.getmNum()%>>
-      	<!-- <input type="hidden" name="lecNum" value=2> -->
-      	<input type="hidden" name="oNum" value=1>
+      <form method="post" name="orderPayFrm" id="orderPayFrm" action="<%=request.getContextPath()%>/order/orderPaymentView.do">
+      	<input type="hidden" name="mNum" value="<%=m.getmNum()%>">
+      	<input type="hidden" name="oNum" value="1">
       </form>
       
       <script>
       	$(function(){
       		$('#btn-goPay').click(function(){
       			console.log('야야');
-      			var url="<%=request.getContextPath()%>/order/orderPaymentView.do";
-      			orderPayFrm.action=url;
+      			<%-- var url="<%=request.getContextPath()%>/order/orderPaymentView.do"; --%>
+      			/* form.attr("action",url); */
       			orderPayFrm.submit();
+      			/* orderPayFrm.action=url;
+      			orderPayFrm.submit(); */
       		});
       	});
       

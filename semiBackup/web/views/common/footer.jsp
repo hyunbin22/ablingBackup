@@ -3,11 +3,7 @@
 
 <footer>
 	<div class="footmenu">
-		<ul class="center1">
-			<li class="mainshadow"><a href="#">공지사항</a></li>
-			<li class="mainshadow"><a href="#">이벤트</a></li>
-			<li class="mainshadow"><a href="#">Q&A</a></li>
-		</ul>
+
 	</div>
 	<br>
 	<p class="center">대표 : 정현빈 | 사업자등록번호 : 000-00-000000 주소 | 서울 강남구

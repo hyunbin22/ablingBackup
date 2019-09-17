@@ -8,7 +8,7 @@
 	int cPage = (int)request.getAttribute("cPage");
 	String searchType = (String)request.getAttribute("searchType");
 	String searchKey = (String)request.getAttribute("searchKeyword");
-
+	int count = 0;
 %>
 <section>
 		<article id="search1">
@@ -75,10 +75,13 @@
 								</div>
 							</div>
 							<%
+									count++;
+									}
 								}
-							}
-								
+							if(count==0) {
 							%>
+							<div id="EmptyListWrap"></div>
+							<%} %>
 						</div>
 					</div>
 				</div>

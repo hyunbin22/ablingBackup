@@ -67,7 +67,7 @@
 												class="approImg"></td>
 											<td><p class="approDate"><%=list.get(i).getLecADate()%></p></td>
 											<td>
-												<button type="submit" class="btn btn-primary btn-appro-view"
+												<button type="submit" class="btn btn-primary btn-appro-view next"
 													onclick="location.href='<%=request.getContextPath()%>/admin/AdminLectureDetailServlet.do?lecNum=<%=list.get(i).getLecNum()%>'">
 													More</button>
 											</td>
