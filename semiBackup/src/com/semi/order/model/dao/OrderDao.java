@@ -55,14 +55,15 @@ public class OrderDao {
 
 	//신청 등록 후 신청내용 검색(return sNum)
 	public Order selectOrder(Connection conn, int oNum) {
-		
-		Statement stmt = null;
-		String sql = "select * from tb_order where onum="+oNum;
+
+		PreparedStatement pstmt = null;
+		String sql = "select * from tb_order where onum=?";
 		Order order = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, oNum);
+			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				order = new Order();
 				order.setoNum(rs.getInt("oNum"));
@@ -73,6 +74,9 @@ public class OrderDao {
 				order.setoPrice(rs.getInt("oprice"));
 				order.setoPayment(rs.getString("opayment").charAt(0));
 				order.setoCheck(rs.getString("ocheck").charAt(0));
+				order.setoDate(rs.getDate("orderDate"));
+				order.setPayDate(rs.getDate("paydate"));
+				
 				order.setLecture(new LectureService().lectureView(rs.getInt("lecNum")));
 				order.setMember(new MemberService().selectMember(rs.getInt("mnum")));
 			}
@@ -81,7 +85,7 @@ public class OrderDao {
 			e.printStackTrace();
 		} finally {
 			close(rs);
-			close(stmt);
+			close(pstmt);
 		}
 		return order;
 	}
@@ -89,7 +93,7 @@ public class OrderDao {
 	public int updatePayment(Connection conn, int oNum) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "update tb_order set opayment='Y' where onum=?";
+		String sql = "update tb_order set opayment='Y',paydate=default where onum=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, oNum);

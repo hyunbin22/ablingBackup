@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,34 @@ public class LectureUploadDao {
 		
 	}
 	
+	// 강의번호에 맞는 커버사진 불러오기 (LectureUpload) 하나
+   public LectureUpload lectureUpCover2(Connection conn, int lecNum) {
+      Statement stmt = null;
+      ResultSet rs = null;
+      LectureUpload lecUp = null;
+      String sql = "select * from tb_upload_lecture where up_lecture_category='cover' and lecNum="+lecNum;
+      try {
+         stmt = conn.createStatement();
+         rs=stmt.executeQuery(sql);
+         while(rs.next()) {
+            lecUp = new LectureUpload();
+            lecUp.setUpLectureNum(rs.getInt("up_lecturenum"));
+            lecUp.setLecNum(rs.getInt("lecnum"));
+            lecUp.setUpLectureCategory(rs.getString("up_Lecture_Category"));
+            lecUp.setUpLectureOrgName(rs.getString("up_Lecture_Org_Name"));
+            lecUp.setUpLectureReName(rs.getString("up_lecture_re_name"));
+            
+         }
+      }catch(Exception e) {
+         e.printStackTrace();
+      } finally {
+         close(rs);
+         close(stmt);
+      }
+      
+      return lecUp;
+   }
+	
 	// 강의번호에 맞는 이미지 넣기(다중)
 	public List<LectureUpload> lectureUpImgList(Connection conn, int lecNum) {
 		Statement stmt = null;
@@ -99,8 +128,8 @@ public class LectureUploadDao {
 				lecUp = new LectureUpload();
 				lecUp.setUpLectureNum(rs.getInt("up_lecturenum"));
 				lecUp.setLecNum(rs.getInt("lecnum"));
-				lecUp.setUpLectureCategory("up_Lecture_Category");
-				lecUp.setUpLectureOrgName("up_Lecture_Org_Name");
+				lecUp.setUpLectureCategory(rs.getString("up_Lecture_Category"));
+				lecUp.setUpLectureOrgName(rs.getString("up_Lecture_Org_Name"));
 				lecUp.setUpLectureReName(rs.getString("up_lecture_re_name"));
 				list.add(lecUp);
 			}
@@ -112,4 +141,27 @@ public class LectureUploadDao {
 			close(stmt);
 		} return list;
 	}
+	
+	//강의등록 이미지 등록
+
+   public int insertLectureImage(Connection conn, LectureUpload lecup, int lecNum, String category) {
+
+      PreparedStatement pstmt=null;
+      int result=0;
+      String sql=prop.getProperty("insertLectureImage");
+      try {
+         pstmt=conn.prepareStatement(sql);
+         pstmt.setInt(1, lecNum);
+         pstmt.setString(2, category);
+         pstmt.setString(3, lecup.getUpLectureOrgName());
+         pstmt.setString(4, lecup.getUpLectureReName());
+         result=pstmt.executeUpdate();
+      }catch(SQLException e) {
+         e.printStackTrace();
+      }finally {
+         close(pstmt);
+      }
+      return result;
+      
+   }
 }

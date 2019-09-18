@@ -5,12 +5,12 @@
 
 <section class="center1">
 	<div class="wrap">
-		<div class="bar">
+		<div class="bar center1">
 			<br> <br>
 			<h1>회원가입</h1>
 			<br>
-			<hr>
 		</div>
+			<hr>
 		<div class="regdata">
 			<form
 				action="<%=request.getContextPath()%>/member/MemberRegisterServlet.do"

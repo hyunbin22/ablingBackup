@@ -15,13 +15,7 @@
 	if(request.getAttribute("lecName")!=null && !request.getAttribute("lecName").equals("")) {
 		lecName = (String)request.getAttribute("lecName");
 	}
-
-	/* List<Integer> adminList = new ArrayList();
-	for(int i = 1; i <= 5; i++) {
-		adminList.add(i);
-	}
 	
-	List<Message> list = (List)request.getAttribute("messageList"); */
 
 %>
 
@@ -44,14 +38,14 @@
 <body onresize="parent.resizeTo(450,600)" onload="parent.resizeTo(450,600)">
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
+			<a class="navbar-brand" href="<%=request.getContextPath()%>/message/openMessage.do">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
 			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/memberFind.do">친구찾기</a>
 		</div>
 	</nav>	
 	<div class="container bootstrap snippet">
 		<div class="row"> 
 			<div class="col-xs-12">
-				<div class="portlet portlet-default">
+				<div class="portlet portlet-default chatWrap">
 					<div class="portlet-heading">
 						<div class="portlet-title">
 							<h4><i class="fa fa-circle text-green"></i><%=toId %></h4>
@@ -62,18 +56,14 @@
 						<div id="chatList" class="porlet-body chat-widget" style="overflow-y:auto; width: auto; height: 300px;">
 						</div>
 						<div class="portlet-footer">
-							<!-- <div class="row">
-								<div class="form-group col-xs-4">
-									<input style="height: 40px;" type="text" id="chatName" class="form-control" placeholder="이름" maxlength="8">
-								</div>
-							</div> -->
+							
 							<div class="row" style="height:90px;">
 								<div class="form-group col-xs-10">
 								<%if(!toId.equals("msgAdmin")) {%>
 									<%if(lecName!=null && !lecName.equals("")) {%> 
-										<textarea style="height: 70px;" id="chatContent" class="form-control" maxlength="100">[<%=lecName %>] 수업 문의합니다!</textarea>
+										<textarea style="height: 70px;resize: none;" id="chatContent" class="form-control" maxlength="100">[<%=lecName %>] 수업 문의합니다!</textarea>
 									<%} else { %>
-										<textarea style="height: 70px;" id="chatContent" class="form-control" maxlength="100" placeholder="메세지를 입력하세요."></textarea>
+										<textarea style="height: 70px;resize: none;" id="chatContent" class="form-control" maxlength="100" placeholder="메세지를 입력하세요."></textarea>
 									<%} %>
 									</div> 
 										<div class="form-group col-xs-2">
@@ -81,20 +71,16 @@
 											<div class="clearfix"></div>
 										</div>
 								<%} else {%>	<!-- 관리자로부터 받은경우 -->
-										<textarea style="height: 70px;" id="chatContent" class="form-control" readonly>이 발신자는 읽기만 가능합니다.</textarea>
+										<textarea style="height: 70px;resize: none;" id="chatContent" class="form-control" readonly>이 발신자는 읽기만 가능합니다.</textarea>
 									</div> 
 								<%} %>
-								<!-- <div class="form-group col-xs-2">
-									<button type="button" class="btn btn-default pull-right" onclick="submitFunction();">전송</button>
-									<div class="clearfix"></div>
-								</div> -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+<!-- 	</div> -->
 	<div class="alert alert-success" id="successMessage" style="display:none;">
 		<strong>메세지 전송에 성공했습니다.</strong>
 	</div>
@@ -104,7 +90,7 @@
 	<div class="alert alert-warning" id="warningMessage" style="display:none;">
 		<strong>오류가 발생했습니다.</strong>
 	</div>
-	<%
+	<%-- <%
 		String messageContent = null;
 	if(session.getAttribute("messageContent") != null) {
 		messageContent=(String)session.getAttribute("messageContent");
@@ -148,7 +134,7 @@
 		session.removeAttribute("messageType");
 		
 		} %>
-
+ --%>
 <script>
 	function autoClosingAlert(selector, delay) {
 		var alert = $(selector).alert();
@@ -258,7 +244,7 @@
 	function getInfiniteChat() {
 		setInterval(function() {
 			chatListFunction(lastId);
-		}, 1000);
+		}, 500);
 	}
 	
 	//안읽은메세지수 출력
@@ -273,9 +259,8 @@
 				success: function(result) {
 					if(result>=1) {
 						showUnread(result);
-						console.log(result);
 					} else {
-						showUnread('');
+						showUnread('0');
 					}
 				}
 			});

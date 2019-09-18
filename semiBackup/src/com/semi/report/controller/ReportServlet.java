@@ -16,6 +16,7 @@ import common.oreilly.servlet.multipart.AblingFileRenamePolicy;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.semi.member.model.vo.Member;
+import com.semi.message.model.service.MessageService;
 import com.semi.report.model.service.ReportService;
 import com.semi.report.model.vo.Report;
 import com.semi.report.model.vo.ReportUpload;
@@ -77,9 +78,6 @@ public class ReportServlet extends HttpServlet {
 		
 		ReportUpload ru = new ReportUpload(reReportOriFile, reReportReFile);
 		int result2 = new ReportService().regsterReportImage(ru, result);
-		
-	
-		
 		
 		
 		String msg="";

@@ -26,7 +26,8 @@ public class OrderUpdatePaymentServlet extends HttpServlet {
 		
 		int oNum = Integer.parseInt(request.getParameter("oNum"));
 		int result = new OrderService().updatePayment(oNum);
-		response.getWriter().write(result);
+		System.out.println(result);
+		response.getWriter().write(result+"");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

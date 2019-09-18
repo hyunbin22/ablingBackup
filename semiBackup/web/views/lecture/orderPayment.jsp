@@ -13,6 +13,12 @@
 			lecProImg = lec.getLecMento().getList().get(i).getUpMentoReName();
 		}
 	}
+	String lecCoverImg = "";
+	for(int i = 0; i < lec.getLectureUpList().size(); i++) {
+		if(lec.getLectureUpList().get(i).getUpLectureCategory().equals("cover")) {
+			lecCoverImg = lec.getLectureUpList().get(i).getUpLectureReName();
+		}
+	}
 %>
 
 <section class="center1">
@@ -20,45 +26,40 @@
 		<div id="class-pay-container">
 			<div class="card mb-3 center1" style="max-width: 800px;">
 				<div class="row no-gutters">
-					<div class="col-md-4">
-						<img src="<%=request.getContextPath()%>/upload/mento/<%=lecProImg%>" class="card-img" alt="...">
-						<h1><%=lec.getLecMento().getMtNickName() %></h1>
+					<div class="col-md-4 center1">
+						<img src="<%=request.getContextPath()%>/upload/lecture/<%=lecCoverImg%>" class="card-img orderImg" alt="...">
+						<h1 class="center1"><%=lec.getLecMento().getMtNickName() %></h1>
 					</div>
 					<div class="col-md-8">
 						<div class="card-body">
 							<h2 class="card-title"><%=lec.getLecName() %></h2>
 							<div class="class-pay-table-wrap">
-								<!-- <form action="" id="class-pay-frm" name="class-pay-frm"> -->
+								
 									<table id="class-pay-tbl">
 										<tr>
 											<th>수업횟수</th>
-											<td><%=lec.getLecCount() %>회</td>
+											<td><%=lec.getLecCount() %> 회</td>
 										</tr>
 										<tr>
 											<th>수업시간</th>
-											<td><%=lec.getLecTime() %>시간</td>
+											<td><%=lec.getLecTime() %> 시간</td>
 										</tr>
 										<tr>
 											<th>가격(1회 수업 금액)</th>
-											<td><%=lec.getLecPrice() %></td>
+											<td><%=lec.getLecPrice() %> 원</td>
 										</tr>
 										<tr>
 											<th>총결제금액</th>
-											<td><%=order.getoPrice() %></td>
+											<td><%=order.getoPrice() %> 원</td>
 										</tr>
 										<tr>
 											<th>결제수단</th>
 											<td><label><input type="radio" name="kakaopay">카카오페이</label></td>
 										</tr>
-										<tr>
-											<td colspan='2'>
-												   <button onclick="fn_iampay();">카카오페이로 결제하기</button>
-											</td>
-										</tr>
-
 									</table>
-
-								<!-- </form> -->
+									<div class="center1 btn-pay-wrap">
+								   		<button onclick="fn_iampay();" class="next">결제하기</button>
+									</div>
 							</div>
 						</div>
 					</div>
@@ -89,11 +90,17 @@
             	$.ajax({
             		url:"<%=request.getContextPath()%>/order/orderUpdatePayment.do?oNum="+<%=order.getoNum()%>,
             		type : "get",
-            		dataType : "html",
+   					dataType : "html", 
             		success:function(result) {
             			console.log(result);
             			if(result>0) {
             				check=1;
+            				console.log(check);
+            				msg = '결제가 완료되었습니다.';
+        	                msg += '\결제 금액 : ' + rsp.paid_amount;
+        					
+        	                //성공시 이동할 페이지
+        	                location.href='<%=request.getContextPath()%>/order/orderPaySuccess.do?msg='+encodeURI(msg);
             			}
             		},
             		error : function(request, status, error) {
@@ -103,25 +110,12 @@
 								+ " error = " + error); 
 					}
             	});
-            	if(check==1) {
-	           	 	msg = '결제가 완료되었습니다.';
-	                msg += '\n고유ID : ' + rsp.imp_uid;
-	                msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-	                msg += '\결제 금액 : ' + rsp.paid_amount;
-	                msg += '카드 승인번호 : ' + rsp.apply_num;
-					
-	                //성공시 이동할 페이지
-	                location.href='<%=request.getContextPath()%>/order/orderPaySuccess.do?msg='+msg;
-            	} else {
-            		console.log("update실패");
-            	}
+            	
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                <%-- location.href="<%=request.getContextPath()%>/order/payFail"; --%>
-                //location.href="#";
-                alert(msg);
+                location.href="<%=request.getContextPath()%>/order/orderPayFail.do?msg="+encodeURI(msg);
             }
         });
     };

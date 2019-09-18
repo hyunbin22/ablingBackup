@@ -39,6 +39,8 @@ public class MessageService {
 		if(result > 0) commit(conn);
 		else rollback(conn);
 		
+		close(conn);
+		
 		return result;
 	}
 	
@@ -66,6 +68,7 @@ public class MessageService {
 		} else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 	

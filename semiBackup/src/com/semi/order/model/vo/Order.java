@@ -1,27 +1,32 @@
 package com.semi.order.model.vo;
 
+import java.sql.Date;
+
 import com.semi.lecture.model.vo.Lecture;
 import com.semi.member.model.vo.Member;
 
 public class Order {
 	
-	private int oNum;
-	private int mNum;
-	private int lecNum;
-	private String oTot;
-	private String oText;
-	private int oPrice;
-	private char oPayment;
-	private char oCheck;
-	private Lecture lecture;
-	private Member member;
+	   
+   private int oNum;
+   private int mNum;
+   private int lecNum;
+   private String oTot;
+   private String oText;
+   private int oPrice;
+   private char oPayment;
+   private char oCheck;
+   private Lecture lecture;
+   private Member member;
+   private Date oDate;
+   private Date payDate;
 	
 	public Order() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Order(int oNum, int mNum, int lecNum, String oTot, String oText, int oPrice, char oPayment, char oCheck,
-			Lecture lecture, Member member) {
+			Lecture lecture, Member member, Date oDate, Date payDate) {
 		super();
 		this.oNum = oNum;
 		this.mNum = mNum;
@@ -33,9 +38,12 @@ public class Order {
 		this.oCheck = oCheck;
 		this.lecture = lecture;
 		this.member = member;
+		this.oDate = oDate;
+		this.payDate = payDate;
 	}
-	
-	
+
+
+
 
 	public Order(int mNum, int lecNum, String oTot, String oText, int oPrice) {
 		super();
@@ -44,6 +52,23 @@ public class Order {
 		this.oTot = oTot;
 		this.oText = oText;
 		this.oPrice = oPrice;
+	}
+	
+
+	public Date getoDate() {
+		return oDate;
+	}
+
+	public void setoDate(Date oDate) {
+		this.oDate = oDate;
+	}
+
+	public Date getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
 	}
 
 	public int getoNum() {

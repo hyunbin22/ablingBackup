@@ -14,22 +14,17 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/custom.css"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>메세지</title>
+<title>ABLINGTALK</title>
 </head>
 <body onresize="parent.resizeTo(450,600)" onload="parent.resizeTo(450,600)">
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">ABLINGTALK<span id = "unread" class="label label-info"></span></a>
-			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/memberFind.do">친구찾기</a>
+			<a class="navbar-brand" href="<%=request.getContextPath() %>/message/memberFind.do?userId=<%=userId%>">친구찾기</a>
 		</div>
 	</nav>	
 	<div class="container">
 		<table class="table" style="margin: 0 auto;">
-			<thead>
-				<tr>
-					<th><h4>메세지 목록</h4></th>
-				</tr>
-			</thead>
 			<tbody>
 				<td>
 					<div style="overflow-y : auto; width: 100%; max-height: 450px;">
@@ -42,51 +37,6 @@
 			</tbody>
 		</table>
 	</div>
-	<%
-		String messageContent = null;
-		if(session.getAttribute("messageContent") != null) {
-			messageContent=(String)session.getAttribute("messageContent");
-		}
-		String messageType=null;
-		if(session.getAttribute("messageType")!=null) {
-			messageType=(String)session.getAttribute("messageType");
-		}
-		
-		if(messageContent != null) {
-	%>
-	<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="vertical-alignment-helper">
-			<div class="modal-dialog vertical-align-cener">
-				<div class="modal-content <%if(messageType.equals("오류 메세지")) out.println("panel-warning"); else out.println("panel-success");%>">
-					<div class="modal-header panel-heading">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">&times</span>
-							<span class="sr-only">Close</span>
-						</button>
-						<h4 class="modal-title">
-							<%=messageType %>
-						</h4>
-					</div>
-					<div class="modal-body">
-						<%=messageContent %>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> 
-
-	<script>
-		$('#messageModal').modal("show");
-	</script>
-
-	<%
-		session.removeAttribute("messageContent");
-		session.removeAttribute("messageType");
-		
-	} %>
 	<script>
 	var lastId=0;
 
@@ -103,9 +53,8 @@
 				success: function(result) {
 					if(result>=1) {
 						showUnread(result);
-						console.log(result);
 					} else {
-						showUnread('');
+						showUnread('0');
 					}
 				}
 			});
@@ -142,7 +91,7 @@
 					}
 				}
 			});
-		},1000);
+		},500);
 		
 	});
 	
@@ -150,6 +99,10 @@
 	
 	function addBox(lastId, toId, chatContent, chatTime, unread) {
 		console.log(toId);
+		console.log(chatContent);
+		if(chatContent.length>25) {
+			chatContent = chatContent.substr(0,30)+"...";
+		}
 		$('#boxTable').append('<tr onclick="location.href=\'<%=request.getContextPath()%>/message/messageList.do?toId=' + encodeURIComponent(toId) + '\'">' +
 				'<td style="width: 150px;"><h5>' + (lastId=='msgAdmin'?"관리자":lastId) + '<span class="label label-info">' + unread + '</span></h5></td>' +
 				'<td><h5>' + chatContent +

@@ -16,7 +16,7 @@ public class Lecture {
 	private String lecType;
 	private int lecMaxCount;
 	private int lecPrice;
-	private double lecTime;
+	private int lecTime;
 	private int lecCount;
 	private String lecWeek;
 	private String lecMeet;
@@ -32,13 +32,54 @@ public class Lecture {
 	private char lecCheck;
 	private String lecReason;
 	private char lecStatus;
+	private LectureUpload lectureUpload;
 	private List<LectureUpload> lectureUpList;
 	private Mento lecMento;
 	public Lecture() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
 	public Lecture(int lecNum, int mtNum, int subNum, int localSubNum, String lecName, String lecType, int lecMaxCount,
-			int lecPrice, double lecTime, int lecCount, String lecWeek, String lecMeet, String lecTot, String lecTot2,
+			int lecPrice, int lecTime, int lecCount, String lecWeek, String lecMeet, String lecTot, String lecTot2,
+			Date lecOpenDate, Date lecOpenDate2, String lecLocalContent, String lecMentoContent,
+			String lecLectureContent, int lecStudentCount, Date lecADate, char lecCheck, String lecReason,
+			char lecStatus, LectureUpload lectureUpload, List<LectureUpload> lectureUpList, Mento lecMento) {
+		super();
+		this.lecNum = lecNum;
+		this.mtNum = mtNum;
+		this.subNum = subNum;
+		this.localSubNum = localSubNum;
+		this.lecName = lecName;
+		this.lecType = lecType;
+		this.lecMaxCount = lecMaxCount;
+		this.lecPrice = lecPrice;
+		this.lecTime = lecTime;
+		this.lecCount = lecCount;
+		this.lecWeek = lecWeek;
+		this.lecMeet = lecMeet;
+		this.lecTot = lecTot;
+		this.lecTot2 = lecTot2;
+		this.lecOpenDate = lecOpenDate;
+		this.lecOpenDate2 = lecOpenDate2;
+		this.lecLocalContent = lecLocalContent;
+		this.lecMentoContent = lecMentoContent;
+		this.lecLectureContent = lecLectureContent;
+		LecStudentCount = lecStudentCount;
+		this.lecADate = lecADate;
+		this.lecCheck = lecCheck;
+		this.lecReason = lecReason;
+		this.lecStatus = lecStatus;
+		this.lectureUpload = lectureUpload;
+		this.lectureUpList = lectureUpList;
+		this.lecMento = lecMento;
+	}
+
+
+
+	public Lecture(int lecNum, int mtNum, int subNum, int localSubNum, String lecName, String lecType, int lecMaxCount,
+			int lecPrice, int lecTime, int lecCount, String lecWeek, String lecMeet, String lecTot, String lecTot2,
 			Date lecOpenDate, Date lecOpenDate2, String lecLocalContent, String lecMentoContent,
 			String lecLectureContent, int lecStudentCount, Date lecADate, char lecCheck, String lecReason,
 			char lecStatus, List<LectureUpload> lectureUpList, Mento lecMento) {
@@ -70,6 +111,70 @@ public class Lecture {
 		this.lectureUpList = lectureUpList;
 		this.lecMento = lecMento;
 	}
+	
+	
+
+	public Lecture(int mtNum, int subNum, int localSubNum, String lecName, String lecType, int lecMaxCount,
+			int lecPrice, int lecTime, int lecCount, String lecWeek, String lecMeet, String lecTot, String lecTot2,
+			Date lecOpenDate, Date lecOpenDate2, String lecLocalContent, String lecMentoContent,
+			String lecLectureContent) {
+		super();
+		this.mtNum = mtNum;
+		this.subNum = subNum;
+		this.localSubNum = localSubNum;
+		this.lecName = lecName;
+		this.lecType = lecType;
+		this.lecMaxCount = lecMaxCount;
+		this.lecPrice = lecPrice;
+		this.lecTime = lecTime;
+		this.lecCount = lecCount;
+		this.lecWeek = lecWeek;
+		this.lecMeet = lecMeet;
+		this.lecTot = lecTot;
+		this.lecTot2 = lecTot2;
+		this.lecOpenDate = lecOpenDate;
+		this.lecOpenDate2 = lecOpenDate2;
+		this.lecLocalContent = lecLocalContent;
+		this.lecMentoContent = lecMentoContent;
+		this.lecLectureContent = lecLectureContent;
+	}
+	
+	
+	public Lecture(String lecName, String lecType, int lecMaxCount, int lecPrice, int lecTime, int lecCount,
+			String lecWeek, String lecMeet, String lecTot, String lecTot2, Date lecOpenDate, Date lecOpenDate2,
+			String lecLocalContent, String lecMentoContent, String lecLectureContent) {
+		super();
+		this.lecName = lecName;
+		this.lecType = lecType;
+		this.lecMaxCount = lecMaxCount;
+		this.lecPrice = lecPrice;
+		this.lecTime = lecTime;
+		this.lecCount = lecCount;
+		this.lecWeek = lecWeek;
+		this.lecMeet = lecMeet;
+		this.lecTot = lecTot;
+		this.lecTot2 = lecTot2;
+		this.lecOpenDate = lecOpenDate;
+		this.lecOpenDate2 = lecOpenDate2;
+		this.lecLocalContent = lecLocalContent;
+		this.lecMentoContent = lecMentoContent;
+		this.lecLectureContent = lecLectureContent;
+	}
+	
+	
+	
+	public LectureUpload getLectureUpload() {
+		return lectureUpload;
+	}
+
+
+
+	public void setLectureUpload(LectureUpload lectureUpload) {
+		this.lectureUpload = lectureUpload;
+	}
+
+
+
 	public int getLecNum() {
 		return lecNum;
 	}
@@ -118,10 +223,10 @@ public class Lecture {
 	public void setLecPrice(int lecPrice) {
 		this.lecPrice = lecPrice;
 	}
-	public double getLecTime() {
+	public int getLecTime() {
 		return lecTime;
 	}
-	public void setLecTime(double lecTime) {
+	public void setLecTime(int lecTime) {
 		this.lecTime = lecTime;
 	}
 	public int getLecCount() {

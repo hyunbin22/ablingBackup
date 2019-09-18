@@ -14,7 +14,7 @@
 		<div class="admin-mento-detailwrap">
 		<br><br><h1>강의 상세보기</h1>
 		<div class="admin-detail-frm-wrap">
-			<form id="admin-mento-detail-frm" method="post" onsubmit="return checkAppro();">
+			<form id="admin-mento-detail-frm" method="post">
 			<input type="hidden" name="lecNum" id="lecNum" value="<%=lec.getLecNum()%>">
 			<br>
 			<%for(int i = 0; i < lec.getLectureUpList().size(); i++) {
@@ -67,7 +67,7 @@
 			</div>
 			<%if(temp!=0) {%>
 			<div class="appro-btn-wrap">
-				<button type="submit" class="next" id="btnclassAppro">승인</button>
+				<button type="submit" class="next" id="btnclassAppro" onclick="checkAppro();">승인</button>
 				<button class="next" id="btnclassRefusal" onclick="popOpen();">거절</button>
 			<br><br><br>
 			</div>

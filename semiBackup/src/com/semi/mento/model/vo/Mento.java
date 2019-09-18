@@ -49,6 +49,14 @@ public class Mento{
 		this.member = member;
 		this.list = list;
 	}
+	
+	
+
+
+	public Mento(int mtNum) {
+		super();
+		this.mtNum = mtNum;
+	}
 
 
 	public Mento(String mtNickName, String mtHowConfirm, String mtAcademic, String mtAcademicDept, String mtGraduation,

@@ -40,11 +40,14 @@ public class FindIdServlet extends HttpServlet {
 		
 		String phone = request.getParameter("phone");
 		
+		System.out.println(name + " / " + date + " / " + phone);
+		
 		MemberService service = new MemberService();
 		Member m = service.findMemberId(name , date , phone);
+		System.out.println(m);
 		
 		request.setAttribute("member", m);
-		request.getRequestDispatcher("/views/member/findIdView.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/member/findIdView.jsp").forward(request, response);;
 	}
 
 	/**

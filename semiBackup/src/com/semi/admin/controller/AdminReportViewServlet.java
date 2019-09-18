@@ -33,8 +33,7 @@ public class AdminReportViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
-		
-		System.out.println("신고글 번호 : " + reportNo);
+
 			
 		Report rp = new ReportService().selectReportContent(reportNo);
 		Report rp2 = new ReportService().selectReportContent2(reportNo);
@@ -44,9 +43,7 @@ public class AdminReportViewServlet extends HttpServlet {
 		request.setAttribute("reportUp", rpu);
 		request.setAttribute("report", rp);
 		request.setAttribute("report2", rp2);
-		
-		System.out.println(rp);
-		System.out.println(rpu);
+
 		request.getRequestDispatcher("/views/admin/reportView.jsp").forward(request, response);
 		
 	}

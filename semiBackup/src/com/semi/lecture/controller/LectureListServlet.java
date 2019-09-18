@@ -1,4 +1,4 @@
-package com.semi.admin.controller;
+package com.semi.lecture.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.semi.member.model.service.MemberService;
-import com.semi.member.model.vo.Member;
+import com.semi.lecture.model.service.LectureService;
+import com.semi.lecture.model.vo.Lecture;
 
 /**
- * Servlet implementation class AdminMemberListServlet
+ * Servlet implementation class LectureListServlet
  */
-@WebServlet("/admin/memberList.do")
-public class AdminMemberListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/lecture/lectureList.do")
+public class LectureListServlet extends HttpServlet {
+   private static final long serialVersionUID = 1L;
        
-	   /**
+    /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMemberListServlet() {
+    public LectureListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,54 +31,57 @@ public class AdminMemberListServlet extends HttpServlet {
     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
     */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-      //페이징처리 추가하기
+      
+      // 강의 리스트 페이징 처리
       int cPage;
       try {
          cPage=Integer.parseInt(request.getParameter("cPage"));
       }catch(NumberFormatException e) {
          cPage=1;
       }
+      int numPerPage=5;
+      LectureService service=new LectureService();
+      int totalLecture=service.selectLectureCount();
+      List<Lecture> lecturelist=service.selectLectureList(cPage, numPerPage);
       
-      int numPerPage=5;//페이지당 출력할 데이터
-      int totalMember=new MemberService().selectCountMember();
-            
-      List<Member> list=new MemberService().selectListPage(cPage,numPerPage);
-      
-      int totalPage=(int)Math.ceil((double)totalMember/numPerPage);
+
+      int totalPage=(int)Math.ceil((double)totalLecture/numPerPage);
       String pageBar="";
-      int pageSizeBar=5;
+      int pageSizeBar=9;
       int pageNo=((cPage-1)/pageSizeBar)*pageSizeBar+1;
       int pageEnd=pageNo+pageSizeBar-1;
+      
       if(pageNo==1) {
-         pageBar+="<span>[이전]</span>";
+         pageBar+="<span><</span>";
+      }else {
+         pageBar+="<a href='"+request.getContextPath()+"/lecture/lectureList.do?cPage="+(pageNo-1)+"'><</a>";
       }
-      else {
-         pageBar+="<a href="+request.getContextPath()+"/admin/memberList.do?cPage="+(pageNo-1)+">[이전]</a>";
-      }
+      
       while(!(pageNo>pageEnd||pageNo>totalPage)) {
          if(pageNo==cPage) {
-            pageBar+="<span class='cPage'>"+pageNo+"</span>";
-         }
-         else {
-            pageBar+="<a href="+request.getContextPath()+"/admin/memberList.do?cPage="+pageNo+">"+pageNo+"</a>";
+            pageBar+="<span>"+pageNo+"</span>";
+         } else {
+            pageBar+="<a href='"+request.getContextPath()+"/lecture/lectureList.do?cPage="+pageNo+"'>"+pageNo+"</a>";
          }
          pageNo++;
       }
+      
       if(pageNo>totalPage) {
-         pageBar+="<span>[다음]</span>";
+         pageBar+="<span>></span>";
       }
       else {
-         pageBar+="<a href="+request.getContextPath()+
-         "/admin/memberList.do?cPage="+(pageNo)+">[다음]</a>";
+         pageBar+="<a href='"+request.getContextPath()
+         +"/lecture/lectureList.do?cPage="+(pageNo)+"'>></a>";
       }
       
-            
-      //view페이지에 데이터 전송
+      
+      
       request.setAttribute("pageBar", pageBar);
       request.setAttribute("cPage", cPage);
-      request.setAttribute("members",list);
-      request.getRequestDispatcher("/views/admin/adminMemberList.jsp").forward(request, response);
+      request.setAttribute("list", lecturelist);
+      request.getRequestDispatcher("/views/lecture/lectureList.jsp")
+      .forward(request, response);
+      
    }
 
    /**

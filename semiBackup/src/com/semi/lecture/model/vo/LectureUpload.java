@@ -22,6 +22,14 @@ public class LectureUpload {
 		this.upLectureReName = upLectureReName;
 	}
 
+	public LectureUpload(int upLectureNum, String upLectureCategory, String upLectureOrgName, String upLectureReName) {
+		super();
+		this.upLectureNum = upLectureNum;
+		this.upLectureCategory = upLectureCategory;
+		this.upLectureOrgName = upLectureOrgName;
+		this.upLectureReName = upLectureReName;
+	}
+
 	public int getUpLectureNum() {
 		return upLectureNum;
 	}

@@ -25,13 +25,12 @@ public class OrderPaymentViewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		int mNum = Integer.parseInt(request.getParameter("mNum"));
 		int oNum = Integer.parseInt(request.getParameter("oNum"));
 		Order order = new OrderService().noPayOrder(oNum);
+		System.out.println(order);
 		request.setAttribute("order", order);
 		request.getRequestDispatcher("/views/lecture/orderPayment.jsp").forward(request, response);
 
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

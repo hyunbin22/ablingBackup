@@ -11,7 +11,7 @@
 		<div class="admin-mento-detailwrap">
 			<br><br><h1>멘토 상세보기</h1>
 			<div class="admin-detail-frm-wrap">
-			<form id="admin-mento-detail-frm" method="post" onsubmit="return checkAppro();">
+			<form id="admin-mento-detail-frm" method="post" >
 				<input type="hidden" name="mtNum" value="<%=mt.getMtNum()%>" id="mtNum">
 				<div class="mento_info_child">
 					<h1 class="mento-info-title"><%=mt.getMember().getmName()%> (<%=mt.getMember().getmId() %>)</h1>
@@ -76,7 +76,7 @@
 					<br>
 					<%if(temp==1) {%>
 					<div class="appro-btn-wrap">
-						<input type="submit" value="승인" class="next" id="btnclassAppro">
+						<input type="button" value="승인" class="next" id="btnclassAppro" onclick="checkAppro();">
 						<input type="button" value="거절" class="next" id="btnclassRefusal" onclick="openRefusal();">
 						<br><br><br>
 					</div>
@@ -121,13 +121,13 @@
 
 	};
 
-	function checkAppro(){
+ 	function checkAppro(){
 		if(confirm('승인하시겠습니까?')) {
 			var mtNum = <%=mt.getMtNum()%>;
 			var url="<%=request.getContextPath()%>/mento/updateCheckMento.do?mtNum="+mtNum;
 			location.href=url;
 		}
-	};
+	}; 
 
 	
 </script>

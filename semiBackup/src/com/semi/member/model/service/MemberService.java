@@ -32,7 +32,7 @@ public class MemberService {
 	public int idDupliCheck(String userId) {
 		Connection conn = getConnection();
 		int check = dao.idDupliCheck(conn, userId);
-
+		close(conn);
 		return check;
 	}
 
@@ -40,7 +40,7 @@ public class MemberService {
 	public int emailDupliCheck(String email) {
 		Connection conn = getConnection();
 		int check = dao.emailDupliCheck(conn, email);
-
+		close(conn);
 		return check;
 	}
 	
@@ -137,7 +137,7 @@ public class MemberService {
  		{
  			rollback(conn);
  		}
- 		
+ 		close(conn);
  		return result;
  	}
 

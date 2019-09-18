@@ -40,9 +40,7 @@ public class AdminReportCompleteApprovalServlet extends HttpServlet {
 		int numPerPage=4;
 		ReportService service=new ReportService();
 		int totalReport = service.selectReportCount2();
-		System.out.println(totalReport);
 		List<Report> list=service.selectAllReportComplete(cPage,numPerPage);
-		System.out.println(list);
 		
 		//페이징처리 구현
 		int totalPage=(int)Math.ceil((double)totalReport/numPerPage);

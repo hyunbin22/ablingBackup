@@ -3,13 +3,13 @@
 <%@ include file="/views/common/header.jsp"%>
 <section class="center1">
 	<article class="wrap">
-		<div class="bar">
+		<div class="bar center1">
 			<br>
 			<br>
 			<h1>이용약관</h1>
 			<br>
-			<hr>
 		</div>
+			<hr>
 		<form action="<%=request.getContextPath() %>/member/memberRegAgreeEnd.do" method="post" onsubmit="return checkAgree();">
 			<table class="tbl-register2 center1">
 				<tr>
@@ -59,7 +59,9 @@
 				</tr>
 				<tr>
 					<td>
+					<br><br><br>
 					<label class="center1"><input type="checkbox" name="rg-chbox-agree" class="rg-chbox-agree" value="agree">이용약관에 동의합니다.</label>
+					<br><br><br>
 					</td>
 				</tr>
 				<tr>

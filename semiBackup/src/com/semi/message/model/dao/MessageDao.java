@@ -166,6 +166,7 @@ public class MessageDao {
 				me.setFromMNum(rs.getInt("from_mnum"));
 				me.setToMNum(rs.getInt("to_mnum"));
 				me.setMessageText(rs.getString("message_text").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+				me.setMessageText(rs.getString("message_text"));
 				int messageTime = Integer.parseInt(rs.getString("message_sendDate").substring(11, 13));
 				String timeType = "오전";
 				if(messageTime > 12) {
@@ -196,9 +197,6 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Message> list = new ArrayList();
-//		String sql = "select * from (select rownum as rnum, a.* from "
-//				+ "(select m.* from tb_message m where m.message_num in(select max(message_num) "
-//				+ "from tb_message where to_mnum=? or from_mnum=? group by from_mnum, to_mnum))a) where rnum=1";
 		String sql = "select * from tb_message where message_num in (select max(message_num) from tb_message "
 				+ "where to_mnum=? or from_mnum=? group by from_mnum, to_mnum)";
 		try {
@@ -211,7 +209,7 @@ public class MessageDao {
 				me.setMessageNum(rs.getInt("message_num"));
 				me.setFromMNum(rs.getInt("from_mnum"));
 				me.setToMNum(rs.getInt("to_mnum"));
-				me.setMessageText(rs.getString("message_text").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+				me.setMessageText(rs.getString("message_text"));
 				int messageTime = Integer.parseInt(rs.getString("message_sendDate").substring(11, 13));
 				String timeType = "오전";
 				if(messageTime > 12) {
@@ -262,7 +260,7 @@ public class MessageDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, fromId);
 			pstmt.setString(2, toId);
-			pstmt.setString(3, text);
+			pstmt.setString(3, text.replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 			result = pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();

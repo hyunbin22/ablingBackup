@@ -38,7 +38,7 @@ public class MentoRegisterServlet extends HttpServlet {
 		request.setAttribute("member", m);
 		
 		
-		request.getRequestDispatcher("/views/mento/mento_registerForm.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/mento/mentoRegisterForm.jsp").forward(request, response);
 	}
 
 	/**

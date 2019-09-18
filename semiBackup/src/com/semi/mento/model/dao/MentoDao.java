@@ -435,6 +435,51 @@ public class MentoDao {
 		}
 		return list;
 	}
+	
+	//멤버번호로 멘토 조회
+	public Mento mentoByMNum(Connection conn, int mNum) {
+		Member m = null;
+		List<MentoUpload> setUpList = new ArrayList();
+		PreparedStatement pstmt= null;
+		ResultSet rs = null;
+		String sql = "select * from tb_mento where mnum=?";
+		Mento mt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				mt = new Mento();
+				mt.setMtNum(rs.getInt("mtNum"));
+				mt.setmNum(rs.getInt("mNum"));
+				mt.setMtHireDate(rs.getDate("mtHireDate"));
+				mt.setMtNickName(rs.getString("mtNickName"));
+				mt.setMtHowConfirm(rs.getString("mtHowConfirm"));
+				mt.setMtAcademic(rs.getString("mtAcademic"));
+				mt.setMtAcademicDept(rs.getString("mtAcademicDept"));
+				mt.setMtGraduation(rs.getString("mtGraduation"));
+				mt.setMtBank(rs.getString("mtBank"));
+				mt.setMtAccountNumber("mtaccountnumber");
+				mt.setMtaDate(rs.getDate("mtaDate"));
+				mt.setMtCheck(rs.getString("mtcheck").charAt(0));
+				mt.setMtReason(rs.getString("mtReason"));
+				m = new MemberDao().selectMemberMnum(conn, rs.getInt("mNum"));
+				List<MentoUpload> upList = new MentoUploadDao().mentoUpList(conn,rs.getInt("mtNum"));
+				for(int i = 0; i < upList.size(); i++) {
+					setUpList.add(upList.get(i));
+				}
+				mt.setMember(m);
+				mt.setList(upList);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return mt;
+
+	}
 
 
 }

@@ -68,11 +68,7 @@ footer{
 }
 
 
-/* 승인list꾸미기 */
-.card-header{
-	background-color: lavender;
-	font-weight: bold;
-}
+
 
 /* 회원관리 */
 
@@ -97,9 +93,23 @@ article.admin-list{
 	width: 700px;
 }
 /* 관리자승인관리 */
-div#admin-Mento-Search-container {
-	
+
+/* 승인list꾸미기 */
+.card-header{
+	background-color: lavender;
+	font-weight: bold;
 }
+
+button.btn-appro-view:hover, button.btn-appro-view:checked{
+	background-color: #afafef;
+	font-weight: bold;
+}
+
+button.btn-appro-view{
+	height: 40px;
+	background-color: #c5c5f3;
+}
+
 div#search-mId{
 	display: inline-block;
 }

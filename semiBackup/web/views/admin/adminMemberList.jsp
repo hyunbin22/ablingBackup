@@ -20,12 +20,14 @@
         <article>
             <div>
                 <table class="person-top-table">
+                	<tr>
                         <th scope="col" class="th-name">이름</th>
                         <th scope="col" class="th-email">이메일</th>
                         <th scope="col" class="th-pwreset">비번초기화</th>
                         <th scope="col" class="th-phone">휴대전화인증</th>
                         <th scope="col" class="th-check">튜터인증</th>
                         <th scope="col" class="th-delete">계정삭제</th>
+                    </tr>
                 </table>
                 <table class="person-table">
                     <tbody>

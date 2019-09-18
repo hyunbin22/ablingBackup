@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.semi.message.model.service.MessageService;
+
 /**
  * Servlet implementation class MessageListServlet
  */
@@ -20,6 +22,7 @@ public class MessageListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String toId = request.getParameter("toId");
 		request.setAttribute("toId", toId);
 		request.getRequestDispatcher("/views/common/webMessageView.jsp").forward(request, response);

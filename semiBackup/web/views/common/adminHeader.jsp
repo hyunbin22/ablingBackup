@@ -30,7 +30,7 @@ p {
 	<header class="admin-header">
 			<br><br><br><br><br><br>
 		<ul id="header-line">
-			<li><a href="#">회원관리</a></li>
+			<li><a href="<%=request.getContextPath() %>/admin/memberList.do">회원관리</a></li>
 			<li><a href="<%=request.getContextPath() %>/admin/AdminMentoList.do">멘토관리</a></li>
 			<li><a href="#">강의관리</a></li>
 			<li><a href="#">카테고리관리</a></li>

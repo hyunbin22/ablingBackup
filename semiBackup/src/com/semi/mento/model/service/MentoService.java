@@ -131,12 +131,20 @@ public class MentoService {
 		return result;
 	}
 
-
+	//멘토 리스트
 	public List<Mento> mentoList(int cPage, int numPerPage) {
 		Connection conn = getConnection();
 		List<Mento> list = dao.mentoList(conn, cPage, numPerPage);
 		close(conn);
 		return list;
+	}
+	
+	//멤버번호로 멘토 조회
+	public Mento mentoByMNum(int mNum) {
+		Connection conn = getConnection();
+		Mento mt = dao.mentoByMNum(conn, mNum);
+		close(conn);
+		return mt;
 	}
 
 

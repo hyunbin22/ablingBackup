@@ -1,16 +1,19 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 
 * {
   font-family: 'Nanum Gothic';
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
+  padding: 0 auto;
 }
-h5 {
-	font-family: 'Noto Sans KR';
+/* h5 {
+	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
 }
 h4 {
-	font-family: 'Noto Sans KR';
+	font-family: 'Noto Sans KR', sans-serif;
 }
 h3 {
 	font-family: 'Hanna';
@@ -20,7 +23,7 @@ h2 {
 }
 h1 {
 	font-family: 'Hanna';
-}
+} */
 
 header {
 	min-height: 300px;
@@ -50,24 +53,28 @@ button#logout, button#mypage {
 	border-radius: 5px;
 	cursor: pointer;
 	border: none;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: bold;
 }
 
 div#myPro {
-	top:90px;
+	top:110px;
 	position:absolute;
 	width:450px;
 	float:right;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 div#myPro2 {
 	height: 20px;
 	text-align: center;
 	margin-top: 5px;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 div#mypromenu {
 	position:absolute;
-	top:130px;
+	top:160px;
 	width:450px;
 }
 
@@ -93,14 +100,14 @@ div#loginmenu {
 	width: 450px;
 	top: 95px;
 	float: right;
-	
-
+	margin-left: 15px;
 }
 
 div#loginmenu2 {
 	position: absolute;
-	width: 500px;
+	width: 450px;
 	top: 190px;
+	margin-left:22.5px;
 }
 
 input#id, input#pwd {
@@ -132,7 +139,7 @@ span#join, span#findId, span#findPw {
 	float: left;
 	position: absolute;
 	top: 15px;
-	width: 250px;
+	width: 300px;
 }
 
 #topWrap{
@@ -385,6 +392,7 @@ nav ul {
     width:170px;
     float: left;
 	font-family: '나눔스퀘어';
+	height: 50px;
    }
     
    nav ul li:hover {
@@ -402,7 +410,8 @@ nav ul {
     text-decoration: none;
     color: #f24365;
     text-align: center;
-
+    font-weight:bold;
+	font-family: 'Noto Sans KR', sans-serif;
     
    }
     
@@ -420,6 +429,7 @@ nav ul {
     position: absolute;   
     max-width: 300px; 
     width:170px;
+    margin-top:-6px;
 
    }
     
@@ -474,6 +484,7 @@ nav ul {
 	border-radius: 4px;
 	background-color: #eb9f9f;
 	border: none;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 /* 메세지아이콘 */
@@ -535,6 +546,9 @@ span#unread{
 .tblreg tr{
     height:50px;
 }
+
+
+
 .tblreg .register-submit{
 	text-align:center;	
 }
@@ -586,7 +600,7 @@ span#unread{
 /*-----------------------------------------*/
 
 /* mypage list */
-table.MYLIST {
+table.myListTbl {
 	width: 600px;
 	text-align: center;
 	margin: 0 auto;
@@ -609,6 +623,8 @@ button#listBtn {
 table#list {
 	border-collapse: collapse;
 	border: #a79c8e;
+	width: 700px;
+	margin-left: -20px;
 }
 
 .list {
@@ -648,7 +664,15 @@ input#apply {
 	background-color: #eb9f9f;
 	border: none;
 }
-
+/* 마이페이지 */
+.myPageTbl tr{
+    height:20px;
+}
+.myPageTbl{
+	width: 500px;
+	margin-left: 100px;
+	margin-top: 20px;
+}
 
 /*--멘토등록------------------------------------*/
 
@@ -1044,13 +1068,35 @@ input.inputbtn , input.btnregister{
 	margin-bottom : 30px;
 }
 
-#class-pay-tbl tr:nth-child(2n) {
-		background-color: lightpink;	
+/* #class-pay-tbl tr:nth-child(2n) {
+	background-color: lightpink;	
+} */
+
+/* #class-pay-tbl td:first-child {
+	background-color: #A6C2CE;
+	text-align:left;
+} */
+
+#class-pay-tbl th {
+
+}
+
+.btn-pay-wrap {
+	width: 498px;
+	background-color:#A6C2;
+	height: 50px;
+	
 }
 
 #class-pay-tbl tr th {
 	border-right: 1px solid gray;
+	text-align:left;
+	width:200px;
 	
+}
+
+.col-md-4{
+	background-color: none;
 }
 
 #class-payment-submit{
@@ -1060,6 +1106,10 @@ input.inputbtn , input.btnregister{
     background-color: #eb9f9f;
     color: #fff;
     border: none;
+}
+
+.orderImg{
+	width: 400px;
 }
 
 .card-title{
@@ -1177,6 +1227,52 @@ button#seeMore , input#seeMore{
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+}
+
+/* 마이페이지 mypage */
+#myPageNavWrap {
+	border-right: 3px dashed lightpink;
+	float:left;
+	width: 160px;
+	background-color: #fff;
+	color: darkgray;
+	height: 400px;
+}
+
+#myPageNav{
+	background-color: white;
+	text-align: left;
+}
+#myPageNav ul {
+	position: relative;
+}
+#myPageNav ul li {
+	list-style: none;
+	margin-bottom: 10px;
+	text-align: left;
+	font-weight: 800;
+	width: 160px;
+	height: 30px;
+}
+
+#myPageNav ul li a {
+	text-align: left;
+	padding: 0;
+	margin-left: 20px;
+}
+
+#myPageNav ul li a:hover {
+	text-align: left;
+	list-style: none;
+	font-weight: 900;
+	color: black;
+	text-decoration: none;
+	height: 30px;
+	margin-left : 25px;
+}
+
+div.myPage-content-wrap {
+	width: 500px;
 }
 
 

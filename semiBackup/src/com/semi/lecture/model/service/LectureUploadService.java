@@ -2,6 +2,8 @@ package com.semi.lecture.model.service;
 
 import static common.template.JDBCTemplate.getConnection;
 import static common.template.JDBCTemplate.close;
+import static common.template.JDBCTemplate.commit;
+import static common.template.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
@@ -12,11 +14,15 @@ public class LectureUploadService {
 	
 	private LectureUploadDao dao = new LectureUploadDao();
 
-	/*
-	 * public List<LectureUpload> lectureUpList() {
-	 * 
-	 * Connection conn = getConnection(); List<LectureUpload> list =
-	 * dao.lectureUpList(conn); close(conn); return list; }
-	 */
-
+	public int insertLectureImage(LectureUpload lecup, int lecNum, String category) {
+	      Connection conn = getConnection();
+	      int result=dao.insertLectureImage(conn,lecup,lecNum,category);
+	      if(result>0) {
+	         commit(conn);
+	      }else {
+	         rollback(conn);
+	      }
+	      close(conn);
+	      return result;
+	 }
 }
